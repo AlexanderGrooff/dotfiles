@@ -67,7 +67,7 @@ call plug#begin('~/.vim/plugged')
 
 " this assumes fzf is installed separately on ~/.apps/fzf
 " see https://github.com/junegunn/fzf
-Plug '~/.apps/fzf' | Plug 'junegunn/fzf.vim'
+Plug '~/.fzf' | Plug 'junegunn/fzf.vim'
   noremap <C-T> :Files<CR>
   noremap <Leader>t :Buffers<CR>
 
@@ -104,7 +104,7 @@ set tags=tags;/
 set virtualedit=block
 "set mouse=n
 "set ttymouse=xterm2
-set backupdir=~/tmp
+set backupdir=/tmp
 set wildmenu
 set wildignore=*.exe,*.dll,*.o,*.so,*.pyc,*.back,*.jpg,*.jpeg,*.png,*.gif,*.pdf
 set wildmode=list:full
