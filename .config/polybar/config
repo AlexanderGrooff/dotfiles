@@ -25,12 +25,20 @@ compositing-border = over
 screenchange-reload = true
 
 [colors]
+background = #22000000
 ;background = ${xrdb:color0:#222}
-background = #222
+;background = ${env:color0_alpha}
+;foreground = ${xrdb:color7:#222}
+foreground = #EEEEEEEE
+foreground-alt = #EEEEEEEE
+;foreground-alt = ${xrdb:color7:#222}
+;primary = ${xrdb:color1:#222}
+;secondary = ${xrdb:color2:#222}
+;alert = ${xrdb:color3:#222}
+
+;background = ${xrdb:color0:#222}
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
@@ -65,7 +73,6 @@ font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=10;3"
 font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=10;3"
 font-3 = "Font Awesome 5 Brands:pixelsize=10;3"
 font-4 = "FontAwesome:style=Regular:pixelsize=10;3"
-font-5 = "Wuncon Siji:style=Regular:pixelsize=10;3"
 dpi = 96
 
 background = ${colors.background}
@@ -137,6 +144,8 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 pin-workspaces = true
+strip-wsnumbers = true
+fuzzy-match = true
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
@@ -146,28 +155,30 @@ label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
+label-focused = %index%. %icon%
 label-focused-background = ${module/bspwm.label-focused-background}
 label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = %index%. %icon%
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = %index%. %icon%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %index%. %icon%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
-; Separator in between workspaces
-; label-separator = |
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
 
 
 [module/mpd]
