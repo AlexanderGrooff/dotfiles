@@ -119,3 +119,6 @@ if [[ -f $THEME ]]; then
     export DEFAULT_USER=`whoami`
     source $THEME
 fi
+
+# Activate virtualenvwrapper
+source ~/.local/bin/virtualenvwrapper.sh
