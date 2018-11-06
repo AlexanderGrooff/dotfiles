@@ -23,6 +23,11 @@ Plugin 'scrooloose/nerdcommenter'
 "Plugin 'ervandew/supertab'
 "Plugin 'jeetsukumaran/vim-buffergator'
 
+"Plugin 'python-mode/python-mode', { 'branch': 'develop' }
+
+Plugin 'mgedmin/python-imports.vim'
+map <F5>    :ImportName<CR>
+
 Plugin 'majutsushi/tagbar'
   nmap <F4> :TagbarToggle<CR>
 
@@ -53,11 +58,12 @@ Plugin 'joonty/vdebug'
 
 " lang specific modules
 Plugin 'ekalinin/Dockerfile.vim'
-"Plugin 'rust-lang/rust.vim'
-"Plugin 'elixir-lang/vim-elixir'
-"Plugin 'hhvm/vim-hack'
-"Plugin 'alvan/vim-php-manual'
-"Plugin 'c9s/perlomni.vim'
+Plugin 'nvie/vim-flake8'
+  let g:flake8_show_in_gutter=1
+  let g:flake8_show_quickfix=0
+  autocmd BufWritePost *.py call Flake8()
+Plugin 'davidhalter/jedi-vim'
+  autocmd FileType python setlocal completeopt-=preview " dont show doc window
 
 call vundle#end()
 filetype plugin indent on     " required!
@@ -67,9 +73,10 @@ call plug#begin('~/.vim/plugged')
 
 " this assumes fzf is installed separately on ~/.apps/fzf
 " see https://github.com/junegunn/fzf
-Plug '~/.fzf' | Plug 'junegunn/fzf.vim'
+Plug '~/.apps/fzf' | Plug 'junegunn/fzf.vim'
   noremap <C-T> :Files<CR>
   noremap <Leader>t :Buffers<CR>
+  noremap <Leader>f :Ag<CR>
 
 call plug#end()
 
@@ -95,6 +102,7 @@ set listchars=tab:>-,trail:-
 set expandtab
 set shiftwidth=4
 set smarttab
+set softtabstop=4
 set cindent
 "set smartindent
 set showcmd
@@ -109,6 +117,8 @@ set wildmenu
 set wildignore=*.exe,*.dll,*.o,*.so,*.pyc,*.back,*.jpg,*.jpeg,*.png,*.gif,*.pdf
 set wildmode=list:full
 set colorcolumn=80
+set noswapfile
+set clipboard=unnamedplus  " Copy across vim instances
 
 syntax on
 colorscheme colorfulnight
