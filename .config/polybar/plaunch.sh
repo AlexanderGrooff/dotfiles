@@ -20,3 +20,6 @@ if type "xrandr"; then
 else
   polybar --reload mainbar &
 fi
+
+ln -f -s /tmp/polybar_mqueue.$(pidof polybar | awk '{print$1}') /tmp/ipc-mainbar
+/usr/bin/python3 ~/.config/polybar/py_spotify_listener.py
