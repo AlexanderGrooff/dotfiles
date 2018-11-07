@@ -31,6 +31,7 @@ background = #22000000
 ;foreground = ${xrdb:color7:#222}
 foreground = #EEEEEEEE
 foreground-alt = #EEEEEEEE
+orange = #F0C800
 ;foreground-alt = ${xrdb:color7:#222}
 ;primary = ${xrdb:color1:#222}
 ;secondary = ${xrdb:color2:#222}
@@ -74,6 +75,9 @@ font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=10;3"
 font-3 = "Font Awesome 5 Brands:pixelsize=10;3"
 font-4 = "FontAwesome:style=Regular:pixelsize=10;3"
 dpi = 96
+
+tray-position = right
+tray-detached = false
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -137,7 +141,7 @@ label-focused = %index%. %icon%
 label-focused-background = ${colors.background}
 label-focused-foreground = ${colors.foreground}
 label-focused-padding = 2
-label-focused-underline = ${colors.foreground-alt}
+label-focused-underline = ${colors.orange}
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%. %icon%
@@ -151,7 +155,7 @@ label-visible = %index%. %icon%
 label-visible-background = ${colors.background}
 label-visible-foreground = ${colors.foreground}
 label-visible-padding = 2
-label-visible-underline = ${colors.background}
+label-visible-underline = ${colors.foreground-alt}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%. %icon%
