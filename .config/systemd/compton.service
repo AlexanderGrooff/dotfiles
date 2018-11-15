@@ -2,8 +2,10 @@
 Description=Start compton
 
 [Service]
-ExecStart=/bin/su alex -c "/usr/bin/compton -b --dbus -d :0"
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/compton -b -d :0
 Type=oneshot
+User=alex
 
 [Install]
 WantedBy=multi-user.target

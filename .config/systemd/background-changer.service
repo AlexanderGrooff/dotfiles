@@ -2,7 +2,9 @@
 Description=Background changer with feh
 
 [Service]
-ExecStart=/bin/su alex -c "/usr/bin/feh -z -r --bg-scale /home/alex/wallpapers"
+User=alex
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/feh -z -r --bg-scale /home/alex/wallpapers
 Type=oneshot
 
 [Install]
