@@ -1,0 +1,9 @@
+[Unit]
+Description=Start compton
+
+[Service]
+ExecStart=/usr/bin/compton -b --dbus
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
