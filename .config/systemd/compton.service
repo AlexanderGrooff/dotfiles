@@ -2,7 +2,7 @@
 Description=Start compton
 
 [Service]
-ExecStart=/usr/bin/compton -b --dbus
+ExecStart=/bin/su alex -c "/usr/bin/compton -b --dbus -d :0"
 Type=oneshot
 
 [Install]
