@@ -4,7 +4,7 @@ Description=Start compton
 [Service]
 Environment=DISPLAY=:0
 ExecStart=/usr/bin/compton -b -d :0
-Type=oneshot
+Type=simple
 User=alex
 
 [Install]
