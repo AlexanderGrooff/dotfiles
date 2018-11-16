@@ -122,3 +122,6 @@ fi
 
 # Activate virtualenvwrapper
 source ~/.local/bin/virtualenvwrapper.sh
+
+# Set keyboard rate and delay
+xset r rate 175 45
