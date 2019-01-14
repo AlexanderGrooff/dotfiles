@@ -57,6 +57,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'joonty/vdebug'
 
 " lang specific modules
+Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'nvie/vim-flake8'
   let g:flake8_show_in_gutter=1
@@ -152,3 +153,6 @@ inoremap <C-S-K> <Esc>:m .-2<CR>==gi
 vnoremap <C-S-K> :m '<-2<CR>gv=gv
 vnoremap <C-S-J> :m '>+1<CR>gv=gv
 vnoremap // y/<C-R>"<CR>
+
+map <C-Y> :call yapf#YAPF()<cr>
+imap <C-Y> <c-o>:call yapf#YAPF()<cr>
