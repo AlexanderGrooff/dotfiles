@@ -35,6 +35,7 @@ alias drmc='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
 alias drmi='docker rmi $(docker images -a --filter=dangling=true -q)'
 alias drmv='docker volume ls -qf dangling=true | xargs -r docker volume rm'
 alias dc='docker-compose'
+alias katt='dc kill && dc rm -f && dc up -d'
 
 # Commonly used repos
 alias ap='cd /home/alex/code/byte/hypernode-api; workon hypernode-api'
@@ -47,3 +48,7 @@ alias kaa='cd /home/alex/code/byte/hypernode-kamikaze3; workon hypernode-kamikaz
 alias pi='cd /home/alex/code/byte/pino; workon pino'
 alias qs='deactivate 2> /dev/null; cd /home/alex/code/byte/quickscan'
 alias sp='cd /home/alex/code/byte/servicepanel-python; workon servicepanel-python'
+alias ma='cd /home/alex/code/byte/magereport; workon magereport'
+
+# Systemctl aliases
+alias susy='sudo systemctl'

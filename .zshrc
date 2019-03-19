@@ -106,4 +106,12 @@ source ~/.local/bin/virtualenvwrapper.sh
 # Set keyboard rate and delay
 xset r rate 175 45
 
+# Start keychain on opening new terminal
 eval $(keychain --eval id_rsa)
+
+# Add scripts to path
+export PATH=$PATH:$HOME/scripts
+
+# Use fd for fzf
+export FZF_DEFAULT_COMMAND='fd --hidden --exclude ".git" .';
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
