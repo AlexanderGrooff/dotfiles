@@ -52,3 +52,6 @@ alias ma='cd /home/alex/code/byte/magereport; workon magereport'
 
 # Systemctl aliases
 alias susy='sudo systemctl'
+
+# Pip stuff
+alias pir='pip install -r requirements/development.txt'
