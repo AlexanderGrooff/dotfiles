@@ -58,6 +58,7 @@ ZSH_THEME="agnoster"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -107,8 +108,12 @@ source ~/.local/bin/virtualenvwrapper.sh
 xset r rate 175 45
 
 # Add scripts to path
-export PATH=$PATH:$HOME/scripts
+export PATH=$PATH:$HOME/.local/bin:$HOME/scripts
 
 # Use fd for fzf
-export FZF_DEFAULT_COMMAND='fd --hidden --exclude ".git" .';
+if [ -x /usr/bin/fdfind ]; then
+    export FZF_DEFAULT_COMMAND='fdfind --hidden --exclude ".git" .';
+else
+    export FZF_DEFAULT_COMMAND='fd --hidden --exclude ".git" .';
+fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

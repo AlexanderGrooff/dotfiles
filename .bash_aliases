@@ -55,3 +55,11 @@ alias susy='sudo systemctl'
 
 # Pip stuff
 alias pir='pip install -r requirements/development.txt'
+
+# Create venv in current dir
+alias mkv='mkvirtualenv -a . -p python3 $(basename $(pwd))'
+
+# On Buster, fd is installed under fdfind
+if [ -x /usr/bin/fdfind ]; then
+    alias fd='fdfind'
+fi
