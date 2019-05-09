@@ -57,7 +57,8 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/id_rsa"
+export SSH_KEY_PATH="/home/alex/.ssh/id_rsa"
+eval $(keychain -q --eval $SSH_KEY_PATH)
 
 
 if [ -f ~/.bash_aliases ]; then
