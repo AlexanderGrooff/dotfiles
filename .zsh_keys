@@ -1,0 +1,2 @@
+# Keybindings for ZSH
+bindkey '^\n' autosuggest-accept  # Bind shift+enter to execute suggested command

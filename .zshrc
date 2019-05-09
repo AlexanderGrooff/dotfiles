@@ -64,6 +64,11 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# ZSH bindkeys
+if [ -f ~/.zsh_keys ]; then
+    . ~/.zsh_keys
+fi
+
 # Activate virtualenvwrapper
 source ~/.local/bin/virtualenvwrapper.sh
 
