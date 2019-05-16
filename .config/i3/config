@@ -193,3 +193,9 @@ bindsym $mod+Shift+lesser move workspace to output left
 
 # rename workspace
 bindsym $mod+Shift+n exec i3-input -F 'rename workspace to %s' -P 'New name: '
+
+# Spotify keybinds
+# F6 previous, F7 playpause, F8 next
+bindcode 72 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindcode 73 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindcode 74 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
