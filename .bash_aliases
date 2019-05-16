@@ -17,18 +17,18 @@ alias lsofp='lsof -Pnl +M -i4'
 alias ll='ls -hlAF'
 
 # mkdir goes to created dir
-function createAndMoveToDir { 
+function mkd {
     mkdir "$1"
     cd "$1"
 }
-alias mkd='createAndMoveToDir'
 
 # git aliases
 alias gsp='git stash pop'
 alias gcm='git checkout master'
 alias gp='git pull'
-alias gc='git commit'
+alias gc='git commit -v'
 alias gca='git commit --amend'
+alias gdf='git diff'
 
 # docker aliases
 alias drmc='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
