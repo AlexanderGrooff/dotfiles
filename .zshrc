@@ -77,7 +77,7 @@ source ~/.local/bin/virtualenvwrapper.sh
 xset r rate 175 45
 
 # Add scripts to path
-export PATH=$PATH:$HOME/.local/bin:$HOME/scripts
+export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:/sbin
 
 # Use fd for fzf
 if [ -x /usr/bin/fdfind ]; then
