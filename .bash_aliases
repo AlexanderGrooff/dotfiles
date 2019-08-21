@@ -29,17 +29,25 @@ alias gp='git pull'
 alias gc='git commit -v'
 alias gca='git commit --amend'
 alias gdf='git diff'
+alias gpb='git checkout -'
 
 # docker aliases
 alias drmc='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
 alias drmi='docker rmi $(docker images -a --filter=dangling=true -q)'
 alias drmv='docker volume ls -qf dangling=true | xargs -r docker volume rm'
 alias dc='docker-compose'
-alias katt='dc kill && dc rm -f && dc up -d'
+function katt {
+    dc kill $1
+    dc rm -f $1
+    dc up --force-recreate -d $1
+}
+
+# Web development
+alias wpb='./node_modules/.bin/webpack --progress --config webpack.config.js --colors'
 
 # Commonly used repos
 alias ap='cd /home/alex/code/byte/hypernode-api; workon hypernode-api'
-alias bdb='cd /home/alex/code/byte/bytedb-python; workon bytedb'
+alias bdb='workon bytedb-python'
 alias biab='cd /home/alex/code/byte/byte-in-a-box; workon byte-in-a-box'
 alias cl='cd /home/alex/code/byte/hypernode-control; workon hypernode-control'
 alias de='cd ~; deactivate'
@@ -51,6 +59,7 @@ alias sp='cd /home/alex/code/byte/servicepanel-python; workon servicepanel-pytho
 alias spp='cd /home/alex/code/byte/servicepanel-perl'
 alias ma='cd /home/alex/code/byte/magereport; workon magereport'
 alias dotf='cd /home/alex/code/dotfiles'
+alias sa='workon saltyparrot'
 
 # Systemctl aliases
 alias susy='sudo systemctl'
@@ -60,6 +69,7 @@ alias pir='pip install -r requirements/development.txt'
 
 # Create venv in current dir
 alias mkv='mkvirtualenv -a . -p python3 $(basename $(pwd))'
+alias rt='$(cat $VIRTUAL_ENV/$VIRTUALENVWRAPPER_PROJECT_FILENAME)/runtests.sh -1'
 
 # On Buster, fd is installed under fdfind
 if [ -x /usr/bin/fdfind ]; then
