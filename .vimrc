@@ -13,19 +13,14 @@ call vundle#begin()
 " Run :PluginInstall! to install/update bundles
 "
 " let Vundle manage Vundle
-" required! 
+" required!
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/nerdcommenter'
-"Plugin 'mileszs/ack.vim'
-"Plugin 'ervandew/supertab'
-"Plugin 'jeetsukumaran/vim-buffergator'
-
-"Plugin 'python-mode/python-mode', { 'branch': 'develop' }
-
 Plugin 'mgedmin/python-imports.vim'
+
 map <F5>    :ImportName<CR>
 
 Plugin 'majutsushi/tagbar'
@@ -39,7 +34,7 @@ Plugin 'vim-scripts/The-NERD-tree'
   map <F3> :NERDTreeToggle<CR>
   nnoremap <Leader>ff :NERDTreeFind<CR>
 
-" YouCompeleteMe requires vim 7.3+
+" YouCompleteMe requires vim 7.3+
 " Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'kien/ctrlp.vim'
@@ -54,15 +49,10 @@ Plugin 'Lokaltog/vim-powerline'
   highlight clear SignColumn
 
 Plugin 'tpope/vim-surround'
-Plugin 'joonty/vdebug'
 
 " lang specific modules
 Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
 Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'nvie/vim-flake8'
-  let g:flake8_show_in_gutter=1
-  let g:flake8_show_quickfix=0
-  autocmd BufWritePost *.py call Flake8()
 Plugin 'davidhalter/jedi-vim'
   autocmd FileType python setlocal completeopt-=preview " dont show doc window
 
@@ -141,7 +131,7 @@ map <Leader>gb :Gblame<CR>
 map <Leader>gdd :Git diff<CR>
 map <Leader>gdm :Git diff %<CR>
 map <Leader>gdf :Gdiff<CR>
-map <Leader>gg :Git 
+map <Leader>gg :Git
 
 nmap <F1> <Esc>
 imap <F1> <Esc>
