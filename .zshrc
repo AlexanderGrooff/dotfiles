@@ -86,3 +86,6 @@ else
     export FZF_DEFAULT_COMMAND='fd --hidden --exclude ".git" .';
 fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+source <(doctl completion zsh)
+source <(kubectl completion zsh)
