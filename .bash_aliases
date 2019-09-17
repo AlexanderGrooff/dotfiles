@@ -31,6 +31,9 @@ alias gca='git commit --amend'
 alias gdf='git diff'
 alias gpb='git checkout -'
 
+# Kubernetes aliases
+alias k='kubectl'
+
 # docker aliases
 alias drmc='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
 alias drmi='docker rmi $(docker images -a --filter=dangling=true -q)'
