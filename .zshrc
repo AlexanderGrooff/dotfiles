@@ -87,5 +87,5 @@ else
 fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-source <(doctl completion zsh)
-source <(kubectl completion zsh)
+if [ `which doctl` ]; then source <(doctl completion zsh); fi
+if [ `which kubectl` ]; then source <(kubectl completion zsh); fi
