@@ -82,7 +82,15 @@ alias susy='sudo systemctl'
 alias pir='pip install -r requirements/development.txt'
 
 # Create venv in current dir
-alias mkv='mkvirtualenv -a . -p python3 $(basename $(pwd))'
+function mkv {
+    mkvirtualenv -a . -p python3 $(basename $(pwd)) $1
+    if [ -f requirements.txt ]; then
+        pip install -r requirements.txt
+    fi
+    if [ -f requirements/development.txt ]; then
+        pip install -r requirements/development.txt
+    fi
+}
 alias rt='$(cat $VIRTUAL_ENV/$VIRTUALENVWRAPPER_PROJECT_FILENAME)/runtests.sh -1'
 
 # On Buster, fd is installed under fdfind
