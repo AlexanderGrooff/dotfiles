@@ -30,6 +30,17 @@ alias gc='git commit -v'
 alias gca='git commit --amend'
 alias gdf='git diff'
 alias gpb='git checkout -'
+function rmcommit {
+    commits=`git log $1..HEAD --pretty=format:%H`
+    echo "Stashing changes"
+    git stash
+    echo "\nSetting HEAD to just before commit $1"
+    git reset --hard $1~1
+    echo "\nApplying inbetween commits: $commits"
+    git cherry-pick $commits
+    echo "\nPopping stash"
+    git stash pop
+}
 
 # Kubernetes aliases
 alias k='kubectl'
