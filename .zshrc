@@ -8,9 +8,9 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+export ZSH_THEME="agnoster"
 
-CASE_SENSITIVE="true"
+export CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -57,7 +57,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # ssh
-export SSH_KEY_PATH="/home/alex/.ssh/id_rsa"
+export SSH_KEY_PATH=`find $HOME/.ssh/ -name 'id_*' | egrep -v ".*pub"`
 eval $(keychain -q --eval $SSH_KEY_PATH)
 
 
@@ -71,7 +71,7 @@ if [ -f ~/.zsh_keys ]; then
 fi
 
 # Activate virtualenvwrapper
-source ~/.local/bin/virtualenvwrapper.sh
+source `which virtualenvwrapper.sh`
 
 # Set keyboard rate and delay
 xset r rate 175 45
@@ -87,5 +87,5 @@ else
 fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-if [ `which doctl` ]; then source <(doctl completion zsh); fi
-if [ `which kubectl` ]; then source <(kubectl completion zsh); fi
+if [[ `command -v doctl` ]]; then source <(doctl completion zsh); fi
+if [[ `command -v kubectl` ]]; then source <(kubectl completion zsh); fi

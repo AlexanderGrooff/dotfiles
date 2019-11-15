@@ -121,7 +121,7 @@ if [[ -f $THEME ]]; then
 fi
 
 # Activate virtualenvwrapper
-source ~/.local/bin/virtualenvwrapper.sh
+source /usr/bin/virtualenvwrapper.sh
 
 # Set keyboard rate and delay
 xset r rate 175 45
