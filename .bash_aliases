@@ -27,9 +27,11 @@ alias gsp='git stash pop'
 alias gcm='git checkout master'
 alias gp='git pull'
 alias gc='git commit -v'
+alias gch='git checkout'
 alias gca='git commit --amend'
 alias gdf='git diff'
 alias gpb='git checkout -'
+alias grh='git reset --hard'
 function rmcommit {
     commits=`git log $1..HEAD --pretty=format:%H`
     echo "Stashing changes"
