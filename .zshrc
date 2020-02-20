@@ -9,7 +9,7 @@ export ZSH=$HOME/.oh-my-zsh
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 export ZSH_THEME="agnoster"
-
+export EDITOR=vim
 export CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
