@@ -99,3 +99,6 @@ alias rt='$(cat $VIRTUAL_ENV/$VIRTUALENVWRAPPER_PROJECT_FILENAME)/runtests.sh -1
 if [ -x /usr/bin/fdfind ]; then
     alias fd='fdfind'
 fi
+
+# Utilities
+alias sum='python -c "import sys; print(sum(int(l) for l in sys.stdin))"'
