@@ -77,7 +77,7 @@ source `which virtualenvwrapper.sh`
 xset r rate 175 45
 
 # Add scripts to path
-export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bin:$HOME/npm/bin
 
 # Use fd for fzf
 if [ -x /usr/bin/fdfind ]; then
