@@ -22,6 +22,15 @@ function mkd {
     cd "$1"
 }
 
+function log() {
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --ansi --no-sort --reverse --tiebreak=index --toggle-sort=\` \
+      --bind "ctrl-m:execute:
+                echo '{}' | grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R'"
+}
+
 # git aliases
 alias gsp='git stash pop'
 alias gcm='git checkout master'
@@ -32,6 +41,8 @@ alias gca='git commit --amend'
 alias gdf='git diff'
 alias gpb='git checkout -'
 alias grh='git reset --hard'
+alias gph='git push -u origin HEAD'
+alias gpr='gh pr create --title "$(git log --pretty=format:%s HEAD~1..HEAD)" --body "$(git log --pretty=format:%b HEAD~1..HEAD)"'
 function rmcommit {
     commits=`git log $1..HEAD --pretty=format:%H`
     echo "Stashing changes"
