@@ -74,7 +74,9 @@ fi
 source `which virtualenvwrapper.sh`
 
 # Set keyboard rate and delay
-xset r rate 175 45
+if [[ `command -v xset` ]]; then
+    xset r rate 175 45
+fi
 
 # Add scripts to path
 export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bin:$HOME/npm/bin
