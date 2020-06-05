@@ -91,3 +91,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 if [[ `command -v doctl` ]]; then source <(doctl completion zsh); fi
 if [[ `command -v kubectl` ]]; then source <(kubectl completion zsh); fi
+
+if [ -f $HOME/kubeconfig ]; then
+    export KUBECONFIG=$HOME/kubeconfig
+fi
