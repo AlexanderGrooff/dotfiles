@@ -42,6 +42,7 @@ alias gdf='git diff'
 alias gpb='git checkout -'
 alias grh='git reset --hard'
 alias gph='git push -u origin HEAD'
+alias doit='ga .; gca --no-edit; gpf'
 alias gpr='gh pr create --title "$(git log --pretty=format:%s HEAD~1..HEAD)" --body "$(git log --pretty=format:%b HEAD~1..HEAD)"'
 function rmcommit {
     commits=`git log $1..HEAD --pretty=format:%H`
