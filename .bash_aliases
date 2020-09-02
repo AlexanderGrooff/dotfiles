@@ -46,8 +46,8 @@ alias doit='ga .; gca --no-edit; gpf'
 function gpr {
     local title=$(git log --pretty=format:%s HEAD~1..HEAD)
     local body=$(git log --pretty=format:%b HEAD~1..HEAD)
-    gh pr create --title "$title" --body "$body"
-    echo $title
+    local url=$(gh pr create --title "$title" --body "$body" | tail -n1)
+    echo "$url $title"
 }
 function rmcommit {
     commits=`git log $1..HEAD --pretty=format:%H`
