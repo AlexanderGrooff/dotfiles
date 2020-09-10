@@ -100,6 +100,8 @@ alias susy='sudo systemctl'
 # Pip stuff
 alias pir='pip install -r requirements/development.txt'
 
+alias s='ssh -o stricthostkeychecking=no -o userknownhostsfile=/dev/null'
+
 # Create venv in current dir
 function mkv {
     mkvirtualenv -a . -p python3 $(basename $(pwd)) $1
