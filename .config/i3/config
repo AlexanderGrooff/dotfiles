@@ -144,9 +144,6 @@ bar {
     }
 }
 
-# Start dunst
-exec --no-startup-id dunst &
-
 # Set lockscreen
 bindsym $mod+Shift+p exec "i3lock-fancy-dualmonitor"
 
@@ -168,3 +165,6 @@ bindsym $mod+Shift+n exec i3-input -F 'rename workspace to %s' -P 'New name: '
 bindcode 72 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 bindcode 73 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 bindcode 74 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+
+# Initial startup
+exec run-parts ~/.screenlayout
