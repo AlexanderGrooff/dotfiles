@@ -43,7 +43,7 @@ alias grh='git reset --hard'
 alias gph='git push -u origin HEAD'
 alias doit='ga .; gca --no-edit; gpf'
 function gch {
-    local target=${@:-1}  # Last argument. Takes care of `gch -b target-branch`
+    local target="$@"  # All arguments. Don't checkout '-b' of `gch -b target-branch`
     # Check if target is a github url
     if [[ $target == *"github.com"* ]]; then
         local local_repo=$(git remote get-url origin | cut -d: -f2 | sed 's/.git//g')
@@ -54,7 +54,8 @@ function gch {
             echo "Tried checkout but target repo does not match $local_repo"
         fi
     else
-        git checkout $target
+        # Echo multiple args
+        git checkout $(echo $target)
     fi
 }
 function gpr {
