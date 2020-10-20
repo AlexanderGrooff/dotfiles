@@ -36,13 +36,27 @@ alias gsp='git stash pop'
 alias gcm='git checkout master'
 alias gp='git pull'
 alias gc='git commit -v'
-alias gch='git checkout'
 alias gca='git commit --amend'
 alias gdf='git diff'
 alias gpb='git checkout -'
 alias grh='git reset --hard'
 alias gph='git push -u origin HEAD'
 alias doit='ga .; gca --no-edit; gpf'
+function gch {
+    local target=$1
+    # Check if target is a github url
+    if [[ $target == *"github.com"* ]]; then
+        local local_repo=$(git remote get-url origin | cut -d: -f2 | sed 's/.git//g')
+        if [[ $target == *"$local_repo"* ]]; then
+            local pr_nr=$(echo $target | sed -r 's/.*\/pull\/([0-9]+)/\1/g')
+            gh pr checkout $pr_nr
+        else
+            echo "Tried checkout but target repo does not match $local_repo"
+        fi
+    else
+        git checkout $target
+    fi
+}
 function gpr {
     local title=$(git log --pretty=format:%s HEAD~1..HEAD)
     local body=$(git log --pretty=format:%b HEAD~2..HEAD | tr '\n' ' ' | sed 's/^ //g')
