@@ -60,7 +60,7 @@ function gch {
 }
 function gpr {
     local title=$(git log --pretty=format:%s HEAD~1..HEAD)
-    local body=$(git log --pretty=format:%b HEAD~2..HEAD | tr '\n' ' ' | sed 's/^ //g')
+    local body=$(git log --pretty=format:%b HEAD~1..HEAD | tr '\n' ' ' | sed 's/^ //g')
     local url=$(gh pr create --title "$title" --body "$body" | tail -n1)
     echo "$url $title"
 }
