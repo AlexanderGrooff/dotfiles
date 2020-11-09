@@ -56,9 +56,13 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# ssh
+# Load SSH key into keychain
 export SSH_KEY_PATH=`find $HOME/.ssh/ -name 'id_*' | egrep -v ".*pub"`
-eval $(keychain -q --eval $SSH_KEY_PATH)
+if which keychain > /dev/null; then
+    eval $(keychain -q --eval $SSH_KEY_PATH)
+else
+    ssh-add -K $SSH_KEY_PATH
+fi
 
 
 if [ -f ~/.bash_aliases ]; then
