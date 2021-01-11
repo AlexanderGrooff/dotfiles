@@ -126,6 +126,10 @@ function mkv {
     if [ -f requirements/development.txt ]; then
         pip install -r requirements/development.txt
     fi
+    if [[ `command -v pre-commit` ]]; then
+        pre-commit install
+    fi
+
 }
 alias rt='$(cat $VIRTUAL_ENV/$VIRTUALENVWRAPPER_PROJECT_FILENAME)/runtests.sh -1'
 
