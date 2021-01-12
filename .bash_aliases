@@ -59,8 +59,18 @@ function gch {
     fi
 }
 function gpr {
-    local title=$(git log --pretty=format:%s HEAD~1..HEAD)
-    local body=$(git log --pretty=format:%b HEAD~1..HEAD | tr '\n' ' ' | sed 's/^ //g')
+    local tmpfile=$(mktemp)
+    trap "rm $tmpfile" EXIT
+    local initial_title=$(git log --pretty=format:%s HEAD~1..HEAD)
+    local initial_body=$(git log --pretty=format:%b HEAD~1..HEAD | tr '\n' ' ' | sed 's/^ //g')
+
+    echo $initial_title > $tmpfile
+    echo "" >> $tmpfile
+    echo $initial_body >> $tmpfile
+    $EDITOR $tmpfile
+    local title=$(cat $tmpfile | head -n1)
+    local body=$(cat $tmpfile | tail -n+3)
+
     local url=$(gh pr create --title "$title" --body "$body" | tail -n1)
     echo "$url $title"
 }
