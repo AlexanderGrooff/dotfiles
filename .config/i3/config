@@ -30,6 +30,9 @@ bindsym $mod+w exec rofi -show window
 # SSH finder
 bindsym $mod+s exec rofi -show ssh
 
+# Emoji finder
+bindsym $mod+e exec rofi -show emoji -modi emoji
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
