@@ -129,7 +129,12 @@ alias s='ssh -o stricthostkeychecking=no -o userknownhostsfile=/dev/null'
 
 # Create venv in current dir
 function mkv {
-    mkvirtualenv -a . -p python3 $(basename $(pwd)) $1
+    local venv_name=$(basename $(pwd))
+    if [ -z $VIRTUAL_ENV ]; then
+        mkvirtualenv -a . -p python3 $venv_name $1
+    else
+        echo "Virtualenv $(basename $VIRTUAL_ENV) already active, not making new one"
+    fi
     if [ -f requirements.txt ]; then
         pip install -r requirements.txt
     fi
