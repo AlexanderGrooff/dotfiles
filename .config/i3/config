@@ -33,6 +33,9 @@ bindsym $mod+s exec rofi -show ssh
 # Emoji finder
 bindsym $mod+e exec rofi -show emoji -modi emoji
 
+# Take screenshots (same shortcuts as on Windows)
+bindsym $mod+Shift+s exec screengrab
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
