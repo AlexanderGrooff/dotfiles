@@ -104,20 +104,7 @@ function katt {
 alias wpb='./node_modules/.bin/webpack --progress --config webpack.config.js --colors'
 
 # Commonly used repos
-alias ap='cd /home/alex/code/byte/hypernode-api; workon hypernode-api'
-alias bdb='workon bytedb-python'
-alias biab='cd /home/alex/code/byte/byte-in-a-box; workon byte-in-a-box'
-alias cl='cd /home/alex/code/byte/hypernode-control; workon hypernode-control'
-alias de='cd ~; deactivate'
-alias ka='cd /home/alex/code/byte/hypernode-kamikaze'
-alias kaa='cd /home/alex/code/byte/hypernode-kamikaze3; workon hypernode-kamikaze3'
-alias pi='cd /home/alex/code/byte/pino; workon pino'
-alias qs='deactivate 2> /dev/null; cd /home/alex/code/byte/quickscan'
-alias sp='cd /home/alex/code/byte/servicepanel-python; workon servicepanel-python'
-alias spp='cd /home/alex/code/byte/servicepanel-perl'
-alias ma='cd /home/alex/code/byte/magereport; workon magereport'
 alias dotf='cd /home/alex/code/dotfiles'
-alias sa='workon saltyparrot'
 
 # Systemctl aliases
 alias susy='sudo systemctl'
