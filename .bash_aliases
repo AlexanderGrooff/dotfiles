@@ -114,6 +114,8 @@ alias pir='pip install -r requirements/development.txt'
 
 alias s='ssh -o stricthostkeychecking=no -o userknownhostsfile=/dev/null'
 
+# Venv stuff
+alias de='cd ~; deactivate'
 # Create venv in current dir
 function mkv {
     local venv_name=$(basename $(pwd))
