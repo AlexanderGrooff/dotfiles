@@ -131,7 +131,7 @@ function mkv {
         pip install -r requirements/development.txt
     fi
     if [[ `command -v pre-commit` ]]; then
-        pre-commit install
+        pre-commit install --allow-missing-config
     fi
 
 }
