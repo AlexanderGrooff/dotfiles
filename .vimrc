@@ -64,7 +64,8 @@ call plug#begin('~/.vim/plugged')
 
 " this assumes fzf is installed separately on ~/.apps/fzf
 " see https://github.com/junegunn/fzf
-Plug '~/.apps/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.apps/fzf', 'do': './install bin' }
+Plug 'junegunn/fzf.vim'
   noremap <C-T> :Files<CR>
   noremap <Leader>t :Buffers<CR>
   noremap <Leader>f :Ag<CR>

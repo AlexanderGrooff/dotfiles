@@ -15,6 +15,7 @@ for file in "$location"/**/*; do
     case "$bare" in
         .git|.git/*|.gitignore|.gitmodules|setup|*/.gitkeep|README.md) continue ;;
     esac
+    echo "Setting up $file"
 
     if [[ -d "$file" ]] && ! [[ -L "$file" ]]; then
         if [[ -L ~/"$bare" ]]; then
@@ -48,3 +49,29 @@ if PAGER=cat systemctl --user >/dev/null 2>&1; then
 fi
 
 git rev-parse HEAD > ~/.dfsha
+
+
+if [[ ! -d ~/.oh-my-zsh ]]; then
+    echo Installing OMZ
+    git clone http://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh
+fi
+if [[ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]]; then
+    echo Installing zsh autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+
+# Vim plugins
+mkdir -p ~/.vim/bundle
+if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then
+    echo Installing Vundle
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
+
+# Vim plugins
+mkdir -p ~/.apps
+if [[ ! -d ~/.apps/fzf ]]; then
+    echo Installing fzf
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.apps/fzf
+    ~/.apps/fzf/install --bin
+    ln -s ~/.apps/fzf/bin/fzf ~/.local/bin/fzf
+fi
