@@ -144,3 +144,7 @@ fi
 
 # Utilities
 alias sum='python -c "import sys; print(sum(int(l) for l in sys.stdin))"'
+
+# Tasks
+alias t='task'
+alias tw='timew'
