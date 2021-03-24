@@ -9,13 +9,29 @@
 import sys
 import json
 import subprocess
+from datetime import datetime, timedelta
 
+last_sync_tmpfile = '/tmp/tw-lastsync.txt'
+time_between_syncs = 30
 
 try:
     tasks = json.loads(sys.stdin.readline())
 except:
     # No input
     pass
+
+try:
+    with open(last_sync_tmpfile, 'r') as fp:
+        last_sync = datetime.fromisoformat(fp.read().strip())
+except:
+    last_sync = datetime(year=1900, month=1, day=1)
+
+if not datetime.now() - timedelta(seconds=time_between_syncs) > last_sync:
+    sys.exit(0)
+
+with open(last_sync_tmpfile, 'w') as fp:
+    fp.write(datetime.now().isoformat())
+
   
 # Call the `sync` command
 # hooks=0 ensures that the sync command doesn't call the on-exit hook
