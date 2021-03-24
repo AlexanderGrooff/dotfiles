@@ -15,10 +15,10 @@ for file in "$location"/**/*; do
     case "$bare" in
         .git|.git/*|.gitignore|.gitmodules|setup|*/.gitkeep|README.md) continue ;;
     esac
-    echo "Setting up $file"
 
     if [[ -d "$file" ]] && ! [[ -L "$file" ]]; then
         if [[ -L ~/"$bare" ]]; then
+            echo "Removing $bare"
             rm ~/"$bare"
         fi
         mkdir -m755 -p ~/"$bare"
@@ -28,7 +28,7 @@ for file in "$location"/**/*; do
         real_file=$(readlink -f "$file")
         # If we already linked this file due to a directory symlink inside the
         # dotfiles, don't try and link it again (see issue #1)
-        [[ $real_link != "$real_file" ]] && ln -sfn "$file" ~/"$bare"
+        [[ $real_link != "$real_file" ]] && echo "Linking $file to ~/$bare" && ln -sfn "$file" ~/"$bare"
     fi
 done
 
