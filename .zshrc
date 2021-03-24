@@ -52,6 +52,7 @@ export CASE_SENSITIVE="true"
 plugins=(
   git
   zsh-autosuggestions
+  taskwarrior
 )
 
 source $ZSH/oh-my-zsh.sh
