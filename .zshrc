@@ -55,6 +55,8 @@ plugins=(
   taskwarrior
 )
 
+export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bin:$HOME/npm/bin
+
 source $ZSH/oh-my-zsh.sh
 
 # Load SSH key into keychain
@@ -82,9 +84,6 @@ source `which virtualenvwrapper.sh`
 if [[ `command -v xset` ]]; then
     xset r rate 175 45
 fi
-
-# Add scripts to path
-export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bin:$HOME/npm/bin
 
 # Use fd for fzf
 if [ -x /usr/bin/fdfind ]; then
