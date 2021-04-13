@@ -12,7 +12,7 @@ import subprocess
 from datetime import datetime, timedelta
 
 last_sync_tmpfile = '/tmp/tw-lastsync.txt'
-time_between_syncs = 30
+time_between_syncs = 120
 
 try:
     tasks = json.loads(sys.stdin.readline())
