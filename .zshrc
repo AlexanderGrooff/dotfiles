@@ -107,3 +107,4 @@ if [ -f $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
     source /etc/profile.d/nix.sh
     source $HOME/.nix-profile/etc/profile.d/nix.sh
 fi
+eval "$(direnv hook zsh)"
