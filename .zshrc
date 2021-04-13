@@ -102,3 +102,7 @@ if [ -f $HOME/kubeconfig ]; then
 elif [ -f $HOME/.kube/config ]; then
     export KUBECONFIG=$HOME/.kube/config
 fi
+
+if [ -f $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
+    source $HOME/.nix-profile/etc/profile.d/nix.sh
+fi
