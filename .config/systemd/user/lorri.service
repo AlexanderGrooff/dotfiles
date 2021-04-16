@@ -9,3 +9,5 @@ PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=read-only
 Restart=on-failure
+Environment=PATH=%h/.nix-profile/bin:/usr/local/bin:/usr/bin
+Environment=NIX_PATH=%h/.nix-defexpr/channels
