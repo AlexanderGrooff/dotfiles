@@ -103,8 +103,12 @@ elif [ -f $HOME/.kube/config ]; then
     export KUBECONFIG=$HOME/.kube/config
 fi
 
-NIX_BIN="/nix/var/nix/profiles/per-user/$(whoami)/profile/etc/profile.d/nix.sh"
-if [ -f $NIX_BIN ]; then
-    source $NIX_BIN
+NIX_HOME="/nix/var/nix/profiles/per-user/$(whoami)"
+NIX_PROFILE="$NIX_HOME/profile/etc/profile.d/nix.sh"
+if [ -f $NIX_PROFILE ]; then
+    NIX_BIN="$NIX_HOME/profile/bin"
+    export PATH=$PATH:$NIX_BIN
+    export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
+    source $NIX_PROFILE
 fi
 eval "$(direnv hook zsh)"
