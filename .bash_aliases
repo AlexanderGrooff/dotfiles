@@ -21,6 +21,31 @@ function mkd {
     mkdir "$1"
     cd "$1"
 }
+alias lln="ls -lhtr  --time-style long-iso | tac | cat -n | tac | sed -s 's/^\s*\([0-9]*\)\s*\(.*\)/[\1]  \2 [\1]/'g && pwd"
+function lf {
+    if [ $# -eq 0 ];
+    then
+        local n=1
+    else
+        local n="${1}"
+    fi
+    ls -rt1 | tail -n ${n} | head -n 1
+}
+
+function expand_dirs {
+    # Expand ... to ../..
+    function vbe-expand-dot-to-parent-directory-path() {
+      case $LBUFFER in
+        (./..|* ./..) LBUFFER+='.' ;; # In Go: "go list ./..."
+        (..|*[ /=]..) LBUFFER+='/..' ;;
+        (*) LBUFFER+='.' ;;
+      esac
+    }
+    zle -N vbe-expand-dot-to-parent-directory-path
+    bindkey "." vbe-expand-dot-to-parent-directory-path
+    bindkey -M isearch "." self-insert
+}
+expand_dirs
 
 function log() {
   git log --graph --color=always \
