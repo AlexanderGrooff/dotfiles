@@ -9,6 +9,8 @@ else
     location=${location%/*}
 fi
 
+mkdir -p ~/.local/bin
+
 for file in "$location"/**/*; do
     bare="${file#$location/}"
 
