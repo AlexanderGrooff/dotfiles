@@ -112,3 +112,4 @@ if [ -f $NIX_PROFILE ]; then
     source $NIX_PROFILE
 fi
 eval "$(direnv hook zsh)"
+source /etc/bash_completion.d/complete_alias

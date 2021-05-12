@@ -133,6 +133,7 @@ alias dotf='cd /home/alex/code/dotfiles'
 
 # Systemctl aliases
 alias susy='sudo systemctl'
+complete -F _complete_alias susy
 
 # Pip stuff
 alias pir='pip install -r requirements/development.txt'
