@@ -113,6 +113,7 @@ function rmcommit {
 
 # Kubernetes aliases
 alias k='kubectl'
+alias kubeload='kubectl get node -o json | jq -r ".items[].metadata.name" | xargs -I {} ssh {} "hostname; w; echo"'
 
 # docker aliases
 alias drmc='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
