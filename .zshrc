@@ -82,7 +82,7 @@ VEW_SCRIPT=$(dpkg -L virtualenvwrapper | egrep 'virtualenvwrapper.sh$')
 source $VEW_SCRIPT
 
 # Set keyboard rate and delay
-if [[ `command -v xset` ]]; then
+if [[ `command -v xset` && -n $DISPLAY ]]; then
     xset r rate 175 45
 fi
 
@@ -112,7 +112,8 @@ if [ -f $NIX_PROFILE ]; then
     export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
     source $NIX_PROFILE
 fi
-eval "$(direnv hook zsh)"
+if [[ `command -v direnv` ]]; then eval "$(direnv hook zsh)"; fi
+
 source /etc/bash_completion.d/complete_alias
 
 if [ -f $GOHOME ]; then
