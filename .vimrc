@@ -112,6 +112,7 @@ set wildmode=list:full
 set colorcolumn=80
 set noswapfile
 set clipboard=unnamedplus  " Copy across vim instances
+set fileformat=unix   " Always use LF line separators, not CRLF (prefer Unix over Windows)
 
 syntax on
 colorscheme colorfulnight

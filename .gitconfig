@@ -4,7 +4,7 @@
 [core]
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     excludesfile = ~/.gitignore
-    autocrlf = true
+    autocrlf = false
 [color]
     ui = auto
     diff = auto

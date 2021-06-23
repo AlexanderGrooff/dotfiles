@@ -171,6 +171,7 @@ fi
 
 # Utilities
 alias sum='python -c "import sys; print(sum(int(l) for l in sys.stdin))"'
+alias chmox="chmod +x"
 
 # Tasks
 alias t='task'
