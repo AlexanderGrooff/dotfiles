@@ -114,3 +114,9 @@ if [ -f $NIX_PROFILE ]; then
 fi
 eval "$(direnv hook zsh)"
 source /etc/bash_completion.d/complete_alias
+
+if [ -f $GOHOME ]; then
+    export GOROOT=/usr/local/go
+    export GOPATH=$HOME/go
+    export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+fi
