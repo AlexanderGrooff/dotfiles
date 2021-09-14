@@ -182,5 +182,5 @@ function get_nomad_alloc_id {
     nomad job status -verbose $1 | grep $1 | grep running | cut -d' ' -f1 | head -n1
 }
 function nl {
-    get_nomad_alloc_id $1 | xargs nomad alloc logs
+    get_nomad_alloc_id $1 | xargs nomad alloc logs "${@:2}"
 }
