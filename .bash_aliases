@@ -67,6 +67,7 @@ alias gpb='git checkout -'
 alias grh='git reset --hard'
 alias gph='git push -u origin HEAD'
 alias doit='ga .; gca --no-edit; gpf'
+alias gitparent='git show-branch |& grep "*" | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed "s/.*\[\(.*\)\].*/\1/" | sed "s/[\^~].*//"'
 function gch {
     local target="$@"  # All arguments. Don't checkout '-b' of `gch -b target-branch`
     # Check if target is a github url
