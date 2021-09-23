@@ -180,8 +180,8 @@ alias tw='timew'
 
 # Nomad
 function get_nomad_alloc_id {
-    nomad job status -verbose $1 | grep $1 | grep running | cut -d' ' -f1 | head -n1
+    nomad job status -verbose $1 | grep $1 | grep running | cut -d' ' -f1
 }
 function nl {
-    get_nomad_alloc_id $1 | xargs nomad alloc logs "${@:2}"
+    get_nomad_alloc_id nginx | xargs -P 2 -I {} nomad alloc logs "${@:2}" {}
 }
