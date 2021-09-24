@@ -58,7 +58,7 @@ function log() {
 
 # git aliases
 alias gsp='git stash pop'
-alias gcm='git checkout master'
+alias gcm='git checkout $(git head-branch)'
 alias gp='git pull'
 alias gc='git commit -v'
 alias gca='git commit --amend -v'
