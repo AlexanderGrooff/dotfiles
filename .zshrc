@@ -104,23 +104,10 @@ elif [ -f $HOME/.kube/config ]; then
     export KUBECONFIG=$HOME/.kube/config
 fi
 
-NIX_HOME="/nix/var/nix/profiles/per-user/$(whoami)"
-NIX_PROFILE="$NIX_HOME/profile/etc/profile.d/nix.sh"
-if [ -f $NIX_PROFILE ]; then
-    NIX_BIN="$NIX_HOME/profile/bin"
-    export PATH=$PATH:$NIX_BIN
-    export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
-    source $NIX_PROFILE
-fi
 if [[ `command -v direnv` ]]; then eval "$(direnv hook zsh)"; fi
 
 source /etc/bash_completion.d/complete_alias
 
-if [ -f $GOHOME ]; then
-    export GOROOT=/usr/local/go
-    export GOPATH=$HOME/go
-    export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-fi
-
 # Disable terminal beep
 unsetopt beep
+if [ -e /home/alex/.nix-profile/etc/profile.d/nix.sh ]; then . /home/alex/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
