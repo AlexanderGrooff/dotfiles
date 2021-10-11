@@ -121,6 +121,11 @@ alias drmc='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
 alias drmi='docker rmi $(docker images -a --filter=dangling=true -q)'
 alias drmv='docker volume ls -qf dangling=true | xargs -r docker volume rm'
 alias dc='docker-compose'
+function dcip {
+    local DC_NAME=$1
+    local DC_PROJECT=$(basename $(pwd))
+    dc ps -q $DC_NAME | xargs docker inspect | jq -r ".[0].NetworkSettings.Networks.${DC_PROJECT}_default.IPAddress"
+}
 function katt {
     dc kill $1
     dc rm -f $1
