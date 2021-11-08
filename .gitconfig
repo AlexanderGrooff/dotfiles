@@ -3,7 +3,7 @@
     email = alexandergrooff@gmail.com
 [core]
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-    excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore_global
     autocrlf = false
 [color]
     ui = auto
@@ -14,8 +14,6 @@
     rebase = false
 [push]
     default = current
-[init]
-    defaultBranch = main
 [alias]
     upstream-name = !git remote | egrep -o '(upstream|origin)' | tail -1
     head-branch = !git remote show $(git upstream-name) | awk '/HEAD branch/ {print $NF}'
