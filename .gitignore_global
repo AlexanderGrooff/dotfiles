@@ -7,9 +7,18 @@
 
 #python specific
 *.pyc
+__pycache__
+.mypy_cache
+.pytest_cache
 
 # Editors
 .idea
 
 # Nix
 .nix-*
+
+# Sqlite
+*.sqlite3
+
+# Build files
+*.egg-info
