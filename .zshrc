@@ -78,8 +78,12 @@ if [ -f ~/.zsh_keys ]; then
 fi
 
 # Activate virtualenvwrapper
-VEW_SCRIPT=$(dpkg -L virtualenvwrapper | egrep 'virtualenvwrapper.sh$')
-source $VEW_SCRIPT
+if [[ $(command -v virtualenvwrapper.sh) ]]; then
+    source virtualenvwrapper.sh
+else
+    VEW_SCRIPT=$(dpkg -L virtualenvwrapper | egrep 'virtualenvwrapper.sh$')
+    source $VEW_SCRIPT
+fi
 
 # Set keyboard rate and delay
 if [[ `command -v xset` && -n $DISPLAY ]]; then
