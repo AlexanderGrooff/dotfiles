@@ -110,7 +110,9 @@ fi
 
 if [[ `command -v direnv` ]]; then eval "$(direnv hook zsh)"; fi
 
-source /etc/bash_completion.d/complete_alias
+if [ -f /etc/bash_completion.d/complete_alias ]; then
+    source /etc/bash_completion.d/complete_alias
+fi
 
 # Disable terminal beep
 unsetopt beep
