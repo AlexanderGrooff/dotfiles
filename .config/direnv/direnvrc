@@ -1,1 +1,7 @@
-#export DIRENV_LOG_FORMAT=
+use_python() {
+    if [ ! -d .venv ]; then
+        echo Making venv with $(which python)
+        python -m venv .venv
+    fi
+    source .venv/bin/activate
+}
