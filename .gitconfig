@@ -17,3 +17,5 @@
 [alias]
     upstream-name = !git remote | egrep -o '(upstream|origin)' | tail -1
     head-branch = !git remote show $(git upstream-name) | awk '/HEAD branch/ {print $NF}'
+[init]
+	defaultBranch = main
