@@ -155,6 +155,9 @@ bar {
 # Set lockscreen
 bindsym $mod+Shift+p exec "i3lock -c 000000"
 
+# Reset screensaver
+bindsym $mod+Shift+t exec "xset s activate"
+
 # don't set focus with mouse
 focus_follows_mouse no
 
