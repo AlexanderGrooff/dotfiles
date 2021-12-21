@@ -146,6 +146,13 @@ complete -F _complete_alias susy
 alias pir='pip install -r requirements/development.txt'
 
 alias s='ssh -o stricthostkeychecking=no -o userknownhostsfile=/dev/null'
+function jh {
+    if ping -c1 -W1 alpha 2&>1 /dev/null; then
+        ssh -D 5000 jh -J alpha
+    else
+        ssh -D 5000 jh
+    fi
+}
 
 # Venv stuff
 alias de='cd ~; deactivate'
