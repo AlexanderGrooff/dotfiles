@@ -27,7 +27,8 @@ display=Display\tMeta+P,Display\tMeta+P,Switch Display
 _k_friendly_name=Custom Shortcuts Service
 {983a6830-de39-41ce-9d54-b8e92fbb9b9a}=Ctrl+Alt+T,none,Launch Konsole
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Search
-{e9c37370-a8ac-4128-a6df-4a7fca5df965}=Meta+Return,none,New Action
+{d8e18c59-7686-4f70-a0c6-5a8fe384ef9b}=Meta+Shift+T,none,Reset screensaver
+{e9c37370-a8ac-4128-a6df-4a7fca5df965}=Meta+Return,none,Open terminal
 
 [kmix]
 _k_friendly_name=Audio Volume
@@ -244,6 +245,7 @@ bismuth_rotate_reverse=none,none,Bismuth: Rotate (Reverse)
 bismuth_toggle_float_layout=Meta+Ctrl+Shift+F,none,Bismuth: Toggle Floating Layout
 bismuth_toggle_monocle_layout=Meta+M,none,Bismuth: Toggle Monocle Layout
 bismuth_toggle_quarter_layout=none,none,Bismuth: Toggle Quarter Layout
+bismuth_toggle_spiral_layout=none,none,Bismuth: Toggle Spiral Layout
 bismuth_toggle_spread_layout=none,none,Bismuth: Toggle Spread Layout
 bismuth_toggle_stair_layout=none,none,Bismuth: Toggle Stair Layout
 bismuth_toggle_three_column_layout=none,none,Bismuth: Toggle Three Column Layout
