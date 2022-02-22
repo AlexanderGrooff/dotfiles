@@ -179,3 +179,12 @@ bindcode 74 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /
 
 # Initial startup
 exec run-parts ~/.screenlayout
+
+# enable Alt+Tab Functionality
+# pipx install i3-cycle
+bindsym $mod+Tab exec i3-cycle right
+bindsym $mod+Ctrl+Tab exec i3-cycle down
+bindsym $mod+Shift+Tab workspace next
+
+# jump to last used workspace
+bindsym $mod+grave workspace back_and_forth
