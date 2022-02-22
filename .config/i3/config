@@ -188,3 +188,6 @@ bindsym $mod+Shift+Tab workspace next
 
 # jump to last used workspace
 bindsym $mod+grave workspace back_and_forth
+
+# Start dunst (notifications)
+exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
