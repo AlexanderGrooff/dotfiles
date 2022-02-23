@@ -1,5 +1,12 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
+shell:
+  program: /usr/bin/zsh
+  args:
+    - --login
+    - -c
+    - "tmux attach || tmux"
+
 # Import additional configuration files
 #
 # Imports are loaded in order, skipping all missing files, with the importing
