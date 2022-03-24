@@ -6,7 +6,7 @@ use_python() {
     source .venv/bin/activate
 }
 
-use distrobox() {
+use_distrobox() {
     DISTROBOX_NAME=${1:-debian-buster}
     if [ -z $1 ]; then
         if [ -d .distrobox ]; then
