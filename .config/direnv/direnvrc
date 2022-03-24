@@ -7,13 +7,19 @@ use_python() {
 }
 
 use_distrobox() {
+    if [ $DISTROBOX_ENTER_PATH ]; then
+        echo "Distrobox is already active. Skipping.."
+        exit 0
+    fi
+
     DISTROBOX_NAME=${1:-debian-buster}
     if [ -z $1 ]; then
         if [ -d .distrobox ]; then
             DIR_NAME=$(basename $(pwd))
             DISTROBOX_NAME=$DIR_NAME
             if [[ ! $(distrobox list | grep $DIR_NAME) ]]; then
-                docker build -t distrobox-$DIR_NAME .distrobox/
+                docker build -t distrobox-$DISTROBOX_NAME .distrobox/
+                distrobox create --image distrobox-$DISTROBOX_NAME $DISTROBOX_NAME
             fi
         fi
     fi
