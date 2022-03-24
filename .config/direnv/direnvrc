@@ -5,3 +5,17 @@ use_python() {
     fi
     source .venv/bin/activate
 }
+
+use distrobox() {
+    DISTROBOX_NAME=${1:-debian-buster}
+    if [ -z $1 ]; then
+        if [ -d .distrobox ]; then
+            DIR_NAME=$(basename $(pwd))
+            DISTROBOX_NAME=$DIR_NAME
+            if [[ ! $(distrobox list | grep $DIR_NAME) ]]; then
+                docker build -t distrobox-$DIR_NAME .distrobox/
+            fi
+        fi
+    fi
+    distrobox enter --name $DISTROBOX_NAME
+}
