@@ -1,9 +1,16 @@
 use_python() {
-    if [ ! -d .venv ]; then
+    DIR_NAME=$(basename $(pwd))
+
+    if [ -d ~/.virtualenvs/$DIR_NAME ]; then
+        source ~/.virtualenvs/$DIR_NAME/bin/activate
+    elif [ ! -d .venv ]; then
         echo Making venv with $(which python)
         python -m venv .venv
     fi
-    source .venv/bin/activate
+
+    if [ -d .venv ]; then
+        source .venv/bin/activate
+    fi
 }
 
 use_distrobox() {
@@ -12,16 +19,15 @@ use_distrobox() {
         exit 0
     fi
 
-    DISTROBOX_NAME=${1:-debian-buster}
+    export DISTROBOX_NAME=${1:-debian-buster}
     if [ -z $1 ]; then
         if [ -d .distrobox ]; then
             DIR_NAME=$(basename $(pwd))
-            DISTROBOX_NAME=$DIR_NAME
+            export DISTROBOX_NAME=$DIR_NAME
             if [[ ! $(distrobox list | grep $DIR_NAME) ]]; then
                 docker build -t distrobox-$DISTROBOX_NAME .distrobox/
                 distrobox create --image distrobox-$DISTROBOX_NAME $DISTROBOX_NAME
             fi
         fi
     fi
-    distrobox enter --name $DISTROBOX_NAME
 }

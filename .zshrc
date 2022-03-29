@@ -63,8 +63,6 @@ source $ZSH/oh-my-zsh.sh
 export SSH_KEY_PATH=`find $HOME/.ssh/ -name 'id_*' | egrep -v ".*pub"`
 if which keychain > /dev/null; then
     eval $(keychain -q --eval $SSH_KEY_PATH)
-else
-    ssh-add -K $SSH_KEY_PATH
 fi
 
 
@@ -81,8 +79,10 @@ fi
 if [[ $(command -v virtualenvwrapper.sh) ]]; then
     source virtualenvwrapper.sh
 else
-    VEW_SCRIPT=$(dpkg -L virtualenvwrapper | egrep 'virtualenvwrapper.sh$')
-    source $VEW_SCRIPT
+    VEW_SCRIPT=$(dpkg -L virtualenvwrapper |& egrep 'virtualenvwrapper.sh$')
+    if [ $VEW_SCRIPT ]; then
+        source $VEW_SCRIPT
+    fi
 fi
 
 # Set keyboard rate and delay

@@ -156,6 +156,37 @@ function jh {
 
 # Venv stuff
 alias de='cd ~; deactivate'
+
+export DISTROBOX_DEFAULT_NAME=debian-buster
+function dbe {
+    if [ $DISTROBOX_ENTER_PATH ]; then
+        echo "Distrobox is already active"
+        exit 1
+    fi
+    if [ $DISTROBOX_NAME ]; then
+        distrobox enter --name $DISTROBOX_NAME
+    else
+        echo "Assuming default distrobox $DISTROBOX_DEFAULT_NAME"
+        distrobox enter --name $DISTROBOX_DEFAULT_NAME
+    fi
+}
+function dbb {
+    if [ $DISTROBOX_ENTER_PATH ]; then
+        echo "Distrobox is already active"
+        exit 1
+    fi
+    local name=${DISTROBOX_NAME:-$DISTROBOX_DEFAULT_NAME}
+
+    echo "Making $name in $PWD"
+    if [ -f .distrobox/.env ]; then
+        docker build $(eval $(cat .distrobox/.env | xargs echo eval echo) | xargs -n1 echo --build-arg) -t distrobox-$name $1 .distrobox/
+    else
+        docker build -t distrobox-$name $1 .distrobox/
+    fi
+    distrobox rm $name -f
+    distrobox create --image distrobox-$name $name
+}
+
 # Create venv in current dir
 function mkv {
     local venv_name=$(basename $(pwd))
