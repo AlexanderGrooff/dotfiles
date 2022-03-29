@@ -77,3 +77,5 @@ if [[ ! -d ~/.apps/fzf ]]; then
     ~/.apps/fzf/install --bin
     ln -s ~/.apps/fzf/bin/fzf ~/.local/bin/fzf
 fi
+
+git remote set-url origin git@github.com:AlexanderGrooff/dotfiles.git
