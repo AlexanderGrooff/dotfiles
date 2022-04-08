@@ -55,6 +55,10 @@ function log() {
                 echo '{}' | grep -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R'"
 }
+# Grep from $1 until $2 in $3+
+function gu() {
+    sed -n -e "/$1/,/$2/ p" ${@:3}
+}
 
 # git aliases
 alias gsp='git stash pop'
