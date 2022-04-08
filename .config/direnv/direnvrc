@@ -22,12 +22,7 @@ use_distrobox() {
     local db_name=${1:-debian-buster}
     if [ -z $1 ]; then
         if [ -d .distrobox ]; then
-            DIR_NAME=$(basename $(pwd))
-            local db_name=$DIR_NAME
-            if [[ ! $(distrobox list | grep $DIR_NAME) ]]; then
-                docker build -t distrobox-$DISTROBOX_NAME .distrobox/
-                distrobox create --image distrobox-$DISTROBOX_NAME $DISTROBOX_NAME
-            fi
+            local db_name=$(basename $(pwd))
         fi
     fi
     export DISTROBOX_NAME=$(echo $db_name | tr '[:upper:]' '[:lower:]')

@@ -167,8 +167,10 @@ function dbe {
         echo "Distrobox is already active"
         exit 1
     fi
-    if [ $DISTROBOX_NAME ]; then
-        distrobox enter --name $DISTROBOX_NAME
+    local db_name=${1:-$DISTROBOX_NAME}
+    if [ -n "$db_name" ]; then
+        echo "Entering distrobox $db_name"
+        distrobox enter --name $db_name
     else
         echo "Assuming default distrobox $DISTROBOX_DEFAULT_NAME"
         distrobox enter --name $DISTROBOX_DEFAULT_NAME
@@ -183,11 +185,11 @@ function dbb {
 
     echo "Making $name in $PWD"
     if [ -f .distrobox/.env ]; then
-        docker build $(eval $(cat .distrobox/.env | xargs echo eval echo) | xargs -n1 echo --build-arg) -t distrobox-$name $1 .distrobox/
+        docker build --no-cache $(eval $(cat .distrobox/.env | xargs echo eval echo) | xargs -n1 echo --build-arg) -t distrobox-$name $1 .distrobox/
     else
-        docker build -t distrobox-$name $1 .distrobox/
+        docker build --no-cache -t distrobox-$name $1 .distrobox/
     fi
-    distrobox rm $name -f
+    distrobox list | grep -q $name && distrobox rm $name -f
     distrobox create --image distrobox-$name $name
 }
 
