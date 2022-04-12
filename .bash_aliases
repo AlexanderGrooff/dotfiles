@@ -201,12 +201,15 @@ function mkv {
     else
         echo "Virtualenv $(basename $VIRTUAL_ENV) already active, not making new one"
     fi
+
     if [ -f requirements.txt ]; then
         pip install -r requirements.txt
-    fi
-    if [ -f requirements/development.txt ]; then
+    elif [ -f requirements/development3.txt ]; then
+        pip install -r requirements/development3.txt
+    elif [ -f requirements/development.txt ]; then
         pip install -r requirements/development.txt
     fi
+
     if [[ `command -v pre-commit` ]]; then
         pre-commit install --allow-missing-config
     fi
