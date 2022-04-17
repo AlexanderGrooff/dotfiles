@@ -55,7 +55,7 @@ plugins=(
   taskwarrior
 )
 
-export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bin:$HOME/npm/bin
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bin:$HOME/npm/bin:/usr/local/go/bin
 
 source $ZSH/oh-my-zsh.sh
 
