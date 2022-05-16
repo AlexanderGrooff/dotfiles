@@ -226,6 +226,12 @@ fi
 alias sum='python -c "import sys; print(sum(int(l) for l in sys.stdin))"'
 alias chmox="chmod +x"
 
+function check_cert {
+    local DOMAIN=$1
+    openssl s_client -connect $DOMAIN:443 -servername $DOMAIN < /dev/null 2>/dev/null | openssl x509 -noout -subject -issuer -dates
+}
+alias check_domain=check_cert
+
 function which {
     # Source of which on fedora
     which_declare="declare -f"
@@ -233,8 +239,8 @@ function which {
     which_shell="$(cat /proc/$$/comm)"
 
     if [ "$which_shell" = "ksh" ] || [ "$which_shell" = "mksh" ] || [ "$which_shell" = "zsh" ] ; then
-          which_declare="typeset -f"
-            which_opt=""
+        which_declare="typeset -f"
+        which_opt=""
     fi
 
     ( alias; eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot "$@"
