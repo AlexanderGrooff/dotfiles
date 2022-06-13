@@ -55,7 +55,7 @@ plugins=(
   taskwarrior
 )
 
-export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bin:$HOME/npm/bin:/usr/local/go/bin:$HOME/go/bin
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bin:$HOME/npm/bin:/usr/local/go/bin:$HOME/go/bin:$HOME/.pub-cache/bin
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,6 +98,8 @@ else
 fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+if [[ `command -v podman` ]]; then export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"; fi
+
 if [[ `command -v doctl` ]]; then source <(doctl completion zsh); fi
 if [[ `command -v kubectl` ]]; then source <(kubectl completion zsh); fi
 if [[ `command -v flux` ]]; then source <(flux completion zsh); fi
@@ -112,6 +114,18 @@ if [[ `command -v direnv` ]]; then eval "$(direnv hook zsh)"; fi
 
 if [ -f /etc/bash_completion.d/complete_alias ]; then
     source /etc/bash_completion.d/complete_alias
+fi
+
+if [[ `command -v flutter` ]]; then
+    #export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
+    #export PATH=$JAVA_HOME:$PATH
+    source <(flutter bash-completion)
+fi
+if [[ `command -v op` ]]; then
+    eval "$(op completion zsh)"; compdef _op op
+fi
+if [[ `command -v gh` ]]; then
+    eval "$(gh completion -s zsh)"
 fi
 
 # Disable terminal beep

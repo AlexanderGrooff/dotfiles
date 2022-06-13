@@ -185,9 +185,9 @@ function dbb {
 
     echo "Making $name in $PWD"
     if [ -f .distrobox/.env ]; then
-        docker build --no-cache $(eval $(cat .distrobox/.env | xargs echo eval echo) | xargs -n1 echo --build-arg) -t distrobox-$name $1 .distrobox/
+        podman build $(eval $(cat .distrobox/.env | xargs echo eval echo) | xargs -n1 echo --build-arg) -t distrobox-$name $1 .distrobox/
     else
-        docker build --no-cache -t distrobox-$name $1 .distrobox/
+        podman build -t distrobox-$name $1 .distrobox/
     fi
     distrobox list | grep -q $name && distrobox rm $name -f
     distrobox create --image distrobox-$name $name

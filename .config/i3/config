@@ -38,6 +38,9 @@ bindsym $mod+e exec rofi -show emoji -modi emoji
 # Take screenshots (same shortcuts as on Windows)
 bindsym $mod+Shift+s exec flameshot gui
 
+# 1password
+bindsym $mod+Shift+g exec rofi -modi 1pass:rofi-1pass -show 1pass
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -157,6 +160,9 @@ bindsym $mod+Shift+p exec "i3lock -c 000000"
 
 # Reset screensaver
 bindsym $mod+Shift+t exec "xset s activate"
+
+# Set screens to horizontal
+bindsym $mod+Shift+y exec "autorandr horizontal"
 
 # don't set focus with mouse
 focus_follows_mouse no
