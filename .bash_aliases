@@ -10,6 +10,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+command -qv nvim &> /dev/null && alias vim=nvim
+
 # Show all services listening to ports
 alias lsofp='lsof -Pnl +M -i4'
 
@@ -259,4 +261,9 @@ function get_nomad_alloc_id {
 }
 function nl {
     get_nomad_alloc_id $1 | xargs -P 2 -I {} nomad alloc logs "${@:2}" {}
+}
+
+# yay browser
+function yay-ls () {
+    yay -Slq | fzf -m --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk "{print \$2}")' | xargs -ro  yay -S
 }
