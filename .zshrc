@@ -60,7 +60,7 @@ export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bi
 source $ZSH/oh-my-zsh.sh
 
 # Load SSH key into keychain
-export SSH_KEY_PATH=`find $HOME/.ssh/ -name 'id_*' | egrep -v ".*pub"`
+export SSH_KEY_PATH=`find $HOME/.ssh/ -name 'id_*' | grep -Ev ".*pub"`
 if which keychain > /dev/null; then
     eval $(keychain -q --eval $SSH_KEY_PATH)
 fi
@@ -79,7 +79,7 @@ fi
 if [[ $(command -v virtualenvwrapper.sh) ]]; then
     source virtualenvwrapper.sh
 else
-    VEW_SCRIPT=$(dpkg -L virtualenvwrapper |& egrep 'virtualenvwrapper.sh$')
+    VEW_SCRIPT=$(dpkg -L virtualenvwrapper |& grep -E 'virtualenvwrapper.sh$')
     if [ $VEW_SCRIPT ]; then
         source $VEW_SCRIPT
     fi
