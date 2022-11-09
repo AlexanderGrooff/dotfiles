@@ -18,7 +18,7 @@
     upstream-name = !git remote | grep -Eo '(upstream|origin)' | tail -1
     head-branch = !git remote show $(git upstream-name) | awk '/HEAD branch/ {print $NF}'
 [init]
-    defaultBranch = main
+    defaultBranch = master
 [diff]
     tool = difftastic
     #external = diff
