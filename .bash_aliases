@@ -107,13 +107,14 @@ function gpr {
     echo "$url $title"
 }
 function rmcommit {
+    # Get all commits up to the given commit
     commits=`git log $1..HEAD --pretty=format:%H`
     echo "Stashing changes"
     git stash
     echo "\nSetting HEAD to just before commit $1"
     git reset --hard $1~1
     echo "\nApplying inbetween commits: $commits"
-    git cherry-pick $commits
+    echo $commits | xargs git cherry-pick
     echo "\nPopping stash"
     git stash pop
 }
