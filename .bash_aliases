@@ -268,3 +268,9 @@ function nl {
 function yay-ls () {
     yay -Slq | fzf -m --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk "{print \$2}")' | xargs -ro  yay -S
 }
+
+# Activate venv based on directory name
+function wo {
+    workon $(basename $PWD)
+}
+alias start_all_distroboxes="distrobox list | awk '{print\$3}' | grep -v NAME | xargs -n1 distrobox enter"
