@@ -274,3 +274,4 @@ function wo {
     workon $(basename $PWD)
 }
 alias start_all_distroboxes="distrobox list | awk '{print\$3}' | grep -v NAME | xargs -n1 distrobox enter"
+alias stop_all_distroboxes="distrobox list | grep Up | awk '{print\$3}' | xargs -n1 distrobox stop -Y"
