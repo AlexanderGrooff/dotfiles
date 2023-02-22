@@ -16,6 +16,8 @@ __pycache__
 
 # Nix
 .nix-*
+!flake.lock
+.direnv
 
 # Sqlite
 *.sqlite3
