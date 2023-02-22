@@ -19,10 +19,3 @@
     head-branch = !git remote show $(git upstream-name) | awk '/HEAD branch/ {print $NF}'
 [init]
     defaultBranch = master
-[diff]
-    tool = difftastic
-    #external = diff
-[difftool]
-    prompt = false
-[difftool "difftastic"]
-    cmd = difft "$LOCAL" "$REMOTE" || diff "$LOCAL" "$REMOTE"
