@@ -19,7 +19,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'mgedmin/python-imports.vim'
+" Python-imports doesn't work with Nix
+"Plugin 'mgedmin/python-imports.vim'
 Plugin 'LnL7/vim-nix'
 
 map <F5>    :ImportName<CR>
