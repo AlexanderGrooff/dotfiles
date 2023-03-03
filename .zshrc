@@ -128,6 +128,8 @@ if [[ `command -v gh` ]]; then
     eval "$(gh completion -s zsh)"
 fi
 
+[ -f ~/.github_token.txt ] && export GITHUB_TOKEN=$(cat ~/.github_token.txt)
+
 # Disable terminal beep
 unsetopt beep
 if [ -e /home/alex/.nix-profile/etc/profile.d/nix.sh ]; then . /home/alex/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
