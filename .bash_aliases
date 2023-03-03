@@ -275,3 +275,8 @@ function wo {
 }
 alias start_all_distroboxes="distrobox list | awk '{print\$3}' | grep -v NAME | xargs -n1 distrobox enter"
 alias stop_all_distroboxes="distrobox list | grep Up | awk '{print\$3}' | xargs -n1 distrobox stop -Y"
+alias mutt=neomutt
+if [[ $(command -v gem) ]]; then
+    export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+    export PATH="$PATH:$GEM_HOME/bin"
+fi
