@@ -156,7 +156,7 @@ bar {
 }
 
 # Set lockscreen
-bindsym $mod+Shift+p exec "i3lock -c 000000"
+bindsym $mod+Shift+p exec "$HOME/bin/lock.sh"
 
 # Reset screensaver
 bindsym $mod+Shift+t exec "xset s activate"
