@@ -111,7 +111,7 @@
 
     ### Text ###
 
-    font = Source Code Pro 9, FontAwesome
+    font = Source Code Pro, Font Awesome 12
     markup = pango
 
     # The spacing between lines.  If the height is smaller than the
