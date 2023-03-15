@@ -78,4 +78,6 @@ if [[ ! -d ~/.apps/fzf ]]; then
     ln -s ~/.apps/fzf/bin/fzf ~/.local/bin/fzf
 fi
 
+./scripts/setup_nvim.sh
+
 git remote set-url origin git@github.com:AlexanderGrooff/dotfiles.git
