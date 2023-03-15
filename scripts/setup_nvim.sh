@@ -13,4 +13,5 @@ if [[ "$(git remote -v)" == "*Astro*" ]]; then
 fi
 popd
 
-#nvim --headless +PlugInstall +q
+# Setup initial AstroNvim config
+nvim  --headless -c 'quitall'

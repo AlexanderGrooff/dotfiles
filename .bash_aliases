@@ -10,7 +10,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='grep -E --color=auto'
 fi
 
-command -qv nvim &> /dev/null && alias vim=nvim
+command -v nvim &> /dev/null && alias vim=nvim
 
 # Show all services listening to ports
 alias lsofp='lsof -Pnl +M -i4'
