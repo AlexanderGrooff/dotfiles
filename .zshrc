@@ -127,6 +127,9 @@ fi
 if [[ `command -v gh` ]]; then
     eval "$(gh completion -s zsh)"
 fi
+if [[ `command -v github-copilot-cli` ]]; then
+    eval "$(github-copilot-cli alias -- '$0')"
+fi
 
 [ -f ~/.github_token.txt ] && export GITHUB_TOKEN=$(cat ~/.github_token.txt)
 
