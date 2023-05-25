@@ -162,7 +162,7 @@ bindsym $mod+Shift+p exec "$HOME/bin/lock.sh"
 bindsym $mod+Shift+t exec "xset s activate"
 
 # Set screens to horizontal
-bindsym $mod+Shift+y exec "$HOME/scripts/reconnect_screens.sh"
+bindsym $mod+Shift+y exec "$HOME/scripts/reconnect_screen.sh"
 
 # don't set focus with mouse
 focus_follows_mouse no
