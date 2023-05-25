@@ -134,6 +134,10 @@ fi
 if [[ `command -v github-copilot-cli` ]]; then
     eval "$(github-copilot-cli alias -- '$0')"
 fi
+if [[ `command -v gem` ]]; then
+    export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+    export PATH="$PATH:$GEM_HOME/bin"
+fi
 
 [ -f ~/.github_token.txt ] && export GITHUB_TOKEN=$(cat ~/.github_token.txt)
 
