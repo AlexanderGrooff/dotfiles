@@ -98,7 +98,11 @@ else
 fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-if [[ `command -v podman` ]]; then export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"; fi
+if [[ `command -v podman` ]]; then
+    export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
+else
+    unset DOCKER_HOST
+fi
 
 if [[ `command -v doctl` ]]; then source <(doctl completion zsh); fi
 if [[ `command -v kubectl` ]]; then source <(kubectl completion zsh); fi
