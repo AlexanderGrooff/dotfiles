@@ -59,13 +59,6 @@ export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bi
 
 source $ZSH/oh-my-zsh.sh
 
-# Load SSH key into keychain
-export SSH_KEY_PATH=`find $HOME/.ssh/ -name 'id_*' | grep -Ev ".*pub"`
-if which keychain > /dev/null; then
-    eval $(keychain -q --eval $SSH_KEY_PATH)
-fi
-
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -137,6 +130,10 @@ fi
 if [[ `command -v gem` ]]; then
     export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
     export PATH="$PATH:$GEM_HOME/bin"
+fi
+if [[ `command -v gnome-keyring-daemon` ]]; then
+    eval $(gnome-keyring-daemon --components=pkcs11,secrets,ssh)
+    export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 fi
 
 [ -f ~/.github_token.txt ] && export GITHUB_TOKEN=$(cat ~/.github_token.txt)
