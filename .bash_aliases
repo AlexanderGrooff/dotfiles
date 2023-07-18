@@ -198,6 +198,12 @@ function dbb {
 
 # Create venv in current dir
 function mkv {
+    if [[ `command -v poetry` ]]; then
+        if [ -f poetry.lock ]; then
+            poetry install
+            return
+        fi
+    fi
     local venv_name=$(basename $(pwd))
     if [ -z $VIRTUAL_ENV ]; then
         mkvirtualenv -a . -p python3 $venv_name $1
