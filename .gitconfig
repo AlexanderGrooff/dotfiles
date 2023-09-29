@@ -1,7 +1,6 @@
 [user]
     name = Alexander Grooff
     email = alexandergrooff@gmail.com
-    signingkey = ~/.ssh/byte.pub
 [core]
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     excludesfile = ~/.gitignore_global
@@ -20,7 +19,3 @@
     head-branch = !git remote show $(git upstream-name) | awk '/HEAD branch/ {print $NF}'
 [init]
     defaultBranch = master
-[commit]
-    gpgsign = true
-[gpg]
-    format = ssh
