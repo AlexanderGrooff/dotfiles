@@ -196,4 +196,4 @@ bindsym $mod+Shift+Tab workspace next
 bindsym $mod+grave workspace back_and_forth
 
 # Start dunst (notifications)
-exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
+exec_always --no-startup-id bash /home/alex/scripts/startup.sh
