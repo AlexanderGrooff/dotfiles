@@ -286,3 +286,8 @@ if [[ $(command -v gem) ]]; then
     export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
     export PATH="$PATH:$GEM_HOME/bin"
 fi
+alias sus='sort | uniq -c | sort -n'
+function compare_ns {
+    echo "nsa.byte.nl: $(dig @nsa.byte.nl $1 +short +all)"
+    echo "ns1.hypernode.com: $(dig @ns1.hypernode.com $1 +short +all)"
+}
