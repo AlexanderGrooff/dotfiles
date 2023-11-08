@@ -20,6 +20,7 @@ SKIP_FILE_PATTERNS = [
     ".gitmodules",
     ".stignore",
     "dist/.*",
+    "fix_remote.sh",
     "README.md",
     "setup.py",
     "setup",
