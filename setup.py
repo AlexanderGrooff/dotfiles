@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+import re
+import time
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
 
 from contextlib import suppress
 import yaml
@@ -8,16 +12,17 @@ import jinja2
 from glob import glob
 
 
-SKIP_FILES = [
-    "setup.py",
+SKIP_FILE_PATTERNS = [
+    ".envrc",
     ".git",
-    "README.md",
     ".gitignore",
-    "setup",
-    "dist",
-    ".stignore",
     ".gitkeep",
     ".gitmodules",
+    ".stignore",
+    "dist/.*",
+    "README.md",
+    "setup.py",
+    "setup",
 ]
 RENDERED_FILE_DIR = "dist"
 CONFIG_FILE = os.path.expanduser('~/.config/alex.conf')
@@ -58,32 +63,69 @@ def parse_args():
     parser.add_argument('-f', '--force', action='store_true',
                         help='Force overwrite of existing files')
     parser.add_argument('-d', '--dry-run', action='store_true', help="Don't do anything, just print what would happen")
+    parser.add_argument("--watch", action="store_true", help="Watch for changes and re-run")
     return parser.parse_args()
+
+
+def render_dotfile(file, render_variables, dry_run=False, force=False):
+    if os.path.isdir(file):
+        # Ensure the directory exists
+        if not dry_run:
+            os.makedirs(os.path.expanduser(f'~/{file}'), exist_ok=True)
+        return
+
+    rendered_file = render_template(file, render_variables)
+    if not dry_run:
+        if force:
+            with suppress(FileNotFoundError):
+                os.remove(os.path.expanduser(f'~/{file}'))
+                print(f"Removed ~/{file}")
+        with suppress(FileExistsError):
+            os.symlink(rendered_file, os.path.expanduser('~/{}'.format(file)))
+            print(f"Linked {rendered_file} to ~/{file}")
+
+
+def is_dotfile(file: str) -> bool:
+    for skip_pattern in SKIP_FILE_PATTERNS:
+        if re.findall(skip_pattern, file):
+            return False
+    return True
+
+
+def render_all_files(args):
+    variables = load_variables()
+
+    # Loop over all files in this directory and symlink it to the homedir
+    for file in list(glob("*", include_hidden=True)) + list(glob('*/**', include_hidden=True)):
+        if is_dotfile(file):
+            render_dotfile(file, variables, args.dry_run, args.force)
+
+
+def watch_files(args):
+    class Handler(FileSystemEventHandler):
+        def on_any_event(self, event):
+            if event.event_type in ["modified"] and is_dotfile(event.src_path):
+                print(f"Found event {event}")
+                render_dotfile(event.src_path, load_variables(), args.dry_run, force=True)
+
+    event_handler = Handler()
+    observer = Observer()
+    observer.schedule(event_handler, '.', recursive=True)
+    observer.start()
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+    observer.join()
 
 
 def main():
     args = parse_args()
-    variables = load_variables()
-    # Loop over all files in this directory and symlink it to the homedir
-    for file in list(glob("*", include_hidden=True)) + list(glob('*/**', include_hidden=True)):
-        if startswith_any(file, SKIP_FILES):
-            #print(f"Skipping {file}")
-            continue
-
-        if os.path.isdir(file):
-            # Ensure the directory exists
-            if not args.dry_run:
-                os.makedirs(os.path.expanduser(f'~/{file}'), exist_ok=True)
-            continue
-
-        rendered_file = render_template(file, variables)
-        if not args.dry_run:
-            print(f"Symlinking {rendered_file} to ~/{file}")
-            if args.force:
-                with suppress(FileNotFoundError):
-                    os.remove(os.path.expanduser(f'~/{file}'))
-            with suppress(FileExistsError):
-                os.symlink(rendered_file, os.path.expanduser('~/{}'.format(file)))
+    if args.watch:
+        watch_files(args)
+    else:
+        render_all_files(args)
 
 if __name__ == '__main__':
     main()
