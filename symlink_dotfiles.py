@@ -14,8 +14,8 @@ from glob import glob
 
 SKIP_FILE_PATTERNS = [
     ".envrc",
-    ".git",
-    ".gitignore",
+    ".git/",
+    ".gitignore$",
     ".gitkeep",
     ".gitmodules",
     ".stignore",
@@ -24,6 +24,7 @@ SKIP_FILE_PATTERNS = [
     "README.md",
     "setup.py",
     "setup",
+    ".venv",
     os.path.basename(__file__),
 ]
 RENDERED_FILE_DIR = "dist"
@@ -37,9 +38,18 @@ def copy_file_permissions(src, dst):
 
 # Render a template file with the given variables
 def render_template(template_file, variables) -> str:
-    with open(template_file, 'r') as f:
-        template = f.read()
-    rendered_contents = jinja2.Template(template).render(variables)
+    try:
+        with open(template_file, 'r') as f:
+            template = f.read()
+    except UnicodeDecodeError:
+        print(f"Skipping templating {template_file} because it's a binary file")
+        return template_file
+    
+    try:
+        rendered_contents = jinja2.Template(template).render(variables)
+    except jinja2.exceptions.TemplateSyntaxError as e:
+        print(f"Error rendering {template_file}: {e}")
+        return template_file
     rendered_file = os.path.abspath(os.path.join(RENDERED_FILE_DIR, template_file))
     os.makedirs(os.path.dirname(rendered_file), exist_ok=True)
     with open(os.path.join(RENDERED_FILE_DIR, template_file), 'w') as f:
@@ -54,12 +64,6 @@ def load_variables():
         return yaml.load(f, Loader=yaml.FullLoader)
 
 
-def startswith_any(string, prefixes):
-    for prefix in prefixes:
-        if string.startswith(prefix):
-            return True
-
-
 def parse_args():
     parser = argparse.ArgumentParser(description='Symlink dotfiles to homedir')
     parser.add_argument('-f', '--force', action='store_true',
@@ -70,12 +74,6 @@ def parse_args():
 
 
 def render_dotfile(file, render_variables, dry_run=False, force=False):
-    if os.path.isdir(file):
-        # Ensure the directory exists
-        if not dry_run:
-            os.makedirs(os.path.expanduser(f'~/{file}'), exist_ok=True)
-        return
-
     rendered_file = render_template(file, render_variables)
     if not dry_run:
         if force:
@@ -94,13 +92,21 @@ def is_dotfile(file: str) -> bool:
     return True
 
 
+def loop_over_dir(dir, variables, args):
+    for file in list(glob(f"{dir}/*", include_hidden=True)) + list(glob(f'{dir}/*/**', include_hidden=True)):
+        if os.path.isdir(file):
+            os.makedirs(os.path.expanduser(f'~/{file}'), exist_ok=True)
+            loop_over_dir(file, variables, args)
+            continue
+        if is_dotfile(file):
+            render_dotfile(file, variables, args.dry_run, args.force)
+
+
 def render_all_files(args):
     variables = load_variables()
 
     # Loop over all files in this directory and symlink it to the homedir
-    for file in list(glob("*", include_hidden=True)) + list(glob('*/**', include_hidden=True)):
-        if is_dotfile(file):
-            render_dotfile(file, variables, args.dry_run, args.force)
+    loop_over_dir('.', variables, args)
 
 
 def watch_files(args):
