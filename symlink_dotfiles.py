@@ -13,7 +13,7 @@ from glob import glob
 
 
 SKIP_FILE_PATTERNS = [
-    ".envrc",
+    "\.envrc",
     ".git/",
     ".gitignore$",
     ".gitkeep",
@@ -88,6 +88,7 @@ def render_dotfile(file, render_variables, dry_run=False, force=False):
 def is_dotfile(file: str) -> bool:
     for skip_pattern in SKIP_FILE_PATTERNS:
         if re.findall(skip_pattern, file):
+            #print(f"Skipping {file} because it matches {skip_pattern}")
             return False
     return True
 
