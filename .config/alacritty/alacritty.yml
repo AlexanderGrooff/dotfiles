@@ -116,13 +116,13 @@ window:
 # Font configuration
 font:
   normal:
-    family: Jetbrains Mono Nerd Font
+    family: Monaspace Neon
     style: Regular
   bold:
-    family: Jetbrains Mono Nerd Font
+    family: Monaspace Neon
     style: Bold
   italic:
-    family: Jetbrains Mono Nerd Font
+    family: Monaspace Neon
     style: Italic
 
   # Point size
