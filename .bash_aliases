@@ -64,7 +64,7 @@ function gu() {
 
 # git aliases
 alias gsp='git stash pop'
-alias gcm='git checkout $(git head-branch)'
+alias gcm='/home/alex/scripts/git_checkout_master.sh'
 alias gp='git pull'
 alias gc='git commit -v'
 alias gca='git commit --amend -v'
