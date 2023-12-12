@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
+import sys
 import re
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+from loguru import logger
 
 from contextlib import suppress
 import yaml
@@ -42,13 +44,13 @@ def render_template(template_file, variables) -> str:
         with open(template_file, 'r') as f:
             template = f.read()
     except UnicodeDecodeError:
-        print(f"Skipping templating {template_file} because it's a binary file")
+        logger.debug(f"Skipping templating {template_file} because it's a binary file")
         return template_file
     
     try:
         rendered_contents = jinja2.Template(template).render(variables)
     except jinja2.exceptions.TemplateSyntaxError as e:
-        print(f"Error rendering {template_file}: {e}")
+        logger.debug(f"Error rendering {template_file}: {e}")
         return template_file
     rendered_file = os.path.abspath(os.path.join(RENDERED_FILE_DIR, template_file))
     os.makedirs(os.path.dirname(rendered_file), exist_ok=True)
@@ -62,7 +64,7 @@ def render_template(template_file, variables) -> str:
 def load_variables():
     # Ensure file exists
     if not os.path.exists(CONFIG_FILE):
-        print(f"Creating missing config file {CONFIG_FILE}")
+        logger.debug(f"Creating missing config file {CONFIG_FILE}")
         os.makedirs(os.path.dirname(CONFIG_FILE), exist_ok=True)
         with open(CONFIG_FILE, 'w') as f:
             f.write('')
@@ -75,8 +77,9 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Symlink dotfiles to homedir')
     parser.add_argument('-f', '--force', action='store_true',
                         help='Force overwrite of existing files')
-    parser.add_argument('-d', '--dry-run', action='store_true', help="Don't do anything, just print what would happen")
+    parser.add_argument('-d', '--dry-run', action='store_true', help="Don't do anything, just logger.debug what would happen")
     parser.add_argument("--watch", action="store_true", help="Watch for changes and re-run")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbose logging")
     return parser.parse_args()
 
 
@@ -86,16 +89,16 @@ def render_dotfile(file, render_variables, dry_run=False, force=False):
         if force:
             with suppress(FileNotFoundError):
                 os.remove(os.path.expanduser(f'~/{file}'))
-                print(f"Removed ~/{file}")
+                logger.debug(f"Removed ~/{file}")
         with suppress(FileExistsError):
             os.symlink(rendered_file, os.path.expanduser('~/{}'.format(file)))
-            print(f"Linked {rendered_file} to ~/{file}")
+            logger.debug(f"Linked {rendered_file} to ~/{file}")
 
 
 def is_dotfile(file: str) -> bool:
     for skip_pattern in SKIP_FILE_PATTERNS:
         if re.findall(skip_pattern, file):
-            #print(f"Skipping {file} because it matches {skip_pattern}")
+            #logger.debug(f"Skipping {file} because it matches {skip_pattern}")
             return False
     return True
 
@@ -121,7 +124,7 @@ def watch_files(args):
     class Handler(FileSystemEventHandler):
         def on_any_event(self, event):
             if event.event_type in ["modified"] and is_dotfile(event.src_path):
-                print(f"Found event {event}")
+                logger.debug(f"Found event {event}")
                 render_dotfile(event.src_path, load_variables(), args.dry_run, force=True)
 
     event_handler = Handler()
@@ -136,8 +139,17 @@ def watch_files(args):
     observer.join()
 
 
+def setup_logging(verbose: bool):
+    logger.remove()
+    logger.add(sys.stderr, level="INFO")
+    if verbose:
+        logger.add(sys.stderr, level="DEBUG")
+
+
 def main():
     args = parse_args()
+    setup_logging(args.verbose)
+
     if args.watch:
         watch_files(args)
     else:
