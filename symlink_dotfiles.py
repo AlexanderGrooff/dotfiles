@@ -60,6 +60,13 @@ def render_template(template_file, variables) -> str:
 
 # Load variables from config yaml file
 def load_variables():
+    # Ensure file exists
+    if not os.path.exists(CONFIG_FILE):
+        print(f"Creating missing config file {CONFIG_FILE}")
+        os.makedirs(os.path.dirname(CONFIG_FILE), exist_ok=True)
+        with open(CONFIG_FILE, 'w') as f:
+            f.write('')
+
     with open(CONFIG_FILE, 'r') as f:
         return yaml.load(f, Loader=yaml.FullLoader)
 
