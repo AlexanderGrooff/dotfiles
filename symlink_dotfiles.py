@@ -54,9 +54,18 @@ def render_template(template_file, variables) -> str:
         return template_file
     rendered_file = os.path.abspath(os.path.join(RENDERED_FILE_DIR, template_file))
     os.makedirs(os.path.dirname(rendered_file), exist_ok=True)
+    if os.path.exists(rendered_file):
+        old_contents = open(rendered_file, 'r').read()
+    else:
+        logger.info(f"Creating missing file {rendered_file}")
+        old_contents = ""
     with open(os.path.join(RENDERED_FILE_DIR, template_file), 'w') as f:
         f.write(rendered_contents)
     copy_file_permissions(template_file, rendered_file)
+
+    if old_contents != rendered_contents:
+        logger.info(f"Updated contents for {template_file}")
+
     return rendered_file
 
 
