@@ -27,6 +27,7 @@ SKIP_FILE_PATTERNS = [
     "setup.py",
     "setup",
     ".venv",
+    "requirements.txt",
     os.path.basename(__file__),
 ]
 RENDERED_FILE_DIR = "dist"
