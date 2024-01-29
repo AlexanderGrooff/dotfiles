@@ -1,0 +1,13 @@
+[Unit]
+Description=HypernodeProxy
+After=network-online.target
+
+[Service]
+Restart=always
+RestartSec=5
+StartLimitInterval=0
+ExecStart=/home/alex/bin/jumphost.sh
+ExecStartPre=-/usr/bin/sleep 1
+
+[Install]
+WantedBy=multi-user.target
