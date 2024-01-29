@@ -1,0 +1,24 @@
+[env]
+WINIT_X11_SCALE_FACTOR = "1"
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "Monaspace Neon"
+style = "Bold"
+
+[font.italic]
+family = "Monaspace Neon"
+style = "Italic"
+
+[font.normal]
+family = "Monaspace Neon"
+style = "Regular"
+
+[shell]
+program = "tmux"
+
+[window.padding]
+x = 0
+y = 0
