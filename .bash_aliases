@@ -291,3 +291,4 @@ function compare_ns {
     echo "nsa.byte.nl: $(dig @nsa.byte.nl $1 +short +all)"
     echo "ns1.hypernode.com: $(dig @ns1.hypernode.com $1 +short +all)"
 }
+alias hm="home-manager"
