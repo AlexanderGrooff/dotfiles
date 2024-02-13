@@ -30,6 +30,9 @@ let
   devPackages = with pkgs; [
     github-cli
   ];
+
+  allPackages = corePackages ++ devPackages;
+
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -48,7 +51,7 @@ in
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = corePackages ++ devPackages;
+  home.packages = allPackages;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

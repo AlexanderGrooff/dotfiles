@@ -14,16 +14,17 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      homeConfigurations."alex" = home-manager.lib.homeManagerConfiguration {
+      mkHome = hostname: home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [ ./home.nix ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
+        # Use host-specific config if it exists
+        modules = if builtins.pathExists ./${hostname}.nix then [ ./home.nix ./${hostname}.nix ] else [ ./home.nix ];
+        extraSpecialArgs = { inherit hostname; };
+      };
+    in {
+      # Load config per host
+      homeConfigurations = {
+        "alpha" = mkHome "alpha";
+        "alpha-windows" = mkHome "alpha";
       };
     };
 }
