@@ -15,6 +15,7 @@ from glob import glob
 
 
 SKIP_FILE_PATTERNS = [
+    ".direnv",
     "\.envrc",
     ".git/",
     ".gitignore$",
@@ -48,6 +49,7 @@ def render_template(template_file, variables) -> str:
         logger.debug(f"Skipping templating {template_file} because it's a binary file")
         return template_file
     
+    logger.debug(f"Rendering {template_file}")
     try:
         rendered_contents = jinja2.Template(template).render(variables)
     except jinja2.exceptions.TemplateSyntaxError as e:
@@ -71,7 +73,7 @@ def render_template(template_file, variables) -> str:
 
 
 # Load variables from config yaml file
-def load_variables():
+def load_variables() -> dict:
     # Ensure file exists
     if not os.path.exists(CONFIG_FILE):
         logger.debug(f"Creating missing config file {CONFIG_FILE}")
@@ -80,7 +82,8 @@ def load_variables():
             f.write('')
 
     with open(CONFIG_FILE, 'r') as f:
-        return yaml.load(f, Loader=yaml.FullLoader)
+        variables = yaml.load(f, Loader=yaml.FullLoader)
+    return variables or {}
 
 
 def parse_args():
