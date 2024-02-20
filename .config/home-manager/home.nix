@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ hostConfig, config, pkgs, ... }:
 
 let
   corePackages = with pkgs; [
@@ -30,8 +30,11 @@ let
   devPackages = with pkgs; [
     github-cli
   ];
+  desktopPackages = with pkgs; [
+    x11_ssh_askpass  # ssh-askpass
+  ];
 
-  allPackages = corePackages ++ devPackages;
+  allPackages = if hostConfig.desktop then corePackages ++ devPackages ++ desktopPackages else corePackages ++ devPackages;
 
 in
 {
