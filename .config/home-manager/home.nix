@@ -2,7 +2,6 @@
 
 let
   corePackages = with pkgs; [
-    autossh
     calc
     curl
     direnv
@@ -31,7 +30,6 @@ let
     github-cli
   ];
   desktopPackages = with pkgs; [
-    x11_ssh_askpass  # ssh-askpass
   ];
 
   allPackages = if hostConfig.desktop then corePackages ++ devPackages ++ desktopPackages else corePackages ++ devPackages;
