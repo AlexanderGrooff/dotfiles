@@ -29,6 +29,13 @@ SKIP_FILE_PATTERNS = [
     "setup",
     ".venv",
     "requirements.txt",
+    
+    # Home manager configs
+    "ssh_config",
+    "flake.lock",
+    "flake.nix",
+    "home.nix",
+
     os.path.basename(__file__),
 ]
 RENDERED_FILE_DIR = "dist"

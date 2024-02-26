@@ -292,4 +292,4 @@ function compare_ns {
     echo "ns1.hypernode.com: $(dig @ns1.hypernode.com $1 +short +all)"
 }
 alias hm="home-manager"
-alias hms="home-manager switch --flake '.#$(hostname)'"
+alias hms='nix run home-manager/master -- switch --flake ".#$(hostname)"'

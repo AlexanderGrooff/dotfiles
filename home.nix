@@ -19,6 +19,7 @@ let
     nmap
     ripgrep
     rsync
+    # ssh
     tmux
     traceroute
     unzip

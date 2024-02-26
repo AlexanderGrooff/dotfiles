@@ -30,6 +30,12 @@
         "mu" = mkHome {
           desktop = true;
         };
+        "alpha" = mkHome {
+          desktop = true;
+        };
+        "alpha-windows" = mkHome {
+          desktop = false;
+        };
       };
     };
 }
