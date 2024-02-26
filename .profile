@@ -36,7 +36,7 @@ fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
-if [ -e /etc/wsl ]; then
-    /home/alex/scripts/startup_wsl.sh
+if [ -e /etc/wsl.conf ]; then
+    bash -x /home/alex/scripts/startup_wsl.sh
 fi
 if [ -e /home/alex/.nix-profile/etc/profile.d/nix.sh ]; then . /home/alex/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
