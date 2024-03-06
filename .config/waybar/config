@@ -5,9 +5,9 @@
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "idle_inhibitor", "pulseaudio", "custom/updates"],
+    "modules-left": ["hyprland/workspaces", "custom/updates"],
     "modules-center": ["custom/spotify"],
-    "modules-right": ["network", "battery", "tray", "clock"],
+    "modules-right": ["network", "battery", "wireplumber", "tray", "clock"],
     // Modules configuration
      "hyprland/workspaces": {
          "disable-scroll": true,
@@ -147,6 +147,15 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "wireplumber": {
+        "format": "{volume}% {icon}",
+        "format-muted": "",
+        "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "helvum",
+        "format-icons": ["", "", ""],
+        "scroll-step": 5,
+        "max-volume": 150,
     },
     "custom/updates": {
         "format": "{} {icon}",
