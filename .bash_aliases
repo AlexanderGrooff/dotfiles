@@ -243,23 +243,6 @@ function check_cert {
 }
 alias check_domain=check_cert
 
-function which {
-    # Source of which on fedora
-    which_declare="declare -f"
-    which_opt="-f"
-    which_shell="$(cat /proc/$$/comm)"
-
-    if [ "$which_shell" = "ksh" ] || [ "$which_shell" = "mksh" ] || [ "$which_shell" = "zsh" ] ; then
-        which_declare="typeset -f"
-        which_opt=""
-    fi
-
-    ( alias; eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot "$@"
-
-    export which_declare
-    export ${which_opt} which
-}
-
 # Tasks
 alias t='task'
 alias tw='timew'
