@@ -65,6 +65,7 @@ function gu() {
 # git aliases
 alias ga='git add'
 alias gst='git status'
+alias gpf='git push -f'
 alias gsp='git stash pop'
 alias gcm='/home/alex/scripts/git_checkout_master.sh'
 alias gp='git pull'
