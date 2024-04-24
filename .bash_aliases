@@ -72,27 +72,12 @@ alias gp='git pull'
 alias gc='git commit -v'
 alias gca='git commit --amend -v'
 alias gdf='git diff'
+alias gch='git checkout'
 alias gpb='git checkout -'
 alias grh='git reset --hard'
 alias gph='git push -u origin HEAD'
 alias doit='ga .; gca --no-edit; gpf'
 alias gitparent='git show-branch |& grep "*" | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed "s/.*\[\(.*\)\].*/\1/" | sed "s/[\^~].*//"'
-function gch {
-    local target="$@"  # All arguments. Don't checkout '-b' of `gch -b target-branch`
-    # Check if target is a github url
-    if [[ $target == *"github.com"* ]]; then
-        local local_repo=$(git remote get-url origin | cut -d: -f2 | sed 's/.git//g')
-        if [[ $target == *"$local_repo"* ]]; then
-            local pr_nr=$(echo $target | sed -r 's/.*\/pull\/([0-9]+)/\1/g')
-            gh pr checkout $pr_nr
-        else
-            echo "Tried checkout but target repo does not match $local_repo"
-        fi
-    else
-        # Echo multiple args
-        git checkout $(echo $target)
-    fi
-}
 function gpr {
     local tmpfile=$(mktemp)
     trap "rm $tmpfile" EXIT
@@ -143,7 +128,7 @@ function katt {
 }
 
 # Web development
-alias wpb='./node_modules/.bin/webpack --progress --config webpack.config.js --colors'
+alias wpb="./node_modules/.bin/webpack --progress --config webpack.config.js --colors"
 
 # Commonly used repos
 alias dotf='cd /home/alex/code/dotfiles'
@@ -165,7 +150,7 @@ function jh {
 }
 
 # Venv stuff
-alias de='cd ~; deactivate'
+alias de="cd ~; deactivate"
 
 export DISTROBOX_DEFAULT_NAME=debian-buster
 function dbe {
