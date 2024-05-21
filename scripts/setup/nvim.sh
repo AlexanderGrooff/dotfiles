@@ -10,7 +10,7 @@ if ! git remote -v | grep -q Astro; then
     rm -rf ~/.config/nvim ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim || /bin/true
     cd
     # Install AstroNvim
-    git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+    git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
 fi
 popd
 

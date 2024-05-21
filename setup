@@ -4,7 +4,7 @@ set -e
 DIR_NAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 $DIR_NAME/scripts/bootstrap_dotfiles.sh
 source $DIR_NAME/.venv/bin/activate
-python $DIR_NAME/symlink_dotfiles.py
 bash $DIR_NAME/scripts/setup/nvim.sh
+python $DIR_NAME/symlink_dotfiles.py
 $DIR_NAME/scripts/setup_nix.sh
 $DIR_NAME/scripts/setup_homemanager.sh

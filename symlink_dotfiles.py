@@ -116,6 +116,9 @@ def render_dotfile(file, render_variables, dry_run=False, force=False):
 
 
 def is_dotfile(file: str) -> bool:
+    if not os.path.isfile(file):
+        return False
+
     for skip_pattern in SKIP_FILE_PATTERNS:
         if re.findall(skip_pattern, file):
             #logger.debug(f"Skipping {file} because it matches {skip_pattern}")
