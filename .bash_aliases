@@ -67,7 +67,7 @@ alias ga='git add'
 alias gst='git status'
 alias gpf='git push -f'
 alias gsp='git stash pop'
-alias gcm='/home/alex/scripts/git_checkout_master.sh'
+alias gcm="$HOME/scripts/git_checkout_master.sh"
 alias gp='git pull'
 alias gc='git commit -v'
 alias gca='git commit --amend -v'
@@ -135,7 +135,7 @@ alias dotf='cd /home/alex/code/dotfiles'
 
 # Systemctl aliases
 alias susy='sudo systemctl'
-complete -F _complete_alias susy
+if [[ `command -v complete` ]]; then complete -F _complete_alias susy; fi
 
 # Pip stuff
 alias pir='pip install -r requirements/development.txt'
@@ -264,3 +264,8 @@ function compare_ns {
 }
 alias hm="home-manager"
 alias hms='nix run home-manager/master -- switch --flake ".#$(hostname)"'
+function kns {
+    kubectl config set-context --current --namespace="${1}"
+}
+
+source $(find $HOME/.bash.d -type f)
