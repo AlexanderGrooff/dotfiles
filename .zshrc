@@ -54,7 +54,7 @@ plugins=(
   taskwarrior
 )
 
-export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bin:$HOME/npm/bin:/usr/local/go/bin:$HOME/go/bin:$HOME/.pub-cache/bin
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bin:$HOME/npm/bin:/usr/local/go/bin:$HOME/go/bin:$HOME/.pub-cache/bin:$HOME/.bun/bin
 
 if [ -e $ZSH/oh-my-zsh.sh ]; then
     source $ZSH/oh-my-zsh.sh
