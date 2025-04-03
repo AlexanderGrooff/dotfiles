@@ -1,7 +1,3 @@
-""" GENERAL SETTINGS
-syntax on
-
-
 """ PLUGINS
 call plug#begin()
 
@@ -10,11 +6,17 @@ Plug 'tpope/vim-sleuth'        " set indentation based on current file
 Plug 'junegunn/fzf'            " Base library for FZF
 Plug 'junegunn/fzf.vim'        " Adds :Files, :Buffers etc
 Plug 'lewis6991/gitsigns.nvim' " Git in gutter
+Plug 'rose-pine/neovim'        " colorscheme
 
 call plug#end()
 
 " Load settings config from ~/.config/nvim/lua/plugins.lua
 lua require('plugins')
+
+""" GENERAL SETTINGS
+syntax on
+colorscheme rose-pine
+
 
 """ KEYMAPPINGS
 """ <Leader> is "\"
