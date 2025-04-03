@@ -10,7 +10,17 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='grep -E --color=auto'
 fi
 
-command -v nvim &> /dev/null && alias vim=nvim
+if $(command -v nvim &> /dev/null) || [ -e $HOME/.local/bin/nvim ]; then
+    export EDITOR=nvim
+    alias vim=nvim
+fi
+
+if $(command -v tmux &> /dev/null) || [ -e $HOME/.local/bin/tmux ]; then
+    if [ -z "$TMUX" ]; then
+        # DISABLED 20250403 because it breaks python venv + scrolling + alt-.
+        #tmux attach || $HOME/scripts/tmux_new_session.sh
+    fi
+fi
 
 # Show all services listening to ports
 alias lsofp='lsof -Pnl +M -i4'
