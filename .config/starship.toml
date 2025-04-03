@@ -3,7 +3,7 @@
 
 # If Git is slow with retrieving the current state,
 # don't wait too long before exiting
-command_timeout = 5000
+command_timeout = 1000
 
 format = """
 $username\

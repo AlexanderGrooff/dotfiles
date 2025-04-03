@@ -131,7 +131,7 @@ function katt {
 alias wpb="./node_modules/.bin/webpack --progress --config webpack.config.js --colors"
 
 # Commonly used repos
-alias dotf='cd /home/alex/code/dotfiles'
+alias dotf="cd $HOME/code/dotfiles"
 
 # Systemctl aliases
 alias susy='sudo systemctl'
@@ -268,4 +268,4 @@ function kns {
     kubectl config set-context --current --namespace="${1}"
 }
 
-source $(find $HOME/.bash.d -type f)
+for f in $(find $HOME/.bash.d -type f); do source $f; done
