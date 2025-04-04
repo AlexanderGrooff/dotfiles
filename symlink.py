@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import sys
 import re
-import time
 
 from contextlib import suppress
-import yaml
 import os
 import argparse
-import jinja2
 from glob import glob
 import logging
 
@@ -22,8 +18,7 @@ SKIP_FILE_PATTERNS = [
     r".gitignore$",
     r".gitkeep",
     r".gitmodules",
-    r".stignore",
-    r"dist$",
+    r".stignore", r"dist$",
     r"fix_remote.sh",
     r"README.md",
     r"setup$",
