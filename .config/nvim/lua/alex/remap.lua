@@ -1,5 +1,9 @@
 -- Basics before loading plugins. All plugin-related remaps should go in after
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>r", function()
+  vim.cmd("source $MYVIMRC")
+  vim.notify("Reloaded init.lua", vim.log.levels.INFO)
+end, { desc = "Reload Neovim config" })
 --""" PLUGINS
 --call plug#begin()
 --
