@@ -3,7 +3,7 @@
 
 # If Git is slow with retrieving the current state,
 # don't wait too long before exiting
-command_timeout = 1000
+command_timeout = 100
 
 format = """
 $username\
@@ -58,4 +58,4 @@ disabled = true
 success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
 
 [package]
-disabled = true
+disabled = false
