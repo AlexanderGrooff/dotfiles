@@ -14,8 +14,18 @@
     rebase = false
 [push]
     default = current
+    autoSetupRemote = true
+[fetch]
+    prune = true
 [alias]
     upstream-name = !git remote | grep -Eo '(upstream|origin)' | tail -1
     head-branch = !git remote show $(git upstream-name) | awk '/HEAD branch/ {print $NF}'
 [init]
     defaultBranch = master
+[tag]
+    sort = version:refname
+[diff]
+    colorMoved = plain
+    renames = true
+[branch]
+    sort = -committer-date
