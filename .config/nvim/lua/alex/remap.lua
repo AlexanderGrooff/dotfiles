@@ -5,12 +5,15 @@ vim.keymap.set("n", "<leader>r", function()
 	vim.notify("Reloaded init.lua", vim.log.levels.INFO)
 end, { desc = "Reload Neovim config" })
 
-vim.keymap.set("n", "<C-q>", function()
+function write_or_quit()
 	local ok = pcall(vim.cmd.x)
 	if not ok then
 		vim.cmd.q({ bang = true })  -- equivalent to :q!
 	end
-end, { desc = "Save and quit, force quit if save fails" })
+end
+
+vim.keymap.set("n", "<C-q>", write_or_quit, { desc = "Save and quit, force quit if save fails" })
+vim.keymap.set("i", "<C-q>", write_or_quit, { desc = "Save and quit, force quit if save fails" })
 
 -- Keep cursor in middle of screen
 vim.keymap.set("n", "n", "nzzzv")
