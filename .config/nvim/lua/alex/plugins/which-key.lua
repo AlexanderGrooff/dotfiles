@@ -4,7 +4,7 @@ return {
 		event = "VeryLazy",
 		config = function()
 			local wk = require("which-key")
-			
+
 			wk.setup({
 				plugins = {
 					marks = true,
@@ -23,25 +23,16 @@ return {
 						g = true,
 					},
 				},
-				operators = { gc = "Comments" },
-				key_labels = {
-					["<space>"] = "SPC",
-					["<cr>"] = "RET",
-					["<tab>"] = "TAB",
-				},
-				motions = {
-					count = true,
-				},
 				icons = {
 					breadcrumb = "»",
 					separator = "➜",
 					group = "+",
 				},
-				popup_mappings = {
+				keys = {
 					scroll_down = "<c-d>",
 					scroll_up = "<c-u>",
 				},
-				window = {
+				win = {
 					border = "rounded",
 					position = "bottom",
 					margin = { 1, 0, 1, 0 },
@@ -55,154 +46,85 @@ return {
 					spacing = 3,
 					align = "left",
 				},
-				ignore_missing = true,
-				hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "^:", "^ ", "^call ", "^lua " },
+				replace = {
+					["<space>"] = "SPC",
+					["<cr>"] = "RET",
+					["<tab>"] = "TAB",
+				},
 				show_help = true,
 				show_keys = true,
-				triggers = "auto",
-				triggers_nowait = {
-					"`",
-					"'",
-					"g`",
-					"g'",
-					'"',
-					"<c-r>",
-					"z=",
-				},
-				triggers_blacklist = {
-					i = { "j", "k" },
-					v = { "j", "k" },
-				},
-				disable = {
-					buftypes = {},
-					filetypes = {},
-				},
+				-- Remove deprecated options (motions, hidden, operators, triggers, etc.)
 			})
 
-			-- Register key groups and descriptions
-			wk.register({
-				["<leader>f"] = { name = "Find/Search" },
-				["<leader>g"] = { name = "Git" },
-				["<leader>s"] = { name = "Search/Replace" },
-				["<leader>v"] = { name = "LSP" },
-				["<leader>w"] = { name = "Workspace" },
-				["<leader>c"] = { name = "Code" },
-				["<leader>d"] = { name = "Debug" },
-				["<leader>t"] = { name = "Terminal/Tabs" },
-				["<leader>p"] = { name = "Plugin/Project" },
-				["<leader>e"] = "File Explorer",
-				["<leader>E"] = "Focus Explorer",
-				["<leader>r"] = "Reload Config",
-				["<leader>/"] = "Comment Line",
-				["<leader>\""] = "Comment Block",
-				["<leader>y"] = "Copy to System",
-				["<leader>Y"] = "Copy Line to System",
-			})
-
-			-- File/Search mappings
-			wk.register({
-				["<leader>f"] = {
-					name = "Find/Search",
-					f = "Git Files",
-					F = "All Files", 
-					g = "Live Grep",
-					w = "Find Word",
-					b = "Buffer Search",
-					r = "References",
-					s = "Document Symbols",
-					S = "Workspace Symbols",
-					d = "Diagnostics",
-					h = "Help Tags",
-					m = "Marks",
-					o = "Recent Files",
-					c = "Commands",
-					k = "Keymaps",
-					q = "Quickfix",
-					l = "Location List",
-				}
-			})
-
-			-- Git mappings  
-			wk.register({
-				["<leader>g"] = {
-					name = "Git",
-					-- Telescope git pickers
-					c = "Commits (Telescope)",
-					b = "Branches (Telescope)", 
-					s = "Status (Telescope)",
-					-- Fugitive commands
-					G = "Git Status (Fugitive)",
-					d = "Git Diff",
-					l = "Git Log",
-					p = "Git Push",
-					P = "Git Pull",
-					a = "Git Add Current File",
-					A = "Git Add All",
-					co = "Git Checkout",
-					cm = "Git Commit",
-					bl = "Git Blame",
-					-- Diffview commands
-					D = "Open Diffview",
-					H = "File History (All)",
-					h = "Current File History",
-					R = "Refresh Diffview",
-					X = "Close Diffview",
-					-- Neogit commands
-					g = "Open Neogit",
-				}
-			})
-
-			-- LSP mappings (from your autocmd.lua)
-			wk.register({
-				["<leader>v"] = {
-					name = "LSP",
-					d = "Diagnostics Float",
-					ws = "Workspace Symbol",
-					ca = "Code Action",
-					rr = "References", 
-					rn = "Rename",
-				}
-			})
-
-			-- Search/Replace mappings
-			wk.register({
-				["<leader>S"] = "Toggle Spectre",
-				["<leader>s"] = {
-					name = "Search/Replace",
-					w = "Search Word",
-					p = "Search in File",
-				}
-			})
-
-			-- Plugin mappings
-			wk.register({
-				["<leader>p"] = {
-					name = "Plugin/Project",
-					m = "Mason",
-					v = "File Manager",
-				}
-			})
-
-			-- Buffer navigation
-			wk.register({
-				["<leader>t"] = "Find Buffers",
-			})
-
-			-- Common vim mappings with descriptions
-			wk.register({
-				g = {
-					name = "Go to",
-					d = "Definition",
-				},
-				["["] = {
-					name = "Previous",
-					d = "Diagnostic",
-				},
-				["]"] = {
-					name = "Next", 
-					d = "Diagnostic",
-				},
-				K = "Hover Documentation",
+			-- New spec format
+			wk.add({
+				{ '<leader>"', desc = "Comment Block" },
+				{ "<leader>/", desc = "Comment Line" },
+				{ "<leader>E", desc = "Focus Explorer" },
+				{ "<leader>Y", desc = "Copy Line to System" },
+				{ "<leader>e", desc = "File Explorer" },
+				{ "<leader>r", desc = "Reload Config" },
+				{ "<leader>y", desc = "Copy to System" },
+				{ "<leader>c", group = "Code" },
+				{ "<leader>d", group = "Debug" },
+				{ "<leader>f", group = "Find/Search" },
+				{ "<leader>fF", desc = "All Files" },
+				{ "<leader>fS", desc = "Workspace Symbols" },
+				{ "<leader>fb", desc = "Buffer Search" },
+				{ "<leader>fc", desc = "Commands" },
+				{ "<leader>fd", desc = "Diagnostics" },
+				{ "<leader>ff", desc = "Git Files" },
+				{ "<leader>fg", desc = "Live Grep" },
+				{ "<leader>fh", desc = "Help Tags" },
+				{ "<leader>fk", desc = "Keymaps" },
+				{ "<leader>fl", desc = "Location List" },
+				{ "<leader>fm", desc = "Marks" },
+				{ "<leader>fo", desc = "Recent Files" },
+				{ "<leader>fq", desc = "Quickfix" },
+				{ "<leader>fr", desc = "References" },
+				{ "<leader>fs", desc = "Document Symbols" },
+				{ "<leader>fw", desc = "Find Word" },
+				{ "<leader>g", group = "Git" },
+				{ "<leader>gA", desc = "Git Add All" },
+				{ "<leader>gD", desc = "Open Diffview" },
+				{ "<leader>gG", desc = "Git Status (Fugitive)" },
+				{ "<leader>gH", desc = "File History (All)" },
+				{ "<leader>gP", desc = "Git Pull" },
+				{ "<leader>gR", desc = "Refresh Diffview" },
+				{ "<leader>gX", desc = "Close Diffview" },
+				{ "<leader>ga", desc = "Git Add Current File" },
+				{ "<leader>gb", desc = "Branches (Telescope)" },
+				{ "<leader>gbl", desc = "Git Blame" },
+				{ "<leader>gc", desc = "Commits (Telescope)" },
+				{ "<leader>gcm", desc = "Git Commit" },
+				{ "<leader>gco", desc = "Git Checkout" },
+				{ "<leader>gd", desc = "Git Diff" },
+				{ "<leader>gg", desc = "Open Neogit" },
+				{ "<leader>gh", desc = "Current File History" },
+				{ "<leader>gl", desc = "Git Log" },
+				{ "<leader>gp", desc = "Git Push" },
+				{ "<leader>gs", desc = "Status (Telescope)" },
+				{ "<leader>v", group = "LSP" },
+				{ "<leader>vca", desc = "Code Action" },
+				{ "<leader>vd", desc = "Diagnostics Float" },
+				{ "<leader>vrn", desc = "Rename" },
+				{ "<leader>vrr", desc = "References" },
+				{ "<leader>vws", desc = "Workspace Symbol" },
+				{ "<leader>S", desc = "Toggle Spectre" },
+				{ "<leader>s", group = "Search/Replace" },
+				{ "<leader>sp", desc = "Search in File" },
+				{ "<leader>sw", desc = "Search Word" },
+				{ "<leader>p", group = "Plugin/Project" },
+				{ "<leader>pm", desc = "Mason" },
+				{ "<leader>pv", desc = "File Manager" },
+				{ "<leader>t", desc = "Find Buffers" },
+				{ "K", desc = "Hover Documentation" },
+				{ "[", group = "Previous" },
+				{ "[d", desc = "Diagnostic" },
+				{ "]", group = "Next" },
+				{ "]d", desc = "Diagnostic" },
+				{ "g", group = "Go to" },
+				{ "gd", desc = "Definition" },
 			})
 		end,
 	},

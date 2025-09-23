@@ -1,3 +1,4 @@
+require("alex.shims")
 require("alex.remap")
 require("alex.settings")
 require("alex.autocmd")
