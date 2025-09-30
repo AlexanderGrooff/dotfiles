@@ -74,6 +74,7 @@ function gu() {
 
 # git aliases
 alias ga='git add'
+alias gas="$HOME/scripts/git-stage-staged-files.sh"
 alias gst='git status'
 alias gpf='git push -f'
 alias gsp='git stash pop'
