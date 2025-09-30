@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 set -euo pipefail
 
@@ -10,22 +10,17 @@ fi
 
 # Collect paths that currently have staged changes
 # Use NUL-delimited output to safely handle special characters in file names
-mapfile -d '' staged_files < <(git diff --name-only --cached -z)
+staged_files=()
+while IFS= read -r -d '' path; do
+  staged_files+=("$path")
+done < <(git diff --name-only --cached -z)
 
-# Filter out potential empty element when input ends with a trailing NUL
-filtered_paths=()
-for path in "${staged_files[@]:-}"; do
-  if [[ -n "${path:-}" ]]; then
-    filtered_paths+=("$path")
-  fi
-done
-
-if (( ${#filtered_paths[@]} == 0 )); then
+if (( ${#staged_files[@]} == 0 )); then
   echo "No staged files found."
   exit 0
 fi
 
 # Stage remaining changes (additions, modifications, deletions) for only those paths
-git add -A -- "${filtered_paths[@]}"
+git add -A -- "${staged_files[@]}"
 
-echo "Staged remaining changes for ${#filtered_paths[@]} file(s)."
+echo "Staged remaining changes for ${#staged_files[@]} file(s)."
