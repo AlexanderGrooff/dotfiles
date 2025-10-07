@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -21,6 +21,10 @@ if (( ${#staged_files[@]} == 0 )); then
 fi
 
 # Stage remaining changes (additions, modifications, deletions) for only those paths
+# pushd/popd so that we can run this from nested dirs
+ROOT_DIR=$(git rev-parse --show-toplevel)
+pushd $ROOT_DIR
 git add -A -- "${staged_files[@]}"
+popd
 
 echo "Staged remaining changes for ${#staged_files[@]} file(s)."
