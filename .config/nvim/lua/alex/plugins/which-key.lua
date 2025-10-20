@@ -99,7 +99,6 @@ return {
 				{ "<leader>gcm", desc = "Git Commit" },
 				{ "<leader>gco", desc = "Git Checkout" },
 				{ "<leader>gd", desc = "Git Diff" },
-				{ "<leader>gg", desc = "Open Neogit" },
 				{ "<leader>gh", desc = "Current File History" },
 				{ "<leader>gl", desc = "Git Log" },
 				{ "<leader>gp", desc = "Git Push" },

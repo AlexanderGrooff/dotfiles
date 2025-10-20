@@ -57,7 +57,7 @@ return {
 
 			-- Lua
 			if command_exists('lua-language-server') then
-				start_on_filetype({ 'lua' }, vim.lsp.config({
+				start_on_filetype({ 'lua' }, {
 					name = 'lua_ls',
 					cmd = { 'lua-language-server' },
 					root_patterns = { '.luarc.json', '.luarc.jsonc', '.stylua.toml', '.git' },
@@ -72,49 +72,49 @@ return {
 							telemetry = { enable = false },
 						},
 					},
-				}))
+				})
 			end
 
 			-- Python
 			if command_exists('pyright-langserver') or command_exists('pyright') then
-				start_on_filetype({ 'python' }, vim.lsp.config({
+				start_on_filetype({ 'python' }, {
 					name = 'pyright',
 					cmd = { command_exists('pyright-langserver') and 'pyright-langserver' or 'pyright', '--stdio' },
 					root_patterns = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
-				}))
+				})
 			elseif command_exists('pylsp') then
-				start_on_filetype({ 'python' }, vim.lsp.config({
+				start_on_filetype({ 'python' }, {
 					name = 'pylsp',
 					cmd = { 'pylsp' },
 					root_patterns = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
-				}))
+				})
 			end
 
 			-- Go
 			if command_exists('gopls') then
-				start_on_filetype({ 'go' }, vim.lsp.config({
+				start_on_filetype({ 'go' }, {
 					name = 'gopls',
 					cmd = { 'gopls' },
 					root_patterns = { 'go.work', 'go.mod', '.git' },
-				}))
+				})
 			end
 
 			-- TypeScript/JavaScript
 			if command_exists('typescript-language-server') then
-				start_on_filetype({ 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact', 'javascript.jsx' }, vim.lsp.config({
+				start_on_filetype({ 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact', 'javascript.jsx' }, {
 					name = 'tsserver',
 					cmd = { 'typescript-language-server', '--stdio' },
 					root_patterns = { 'package.json', 'tsconfig.json', 'jsconfig.json', '.git' },
-				}))
+				})
 			end
 
 			-- Bash
 			if command_exists('bash-language-server') then
-				start_on_filetype({ 'sh', 'bash' }, vim.lsp.config({
+				start_on_filetype({ 'sh', 'bash' }, {
 					name = 'bashls',
 					cmd = { 'bash-language-server', 'start' },
 					root_patterns = { '.git' },
-				}))
+				})
 			end
 		end,
 	},
