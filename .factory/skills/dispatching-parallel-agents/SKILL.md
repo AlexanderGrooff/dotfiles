@@ -63,12 +63,12 @@ Each agent gets:
 
 ### 3. Dispatch in Parallel
 
-```typescript
-// In Claude Code / AI environment
-Task("Fix agent-tool-abort.test.ts failures")
-Task("Fix batch-completion-behavior.test.ts failures")
-Task("Fix tool-approval-race-conditions.test.ts failures")
-// All three run concurrently
+```bash
+# Using Factory Droid - spawn agents in parallel
+droid exec --auto low "Fix agent-tool-abort.test.ts failures" &
+droid exec --auto low "Fix batch-completion-behavior.test.ts failures" &
+droid exec --auto low "Fix tool-approval-race-conditions.test.ts failures" &
+wait  # All three run concurrently
 ```
 
 ### 4. Review and Integrate
@@ -140,10 +140,11 @@ Return: Summary of what you found and what you fixed.
 **Decision:** Independent domains - abort logic separate from batch completion separate from race conditions
 
 **Dispatch:**
-```
-Agent 1 → Fix agent-tool-abort.test.ts
-Agent 2 → Fix batch-completion-behavior.test.ts
-Agent 3 → Fix tool-approval-race-conditions.test.ts
+```bash
+droid exec --auto low "Fix agent-tool-abort.test.ts" &
+droid exec --auto low "Fix batch-completion-behavior.test.ts" &
+droid exec --auto low "Fix tool-approval-race-conditions.test.ts" &
+wait
 ```
 
 **Results:**

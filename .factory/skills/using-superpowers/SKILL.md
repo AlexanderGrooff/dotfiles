@@ -13,9 +13,14 @@ This is not negotiable. This is not optional. You cannot rationalize your way ou
 
 ## How to Access Skills
 
-**In Claude Code:** Use the `Skill` tool. When you invoke a skill, its content is loaded and presented to you—follow it directly. Never use the Read tool on skill files.
+**In Factory Droid:** Skills are loaded from `.factory/skills/`. Reference them in prompts or use `droid exec` to spawn subagents with specific skills.
 
-**In other environments:** Check your platform's documentation for how skills are loaded.
+**In Claude Code:** Use the `Skill` tool. When you invoke a skill, its content is loaded and presented to you—follow it directly.
+
+**Spawning subagents with skills:**
+```bash
+droid exec --auto low 'Follow the skill at .factory/skills/[skill-name]/SKILL.md to...'
+```
 
 # Using Skills
 

@@ -1,0 +1,29 @@
+{
+  "logoAnimation": "off",
+  "sessionDefaultSettings": {
+    "autonomyMode": "auto-high",
+    "reasoningEffort": "off",
+    "model": "claude-opus-4-5-20251101"
+  },
+  "completionSound": "off",
+  "awaitingInputSound": "off",
+  "hooks": {
+    "claudeHooksImported": true,
+    "importedClaudeHooks": [
+      "export PATH=\"$HOME/go/bin:$HOME/bin:$PATH\" && gt prime && gt nudge deacon session-started",
+      "export PATH=\"$HOME/go/bin:$HOME/bin:$PATH\" && gt prime",
+      "export PATH=\"$HOME/go/bin:$HOME/bin:$PATH\" && gt mail check --inject",
+      "export PATH=\"$HOME/go/bin:$HOME/bin:$PATH\" && gt costs record"
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.factory/hooks/load-superpowers.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
