@@ -9,7 +9,7 @@ Use this template when dispatching a code quality reviewer subagent with Factory
 ```bash
 # Dispatch code quality reviewer subagent
 # Use the template at requesting-code-review/code-reviewer.md
-droid exec --auto low '
+droid exec --auto low --allow-background-processes '
 Review code quality for the changes between BASE_SHA and HEAD_SHA.
 
 What was implemented: [from implementer report]

@@ -92,7 +92,7 @@ Use `droid exec` to spawn subagents. Templates:
 
 **Basic syntax:**
 ```bash
-droid exec --auto low 'Your prompt here...'
+droid exec --auto low --allow-background-processes 'Your prompt here...'
 ```
 
 ## Example Workflow
@@ -107,7 +107,7 @@ You: I'm using Subagent-Driven Development to execute this plan.
 Task 1: Hook installation script
 
 [Get Task 1 text and context (already extracted)]
-[Dispatch with: droid exec --auto low '<prompt from implementer-prompt.md>']
+[Dispatch with: droid exec --auto low --allow-background-processes '<prompt from implementer-prompt.md>']
 
 Implementer: "Before I begin - should the hook be installed at user or system level?"
 
@@ -131,7 +131,7 @@ Code reviewer: Strengths: Good test coverage, clean. Issues: None. Approved.
 Task 2: Recovery modes
 
 [Get Task 2 text and context (already extracted)]
-[Dispatch with: droid exec --auto low '<prompt from implementer-prompt.md>']
+[Dispatch with: droid exec --auto low --allow-background-processes '<prompt from implementer-prompt.md>']
 
 Implementer: [No questions, proceeds]
 Implementer:

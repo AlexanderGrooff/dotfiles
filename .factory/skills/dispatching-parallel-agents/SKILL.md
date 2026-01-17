@@ -65,9 +65,9 @@ Each agent gets:
 
 ```bash
 # Using Factory Droid - spawn agents in parallel
-droid exec --auto low "Fix agent-tool-abort.test.ts failures" &
-droid exec --auto low "Fix batch-completion-behavior.test.ts failures" &
-droid exec --auto low "Fix tool-approval-race-conditions.test.ts failures" &
+droid exec --auto low --allow-background-processes "Fix agent-tool-abort.test.ts failures" &
+droid exec --auto low --allow-background-processes "Fix batch-completion-behavior.test.ts failures" &
+droid exec --auto low --allow-background-processes "Fix tool-approval-race-conditions.test.ts failures" &
 wait  # All three run concurrently
 ```
 
@@ -141,9 +141,9 @@ Return: Summary of what you found and what you fixed.
 
 **Dispatch:**
 ```bash
-droid exec --auto low "Fix agent-tool-abort.test.ts" &
-droid exec --auto low "Fix batch-completion-behavior.test.ts" &
-droid exec --auto low "Fix tool-approval-race-conditions.test.ts" &
+droid exec --auto low --allow-background-processes "Fix agent-tool-abort.test.ts" &
+droid exec --auto low --allow-background-processes "Fix batch-completion-behavior.test.ts" &
+droid exec --auto low --allow-background-processes "Fix tool-approval-race-conditions.test.ts" &
 wait
 ```
 

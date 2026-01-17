@@ -6,7 +6,7 @@ Use this template when dispatching a spec compliance reviewer subagent with Fact
 
 ```bash
 # Dispatch spec compliance reviewer subagent
-droid exec --auto low '
+droid exec --auto low --allow-background-processes '
 You are reviewing whether an implementation matches its specification.
 
 ## What Was Requested
