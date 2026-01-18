@@ -34,3 +34,6 @@ __pycache__
 # Rendered template files are stored in dist
 dist/*
 !dist/.gitkeep
+
+# AI agents
+/plan.md
