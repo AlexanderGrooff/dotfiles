@@ -3,8 +3,8 @@
 Use this template when dispatching an implementer subagent with Factory Droid.
 
 ```bash
-# Dispatch implementer subagent
-droid exec --auto low --allow-background-processes '
+# Dispatch implementer subagent in tmux for progress monitoring
+tmux new-session -d -s implementer 'droid exec --auto low --allow-background-processes "
 You are implementing Task N: [task name]
 
 ## Task Description

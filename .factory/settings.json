@@ -21,6 +21,10 @@
           {
             "type": "command",
             "command": "~/.factory/hooks/load-superpowers.sh"
+          },
+          {
+            "type": "command",
+            "command": "~/.factory/hooks/subagent-completion-notify.sh"
           }
         ]
       }

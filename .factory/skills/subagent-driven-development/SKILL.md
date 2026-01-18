@@ -92,7 +92,9 @@ Use `droid exec` to spawn subagents. Templates:
 
 **Basic syntax:**
 ```bash
-droid exec --auto low --allow-background-processes 'Your prompt here...'
+# Run in tmux for easy progress monitoring
+tmux new-session -d -s subagent-name 'droid exec --auto low --allow-background-processes "Your prompt here..."'
+# View progress: tmux attach -t subagent-name
 ```
 
 ## Example Workflow
@@ -107,7 +109,7 @@ You: I'm using Subagent-Driven Development to execute this plan.
 Task 1: Hook installation script
 
 [Get Task 1 text and context (already extracted)]
-[Dispatch with: droid exec --auto low --allow-background-processes '<prompt from implementer-prompt.md>']
+[Dispatch with: tmux new-session -d -s task1-impl 'droid exec --auto low --allow-background-processes "<prompt from implementer-prompt.md>"']
 
 Implementer: "Before I begin - should the hook be installed at user or system level?"
 
@@ -131,7 +133,7 @@ Code reviewer: Strengths: Good test coverage, clean. Issues: None. Approved.
 Task 2: Recovery modes
 
 [Get Task 2 text and context (already extracted)]
-[Dispatch with: droid exec --auto low --allow-background-processes '<prompt from implementer-prompt.md>']
+[Dispatch with: tmux new-session -d -s task1-impl 'droid exec --auto low --allow-background-processes "<prompt from implementer-prompt.md>"']
 
 Implementer: [No questions, proceeds]
 Implementer:

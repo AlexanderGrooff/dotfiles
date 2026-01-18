@@ -5,7 +5,7 @@ description: Use when completing tasks, implementing major features, or before m
 
 # Requesting Code Review
 
-Dispatch superpowers:code-reviewer subagent to catch issues before they cascade.
+Dispatch code-reviewer subagent to catch issues before they cascade.
 
 **Core principle:** Review early, review often.
 
@@ -32,7 +32,8 @@ HEAD_SHA=$(git rev-parse HEAD)
 **2. Dispatch code-reviewer subagent:**
 
 ```bash
-droid exec --auto low --allow-background-processes '<prompt from code-reviewer.md with placeholders filled>'
+tmux new-session -d -s code-review 'droid exec --auto low --allow-background-processes "<prompt from code-reviewer.md with placeholders filled>"'
+# View progress: tmux attach -t code-review
 ```
 
 **Placeholders:**
@@ -58,7 +59,7 @@ You: Let me request code review before proceeding.
 BASE_SHA=$(git log --oneline | grep "Task 1" | head -1 | awk '{print $1}')
 HEAD_SHA=$(git rev-parse HEAD)
 
-droid exec --auto low --allow-background-processes '
+tmux new-session -d -s code-review 'droid exec --auto low --allow-background-processes "
 You are reviewing code changes for production readiness.
 Review: Verification and repair functions for conversation index
 Requirements: Task 2 from docs/plans/deployment-plan.md

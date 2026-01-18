@@ -64,11 +64,12 @@ Each agent gets:
 ### 3. Dispatch in Parallel
 
 ```bash
-# Using Factory Droid - spawn agents in parallel
-droid exec --auto low --allow-background-processes "Fix agent-tool-abort.test.ts failures" &
-droid exec --auto low --allow-background-processes "Fix batch-completion-behavior.test.ts failures" &
-droid exec --auto low --allow-background-processes "Fix tool-approval-race-conditions.test.ts failures" &
-wait  # All three run concurrently
+# Using Factory Droid - spawn agents in tmux sessions for easy monitoring
+tmux new-session -d -s agent-abort 'droid exec --auto low --allow-background-processes "Fix agent-tool-abort.test.ts failures"'
+tmux new-session -d -s agent-batch 'droid exec --auto low --allow-background-processes "Fix batch-completion-behavior.test.ts failures"'
+tmux new-session -d -s agent-race 'droid exec --auto low --allow-background-processes "Fix tool-approval-race-conditions.test.ts failures"'
+# View progress: tmux attach -t agent-abort (or agent-batch, agent-race)
+# List sessions: tmux ls
 ```
 
 ### 4. Review and Integrate
@@ -141,10 +142,9 @@ Return: Summary of what you found and what you fixed.
 
 **Dispatch:**
 ```bash
-droid exec --auto low --allow-background-processes "Fix agent-tool-abort.test.ts" &
-droid exec --auto low --allow-background-processes "Fix batch-completion-behavior.test.ts" &
-droid exec --auto low --allow-background-processes "Fix tool-approval-race-conditions.test.ts" &
-wait
+tmux new-session -d -s agent-abort 'droid exec --auto low --allow-background-processes "Fix agent-tool-abort.test.ts"'
+tmux new-session -d -s agent-batch 'droid exec --auto low --allow-background-processes "Fix batch-completion-behavior.test.ts"'
+tmux new-session -d -s agent-race 'droid exec --auto low --allow-background-processes "Fix tool-approval-race-conditions.test.ts"'
 ```
 
 **Results:**

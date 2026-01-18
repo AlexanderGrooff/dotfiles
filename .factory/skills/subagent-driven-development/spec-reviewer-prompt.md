@@ -5,8 +5,8 @@ Use this template when dispatching a spec compliance reviewer subagent with Fact
 **Purpose:** Verify implementer built what was requested (nothing more, nothing less)
 
 ```bash
-# Dispatch spec compliance reviewer subagent
-droid exec --auto low --allow-background-processes '
+# Dispatch spec compliance reviewer in tmux for progress monitoring
+tmux new-session -d -s spec-reviewer 'droid exec --auto low --allow-background-processes "
 You are reviewing whether an implementation matches its specification.
 
 ## What Was Requested

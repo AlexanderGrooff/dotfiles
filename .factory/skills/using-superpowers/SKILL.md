@@ -19,7 +19,8 @@ This is not negotiable. This is not optional. You cannot rationalize your way ou
 
 **Spawning subagents with skills:**
 ```bash
-droid exec --auto low --allow-background-processes 'Follow the skill at .factory/skills/[skill-name]/SKILL.md to...'
+tmux new-session -d -s subagent 'droid exec --auto low --allow-background-processes "Follow the skill at .factory/skills/[skill-name]/SKILL.md to..."'
+# View progress: tmux attach -t subagent
 ```
 
 # Using Skills
