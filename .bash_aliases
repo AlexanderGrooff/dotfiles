@@ -15,6 +15,10 @@ if $(command -v nvim &> /dev/null) || [ -e $HOME/.local/bin/nvim ]; then
     alias vim=nvim
 fi
 
+if $(command -v hx &> /dev/null); then
+    export EDITOR=hx
+fi
+
 if $(command -v tmux &> /dev/null) || [ -e $HOME/.local/bin/tmux ]; then
     if [ -z "$TMUX" ]; then
         # DISABLED 20250403 because it breaks python venv + scrolling + alt-.

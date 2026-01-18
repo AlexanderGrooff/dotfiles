@@ -1,0 +1,15 @@
+theme = "onedark"
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.whitespace.render]
+space = "all"
+
+[editor.indent-guides]
+render = true
+
+[editor.auto-save]
+focus-lost = true
+after-delay.enable = true
+after-delay.timeout = 3000
