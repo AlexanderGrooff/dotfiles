@@ -282,5 +282,6 @@ alias hms='nix run home-manager/master -- switch --flake ".#$(hostname)"'
 function kns {
     kubectl config set-context --current --namespace="${1}"
 }
+alias ai="cd ~/code/ai-configs"
 
 for f in $(find $HOME/.bash.d -type f); do source $f; done
