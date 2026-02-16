@@ -12,6 +12,15 @@ export ZSH_THEME="agnoster"
 export EDITOR=nvim
 export CASE_SENSITIVE="true"
 
+# Infinite history
+export HISTSIZE=1000000000
+export SAVEHIST=1000000000
+export HISTFILE=~/.zsh_history
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_FIND_NO_DUPS
+
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
