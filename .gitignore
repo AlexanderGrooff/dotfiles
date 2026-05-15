@@ -1,5 +1,3 @@
-dist
-.venv
 .idea
 
 # Beads / Dolt files (added by bd init)

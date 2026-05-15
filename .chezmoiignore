@@ -1,0 +1,39 @@
+# Files that should NOT be applied to the target directory.
+# Patterns match TARGET paths (after prefix stripping), not source paths.
+
+# Repo-internal files (never deployed)
+AGENTS.md
+README.md
+flake.nix
+flake.lock
+home.nix
+fix_remote.sh
+
+{{- if ne .chezmoi.os "linux" }}
+# Linux-only dotfiles - don't deploy on non-Linux
+.bashrc
+.profile
+.taskrc
+.task/
+.config/i3
+.config/i3blocks
+.config/polybar
+.config/waybar
+.config/dunst
+.config/rofi
+.config/hypr
+.config/systemd
+.config/kdeglobals
+.config/khotkeysrc
+.config/kglobalshortcutsrc
+.config/flake8
+.config/nix
+.config/codium-flags.conf
+.config/code-flags.conf
+{{- end }}
+
+{{- if ne .chezmoi.os "darwin" }}
+# macOS-only dotfiles - don't deploy on non-macOS
+.python-version
+.config/ghostty
+{{- end }}
