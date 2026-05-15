@@ -1,0 +1,3 @@
+#command="tmux new-session"
+macos-option-as-alt = true
+

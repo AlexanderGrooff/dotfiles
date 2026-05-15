@@ -284,4 +284,4 @@ function kns {
 }
 alias ai="cd ~/code/ai-configs"
 
-for f in $(find $HOME/.bash.d -type f); do source $f; done
+for f in $(find "$HOME/.bash.d" -type f -not -path '*/.git/*' -not -name '.git'); do source "$f"; done

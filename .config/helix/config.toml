@@ -1,15 +1,54 @@
 theme = "onedark"
 
+[editor]
+line-number = "relative"
+cursorline = true
+scrolloff = 8
+bufferline = "multiple"
+rulers = [80, 120]
+color-modes = true
+
 [editor.cursor-shape]
 insert = "bar"
+normal = "block"
+select = "underline"
 
 [editor.whitespace.render]
 space = "all"
 
 [editor.indent-guides]
 render = true
+character = "▏"
 
 [editor.auto-save]
 focus-lost = true
 after-delay.enable = true
 after-delay.timeout = 3000
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator"]
+center = []
+right = ["diagnostics", "selections", "register", "position-percentage", "file-type"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+display-inlay-hints = true
+display-signature-help-docs = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+other-lines = "error"
+
+[keys.normal]
+tab = "move_parent_node_end"
+S-tab = "move_parent_node_start"
+"A-g" = "goto_last_accessed_file"
+"A-n" = "goto_next_buffer"
+"A-p" = "goto_previous_buffer"
+"A-s" = "search_selection_detect_word_boundaries"
+
+[keys.select]
+tab = "extend_parent_node_end"
+S-tab = "extend_parent_node_start"

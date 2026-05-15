@@ -93,7 +93,7 @@ return {
 				tabline = {},
 				winbar = {},
 				inactive_winbar = {},
-				extensions = {'neo-tree', 'telescope', 'mason'}
+				extensions = {'neo-tree', 'mason'}
 			})
 		end
 	}
