@@ -2,7 +2,7 @@
 # Run once: install Nix package manager (Linux only)
 set -e
 
-{{- if ne .chezmoi.os "linux" }}
+{{- if eq .chezmoi.os "linux" }}
 function install_nix() {
   sudo rm -rf /etc/nix
   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install

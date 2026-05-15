@@ -2,7 +2,7 @@
 # Run once: apply Home Manager configuration (Linux only)
 set -e
 
-{{- if ne .chezmoi.os "linux" }}
+{{- if eq .chezmoi.os "linux" }}
 nix run home-manager/master -- switch --flake "{{ .chezmoi.sourceDir }}#$(hostname)"
 {{- else }}
 echo "Home Manager application skipped on non-Linux system"
