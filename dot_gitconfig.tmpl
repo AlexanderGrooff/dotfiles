@@ -1,10 +1,13 @@
 [user]
-    name = Alexander Grooff
-    email = alexandergrooff@gmail.com
+    name = {{ .name }}
+    email = {{ .email }}
 [core]
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     excludesfile = ~/.gitignore_global
     autocrlf = false
+{{- if eq .chezmoi.os "darwin" }}
+    editor = hx
+{{- end }}
 [color]
     ui = auto
     diff = auto
@@ -21,7 +24,11 @@
     upstream-name = !git remote | grep -Eo '(upstream|origin)' | tail -1
     head-branch = !git remote show $(git upstream-name) | awk '/HEAD branch/ {print $NF}'
 [init]
+{{- if eq .chezmoi.os "darwin" }}
+    defaultBranch = main
+{{- else }}
     defaultBranch = master
+{{- end }}
 [tag]
     sort = version:refname
 [diff]
@@ -29,3 +36,9 @@
     renames = true
 [branch]
     sort = -committer-date
+{{- if eq .chezmoi.os "darwin" }}
+[credential]
+    helper = store
+[safe]
+    directory = *
+{{- end }}

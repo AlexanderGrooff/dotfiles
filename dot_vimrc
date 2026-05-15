@@ -55,8 +55,8 @@ Plugin 'tpope/vim-surround'
 " lang specific modules
 Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
 Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'davidhalter/jedi-vim'
-  autocmd FileType python setlocal completeopt-=preview " dont show doc window
+"Plugin 'davidhalter/jedi-vim'
+"  autocmd FileType python setlocal completeopt-=preview " dont show doc window
 
 call vundle#end()
 filetype plugin indent on     " required!
@@ -66,7 +66,7 @@ call plug#begin('~/.vim/plugged')
 
 " this assumes fzf is installed separately on ~/.apps/fzf
 " see https://github.com/junegunn/fzf
-Plug 'junegunn/fzf', { 'dir': '~/.apps/fzf', 'do': './install bin' }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
   noremap <C-T> :Files<CR>
   noremap <Leader>t :Buffers<CR>
@@ -112,12 +112,12 @@ set wildignore=*.exe,*.dll,*.o,*.so,*.pyc,*.back,*.jpg,*.jpeg,*.png,*.gif,*.pdf
 set wildmode=list:full
 set colorcolumn=80
 set noswapfile
-set clipboard=unnamedplus  " Copy across vim instances
+"set clipboard=unnamedplus  " Copy across vim instances
 set fileformat=unix   " Always use LF line separators, not CRLF (prefer Unix over Windows)
 set visualbell
 
 syntax on
-colorscheme colorfulnight
+"colorscheme colorfulnight
 
 
 " :help last-position-jump
@@ -147,7 +147,9 @@ inoremap <C-S-J> <Esc>:m .+1<CR>==gi
 inoremap <C-S-K> <Esc>:m .-2<CR>==gi
 vnoremap <C-S-K> :m '<-2<CR>gv=gv
 vnoremap <C-S-J> :m '>+1<CR>gv=gv
-vnoremap // y/<C-R>"<CR>
+"vnoremap // y/<C-R>"<CR>
 
 map <C-Y> :call yapf#YAPF()<cr>
 imap <C-Y> <c-o>:call yapf#YAPF()<cr>
+set nomodeline
+set modelines=0

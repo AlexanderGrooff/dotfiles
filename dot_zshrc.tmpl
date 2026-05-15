@@ -1,13 +1,28 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+{{- if eq .chezmoi.os "darwin" }}
+# OPENSPEC:START
+# OpenSpec shell completions configuration
+fpath=("$HOME/.zsh/completions" $fpath)
+autoload -Uz compinit
+compinit
+# OPENSPEC:END
+{{- end }}
 
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+setopt appendhistory
+
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+
+setopt autocd
+
+{{- if eq .chezmoi.os "darwin" }}
+export PATH=$PATH:/usr/local/bin:/usr/local/adyen/bin:$HOME/scripts:$HOME/.local/bin:$HOME/go/bin:/usr/local/adyen/bin/cursor
+{{- else }}
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 export ZSH_THEME="agnoster"
 export EDITOR=nvim
 export CASE_SENSITIVE="true"
@@ -21,43 +36,6 @@ setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
   zsh-autosuggestions
   taskwarrior
@@ -68,16 +46,27 @@ export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bi
 if [ -e $ZSH/oh-my-zsh.sh ]; then
     source $ZSH/oh-my-zsh.sh
 fi
+{{- end }}
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# ZSH bindkeys
 if [ -f ~/.zsh_keys ]; then
     . ~/.zsh_keys
 fi
 
+{{- if eq .chezmoi.os "darwin" }}
+source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+eval "$(starship init zsh)"
+
+# Source directory-local aliases (written by .envrc via direnv)
+# Uses chpwd so it fires when cd-ing into a dir with .aliases
+_chpwd_aliases() { [ -f .aliases ] && source .aliases 2>/dev/null; }
+chpwd_functions+=(_chpwd_aliases)
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+{{- else }}
 # Activate virtualenvwrapper
 if [[ $(command -v virtualenvwrapper.sh) ]]; then
     source virtualenvwrapper.sh
@@ -92,6 +81,7 @@ fi
 if [[ `command -v xset` && -n $DISPLAY ]]; then
     xset r rate 175 45
 fi
+{{- end }}
 
 # Use fd for fzf
 if [ -x /usr/bin/fdfind ]; then
@@ -101,6 +91,7 @@ else
 fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+{{- if eq .chezmoi.os "linux" }}
 if [[ `command -v podman` ]]; then
     export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 else
@@ -116,24 +107,28 @@ if [ -f $HOME/kubeconfig ]; then
 elif [ -f $HOME/.kube/config ]; then
     export KUBECONFIG=$HOME/.kube/config
 fi
+{{- end }}
 
 if [[ `command -v direnv` ]]; then eval "$(direnv hook zsh)"; fi
 
+{{- if eq .chezmoi.os "linux" }}
 if [ -f /etc/bash_completion.d/complete_alias ]; then
     source /etc/bash_completion.d/complete_alias
 fi
 
 if [[ `command -v flutter` ]]; then
-    #export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
-    #export PATH=$JAVA_HOME:$PATH
     source <(flutter bash-completion)
 fi
+{{- end }}
+
 if [[ `command -v op` ]]; then
     eval "$(op completion zsh)"; compdef _op op
 fi
 if [[ `command -v gh` ]]; then
     eval "$(gh completion -s zsh)"
 fi
+
+{{- if eq .chezmoi.os "linux" }}
 if [[ `command -v github-copilot-cli` ]]; then
     eval "$(github-copilot-cli alias -- '$0')"
 fi
@@ -147,7 +142,20 @@ if [[ `command -v gnome-keyring-daemon` ]]; then
 fi
 
 [ -f ~/.github_token.txt ] && export GITHUB_TOKEN=$(cat ~/.github_token.txt)
+{{- end }}
 
 # Disable terminal beep
 unsetopt beep
+
+{{- if eq .chezmoi.os "darwin" }}
+# Added by Windsurf
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
+
+# Ghostty SSH sucks
+export TERM=xterm-256color
+{{- else }}
 if [ -e /home/alex/.nix-profile/etc/profile.d/nix.sh ]; then . /home/alex/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+{{- end }}
+
+# Load bash.d snippets
+for f in $(find "$HOME/.bash.d" -type f -not -path '*/.git/*' -not -name '.git' 2>/dev/null); do source "$f"; done
