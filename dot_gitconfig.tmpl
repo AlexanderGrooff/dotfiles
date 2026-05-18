@@ -1,6 +1,10 @@
 [user]
     name = {{ .name }}
-    email = {{ .email }}
+{{- if eq .chezmoi.os "darwin" }}
+    email = alexander.grooff@adyen.com
+{{- else }}
+    email = alexandergrooff@gmail.com
+{{- end }}
 [core]
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     excludesfile = ~/.gitignore_global

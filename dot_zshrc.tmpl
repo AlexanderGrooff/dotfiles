@@ -154,5 +154,3 @@ export TERM=xterm-256color
 {{- else }}
 {{- end }}
 
-# Load bash.d snippets
-for f in $(find "$HOME/.bash.d" -type f -not -path '*/.git/*' -not -name '.git' 2>/dev/null); do source "$f"; done

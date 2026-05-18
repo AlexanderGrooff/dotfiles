@@ -1,0 +1,8 @@
+# External dependencies managed by chezmoi.
+# ~/.bash.d is sourced from a private repo containing machine/company-specific
+# shell snippets that must not appear in the public dotfiles repo.
+
+[".bash.d"]
+    type = "git-repo"
+    url = "git@gitlab-infra.is.adyen.com:alexandergr/bash.d.git"
+    refreshPeriod = "168h"
