@@ -89,7 +89,7 @@ else
 fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 if [[ `command -v npm` ]]; then
-    export PATH=$PATH:$(npm root 2&>1)/.bin
+    export PATH=$PATH:$(npm root |& grep node_modules)/.bin
 fi
 
 {{- if eq .chezmoi.os "linux" }}
