@@ -41,8 +41,6 @@ plugins=(
   taskwarrior
 )
 
-export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/scripts:/sbin:$HOME/.cargo/bin:$HOME/npm/bin:/usr/local/go/bin:$HOME/go/bin:$HOME/.pub-cache/bin:$HOME/.bun/bin
-
 if [ -e $ZSH/oh-my-zsh.sh ]; then
     source $ZSH/oh-my-zsh.sh
 fi
@@ -154,7 +152,6 @@ export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 # Ghostty SSH sucks
 export TERM=xterm-256color
 {{- else }}
-if [ -e /home/alex/.nix-profile/etc/profile.d/nix.sh ]; then . /home/alex/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 {{- end }}
 
 # Load bash.d snippets
