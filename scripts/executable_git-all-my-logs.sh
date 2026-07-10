@@ -1,4 +1,5 @@
 #!/bin/bash
+# This file is managed by chezmoi. Do not edit directly.
 
 SUBDIRECTORY_OK=Yes
 NONGIT_OK=Yes

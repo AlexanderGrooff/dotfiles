@@ -1,3 +1,4 @@
+# This file is managed by chezmoi. Do not edit directly.
 return {
   {
     "folke/tokyonight.nvim",

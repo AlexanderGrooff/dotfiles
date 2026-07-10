@@ -1,3 +1,4 @@
+# This file is managed by chezmoi. Do not edit directly.
 # Quiet baseline environment for login, interactive, and non-interactive shells.
 # Keep prompts, completions, aliases, and direnv hooks in shell rc files.
 

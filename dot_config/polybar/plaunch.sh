@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# This file is managed by chezmoi. Do not edit directly.
 
 # Terminate already running bar instances
 killall -q polybar

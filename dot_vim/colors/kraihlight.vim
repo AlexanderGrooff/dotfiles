@@ -1,3 +1,4 @@
+" This file is managed by chezmoi. Do not edit directly.
 # from https://github.com/tempire/dotvim/
 
 set background=dark

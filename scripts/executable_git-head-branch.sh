@@ -1,4 +1,5 @@
 #!/bin/bash
+# This file is managed by chezmoi. Do not edit directly.
 
 function head_branch {
     git remote show $(git upstream-name) | awk '/HEAD branch/ {print $NF}'

@@ -1,3 +1,4 @@
+" This file is managed by chezmoi. Do not edit directly.
 highlight   CursorColumn  term=NONE    cterm=none ctermbg=232
 highlight   CursorLine    term=NONE    cterm=bold ctermbg=8
 highlight   FoldColumn                            ctermbg=8  ctermfg=14

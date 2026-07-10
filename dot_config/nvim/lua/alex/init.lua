@@ -1,3 +1,4 @@
+# This file is managed by chezmoi. Do not edit directly.
 require("alex.shims")
 require("alex.remap")
 require("alex.settings")

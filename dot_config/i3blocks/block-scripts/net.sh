@@ -1,4 +1,5 @@
 #!/bin/sh
+# This file is managed by chezmoi. Do not edit directly.
 
 if [ -n "$1" ]; then
 	iface_name=$1

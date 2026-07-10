@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# This file is managed by chezmoi. Do not edit directly.
 import requests
 import re
 from lxml import html

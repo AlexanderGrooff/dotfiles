@@ -1,3 +1,4 @@
+" This file is managed by chezmoi. Do not edit directly.
 " Vim syntax file
 " Language:     Haskell
 " Maintainer:   Rui Carlos A. Goncalves <rcgoncalves.pt@gmail.com>

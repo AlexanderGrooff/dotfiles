@@ -1,3 +1,4 @@
+" This file is managed by chezmoi. Do not edit directly.
 "based on kraihlight from
 "https://github.com/tempire/dotvim/blob/master/colors/kraihlight.vim
 

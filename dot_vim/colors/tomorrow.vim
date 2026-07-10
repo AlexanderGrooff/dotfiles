@@ -1,3 +1,4 @@
+" This file is managed by chezmoi. Do not edit directly.
 " Tomorrow - Full Colour and 256 Colour
 " http://chriskempson.com
 "

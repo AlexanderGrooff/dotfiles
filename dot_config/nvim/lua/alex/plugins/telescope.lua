@@ -1,3 +1,4 @@
+# This file is managed by chezmoi. Do not edit directly.
 return {
 	'nvim-telescope/telescope.nvim', tag = '0.1.8',
 	dependencies = { 'nvim-lua/plenary.nvim' },

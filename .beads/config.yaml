@@ -54,3 +54,6 @@
 # - github.repo
 
 sync.remote: "git+ssh://git@github.com/AlexanderGrooff/dotfiles.git"
+
+# Local-only: never push beads DB to remote (push-only guard; recovery pulls still work)
+no-push: true

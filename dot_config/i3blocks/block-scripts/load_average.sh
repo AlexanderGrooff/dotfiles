@@ -1,4 +1,5 @@
 #!/bin/sh
+# This file is managed by chezmoi. Do not edit directly.
 
 loadavg="$(cut -d ' ' -f1 /proc/loadavg)"
 cpus="$(nproc)"

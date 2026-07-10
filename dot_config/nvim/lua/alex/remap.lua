@@ -1,3 +1,4 @@
+# This file is managed by chezmoi. Do not edit directly.
 -- Basics before loading plugins. All plugin-related remaps should go in after
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>r", function()

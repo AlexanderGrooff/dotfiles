@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# This file is managed by chezmoi. Do not edit directly.
 
 if [[ $(grep "Arch Linux" /etc/os-release) ]]; then
     if [ $(command -v gnome-keyring-daemon) ]; then

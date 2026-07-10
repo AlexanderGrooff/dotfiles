@@ -1,2 +1,3 @@
+# This file is managed by chezmoi. Do not edit directly.
 [flake8]
 max-line-length = 120

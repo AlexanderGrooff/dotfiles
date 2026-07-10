@@ -1,3 +1,4 @@
+# This file is managed by chezmoi. Do not edit directly.
 -- Fallback LSP configuration for corporate environments
 -- This sets up LSP servers that might be available system-wide
 -- without requiring Mason installation

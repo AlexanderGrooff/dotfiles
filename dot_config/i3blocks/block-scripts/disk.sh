@@ -1,4 +1,5 @@
 #!/bin/sh
+# This file is managed by chezmoi. Do not edit directly.
 
 dir="${BLOCK_INSTANCE:-$HOME}"
 df -h $dir | tail -n +2 | awk '{

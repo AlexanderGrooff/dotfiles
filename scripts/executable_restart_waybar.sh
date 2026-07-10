@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# This file is managed by chezmoi. Do not edit directly.
 
 CONFIG_FILES="$HOME/.config/waybar/config $HOME/.config/waybar/style.css"
 

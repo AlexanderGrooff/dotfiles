@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# This file is managed by chezmoi. Do not edit directly.
 import gi
 gi.require_version("Playerctl", "2.0")
 from gi.repository import Playerctl, GLib

@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# This file is managed by chezmoi. Do not edit directly.
 # Unwrap function: (C)2011-2015 Dennis Kaarsemaker
 # License: GPL3+
 """Receiver related functionality."""

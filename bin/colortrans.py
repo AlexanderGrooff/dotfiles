@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+# This file is managed by chezmoi. Do not edit directly.
 
 """ Convert values between RGB hex codes and xterm-256 color codes.
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# This file is managed by chezmoi. Do not edit directly.
 
 
 import argparse

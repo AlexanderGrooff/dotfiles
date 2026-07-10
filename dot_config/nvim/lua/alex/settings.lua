@@ -1,3 +1,4 @@
+# This file is managed by chezmoi. Do not edit directly.
 -- Indentation
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4

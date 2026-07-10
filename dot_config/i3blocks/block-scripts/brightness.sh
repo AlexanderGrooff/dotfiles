@@ -1,4 +1,5 @@
 #!/bin/sh
+# This file is managed by chezmoi. Do not edit directly.
 
 dir=/sys/class/backlight/intel_backlight
 [ -e "$dir" ] || exit 1

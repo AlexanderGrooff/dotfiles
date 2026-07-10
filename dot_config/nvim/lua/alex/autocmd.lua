@@ -1,3 +1,4 @@
+# This file is managed by chezmoi. Do not edit directly.
 -- Global nvim error handling: show ALL errors as toast notifications
 -- instead of opening bottom windows
 

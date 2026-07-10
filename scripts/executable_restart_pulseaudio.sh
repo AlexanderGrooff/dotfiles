@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# This file is managed by chezmoi. Do not edit directly.
 
 function fix_pa {
     PA_CMD=/usr/bin/pulseaudio

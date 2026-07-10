@@ -1,3 +1,4 @@
+" This file is managed by chezmoi. Do not edit directly.
 " Vim color file
 "
 " Author: Tomas Restrepo <tomas@winterdom.com>

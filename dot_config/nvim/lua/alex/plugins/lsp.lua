@@ -1,3 +1,4 @@
+# This file is managed by chezmoi. Do not edit directly.
 -- luacheck: globals vim
 ---@diagnostic disable: undefined-global
 
