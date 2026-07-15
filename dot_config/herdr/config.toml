@@ -1,20 +1,21 @@
 # This file is managed by chezmoi. Do not edit directly.
 [theme]
 name = "solarized"
-auto_switch = false
+auto_switch = true
 
 [ui.toast]
-delivery = "system"
+delivery = "terminal"
 
 [ui]
 show_agent_labels_on_pane_borders = true
 agent_panel_sort = "priority"
+prompt_new_tab_name = false
 
 [[keys.command]]
 key = "prefix+d"
 type = "plugin_action"
 command = "bead-dispatcher.select-ready"
-description = "select and dispatch a ready bead"
+description = "open dispatch selector"
 
 [[keys.command]]
 key = "prefix+shift+d"
