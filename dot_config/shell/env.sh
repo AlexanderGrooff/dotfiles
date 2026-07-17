@@ -24,7 +24,22 @@ path_add "/usr/local/go/bin"
 path_add "$HOME/go/bin"
 path_add "$HOME/.pub-cache/bin"
 path_add "$HOME/.bun/bin"
+path_add "$HOME/Library/Python/3.12/bin"
+path_add "$HOME/Library/Python/3.13/bin"
+path_add "$HOME/Library/Python/3.14/bin"
 path_add "/sbin"
+
+# Homebrew keg-only opt bins (add new packages here, one per line)
+_brew_prefix=""
+[ -d /opt/homebrew/opt ] && _brew_prefix=/opt/homebrew
+[ -z "$_brew_prefix" ] && [ -d /usr/local/opt ] && _brew_prefix=/usr/local
+if [ -n "$_brew_prefix" ]; then
+  for brew_pkg in node@22; do
+    path_add "$_brew_prefix/opt/$brew_pkg/bin"
+  done
+fi
+unset _brew_prefix
+
 export PATH
 
 if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then

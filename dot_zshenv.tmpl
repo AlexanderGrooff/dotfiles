@@ -2,3 +2,9 @@
 if [ -f "$HOME/.config/shell/env.sh" ]; then
   . "$HOME/.config/shell/env.sh"
 fi
+{{- if eq .chezmoi.os "darwin" }}
+if [ -d /opt/homebrew/bin ]; then
+  path=(/opt/homebrew/bin ${path:#/opt/homebrew/bin})
+  export PATH
+fi
+{{- end }}
