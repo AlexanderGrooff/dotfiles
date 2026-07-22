@@ -1,0 +1,41 @@
+# This file is managed by chezmoi. Do not edit directly. Source: {{ .chezmoi.sourceFile }}
+# generic files to ignore
+*~
+*.DS_Store
+*.swp
+*.out
+
+#python specific
+*.pyc
+__pycache__
+.mypy_cache
+.pytest_cache
+.venv
+
+# Editors
+.idea
+
+# Nix
+.nix-*
+!flake.lock
+.direnv
+!devenv.lock
+.devenv
+.devenv.flake.nix
+
+# Sqlite
+*.sqlite3
+
+# Build files
+*.egg-info
+
+# Secrets
+.envrc
+
+# Rendered template files are stored in dist
+dist/*
+!dist/.gitkeep
+
+# AI agents
+/plan.md
+/.worktrees

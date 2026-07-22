@@ -1,0 +1,30 @@
+# This file is managed by chezmoi. Do not edit directly. Source: {{ .chezmoi.sourceFile }}
+use_python() {
+    DIR_NAME=$(basename $(pwd))
+
+    if [ -d ~/.virtualenvs/$DIR_NAME ]; then
+        source ~/.virtualenvs/$DIR_NAME/bin/activate
+    elif [ ! -d .venv ]; then
+        echo Making venv with $(which python)
+        python -m venv .venv
+    fi
+
+    if [ -d .venv ] &&  [ -z $VIRTUAL_ENV ]; then
+        source .venv/bin/activate
+    fi
+}
+
+use_distrobox() {
+    if [ $DISTROBOX_ENTER_PATH ]; then
+        echo "Distrobox is already active. Skipping.."
+        exit 0
+    fi
+
+    local db_name=${1:-debian-buster}
+    if [ -z $1 ]; then
+        if [ -d .distrobox ]; then
+            local db_name=$(basename $(pwd))
+        fi
+    fi
+    export DISTROBOX_NAME=$(echo $db_name | tr '[:upper:]' '[:lower:]')
+}

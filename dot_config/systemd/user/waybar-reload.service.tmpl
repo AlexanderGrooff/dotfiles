@@ -1,0 +1,10 @@
+# This file is managed by chezmoi. Do not edit directly. Source: {{ .chezmoi.sourceFile }}
+[Unit]
+Description=Waybar config reloader
+
+[Service]
+ExecStart=/home/alex/scripts/restart_waybar.sh
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+# This file is managed by chezmoi. Do not edit directly. Source: {{ .chezmoi.sourceFile }}
+[Unit]
+Description=Start compton
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/compton -b -d :0
+Type=simple
+User=alex
+
+[Install]
+WantedBy=multi-user.target

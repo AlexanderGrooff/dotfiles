@@ -1,0 +1,10 @@
+# This file is managed by chezmoi. Do not edit directly. Source: {{ .chezmoi.sourceFile }}
+[Unit]
+Description=Socket for Lorri Daemon
+
+[Socket]
+ListenStream=%t/lorri/daemon.socket
+RuntimeDirectory=lorri
+
+[Install]
+WantedBy=sockets.target
