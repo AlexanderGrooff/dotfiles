@@ -1,3 +1,4 @@
 {{- /* ~/.config/bead-dispatcher/config.yaml is generated from ~/.bash.d/bead-dispatcher-config.yaml */ -}}
 {{- $path := joinPath .chezmoi.homeDir ".bash.d" "bead-dispatcher-config.yaml" -}}
-{{ include $path -}}
+{{- $content := include $path -}}
+{{ replace "{{ .chezmoi.sourceFile }}" .chezmoi.sourceFile $content -}}
