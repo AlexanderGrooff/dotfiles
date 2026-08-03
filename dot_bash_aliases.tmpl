@@ -11,16 +11,16 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='grep -E --color=auto'
 fi
 
-if $(command -v nvim &> /dev/null) || [ -e $HOME/.local/bin/nvim ]; then
+if command -v nvim >/dev/null 2>&1 || [ -e $HOME/.local/bin/nvim ]; then
     export EDITOR=nvim
     alias vim=nvim
 fi
 
-if $(command -v hx &> /dev/null); then
+if command -v hx >/dev/null 2>&1; then
     export EDITOR=hx
 fi
 
-if $(command -v tmux &> /dev/null) || [ -e $HOME/.local/bin/tmux ]; then
+if command -v tmux >/dev/null 2>&1 || [ -e $HOME/.local/bin/tmux ]; then
     if [ -z "$TMUX" ]; then
         # DISABLED 20250403 because it breaks python venv + scrolling + alt-.
         #tmux attach || $HOME/scripts/tmux_new_session.sh
@@ -135,7 +135,7 @@ function rmcommit {
     git stash pop
 }
 
-if $(command -v gc) &> /dev/null; then
+if command -v gc >/dev/null 2>&1; then
     alias gcs='git commit -v'
 else
     alias gc='git commit -v'
