@@ -303,4 +303,8 @@ function kns {
 }
 alias ai="cd ~/code/ai-configs"
 
-for f in "$HOME/.bash.d"/*.sh "$HOME/.bash.d"/*.zsh; do [ -f "$f" ] && source "$f"; done
+for f in "$HOME/.bash.d"/*.sh "$HOME/.bash.d"/*.zsh; do
+    [ -f "$f" ] || continue
+    [ "$f" = "$HOME/.bash.d/kube-rexec.zsh" ] && continue
+    source "$f"
+done

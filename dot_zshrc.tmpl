@@ -3,8 +3,6 @@
 # OPENSPEC:START
 # OpenSpec shell completions configuration
 fpath=("$HOME/.zsh/completions" $fpath)
-autoload -Uz compinit
-compinit
 # OPENSPEC:END
 {{- end }}
 
@@ -64,7 +62,6 @@ eval "$(starship init zsh)"
 _chpwd_aliases() { [ -f .aliases ] && source .aliases 2>/dev/null; }
 chpwd_functions+=(_chpwd_aliases)
 fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
 {{- else }}
 # Activate virtualenvwrapper
 if [[ $(command -v virtualenvwrapper.sh) ]]; then
@@ -93,6 +90,11 @@ if [[ `command -v npm` ]]; then
     export PATH=$PATH:$(npm root |& grep node_modules)/.bin
 fi
 
+# Initialize completion exactly once, after all fpath additions from sourced
+# shell configuration have been registered.
+autoload -Uz compinit
+compinit -i
+
 {{- if eq .chezmoi.os "linux" }}
 if [[ `command -v podman` ]]; then
     export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
@@ -110,6 +112,10 @@ elif [ -f $HOME/.kube/config ]; then
     export KUBECONFIG=$HOME/.kube/config
 fi
 {{- end }}
+
+if [[ -f "$HOME/.bash.d/kube-rexec.zsh" ]]; then
+    source "$HOME/.bash.d/kube-rexec.zsh"
+fi
 
 if [[ `command -v direnv` ]]; then eval "$(direnv hook zsh)"; fi
 
