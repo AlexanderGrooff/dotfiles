@@ -4,11 +4,30 @@ name = "tokyo-night"
 auto_switch = false
 
 [theme.custom]
-# Tokyo Night purple for active tabs, pane borders, and highlights.
+# Tokyo Night palette for a dark purple UI vibe.
 accent = "#bb9af7"
+panel_bg = "#16161e"
+surface0 = "#292e42"
+surface1 = "#2f334d"
+surface_dim = "#1a1b26"
+overlay0 = "#565f89"
+overlay1 = "#787c99"
+text = "#a9b1d6"
+subtext0 = "#787c99"
+mauve = "#bb9af7"
+green = "#9ece6a"
+yellow = "#e0af68"
+red = "#f7768e"
+blue = "#7aa2f7"
+teal = "#7dcfff"
+peach = "#ff9e64"
 
 [ui.toast]
-delivery = "terminal"
+delivery = "herdr"
+delay_seconds = 1
+
+[ui.toast.herdr]
+position = "bottom-right"
 
 [ui]
 show_agent_labels_on_pane_borders = true
@@ -16,6 +35,19 @@ agent_panel_sort = "spaces"
 prompt_new_tab_name = false
 pane_borders = true
 pane_gaps = true
+
+[ui.sidebar.agents]
+row_gap = 0
+rows = [
+  ["state_icon", { token = "workspace", bold = true }, "state_text", { token = "agent", fg = "#a9b1d6" }],
+]
+
+[ui.sidebar.spaces]
+row_gap = 0
+rows = [
+  ["state_icon", { token = "workspace", bold = true }],
+  [{ token = "branch", fg = "#565f89" }, "git_status"],
+]
 
 [terminal]
 shell_mode = "login"
