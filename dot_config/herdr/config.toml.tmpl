@@ -1,15 +1,21 @@
 # This file is managed by chezmoi. Do not edit directly. Source: {{ .chezmoi.sourceFile }}
 [theme]
-name = "solarized"
-auto_switch = true
+name = "tokyo-night"
+auto_switch = false
+
+[theme.custom]
+# Tokyo Night purple for active tabs, pane borders, and highlights.
+accent = "#bb9af7"
 
 [ui.toast]
 delivery = "terminal"
 
 [ui]
 show_agent_labels_on_pane_borders = true
-agent_panel_sort = "priority"
+agent_panel_sort = "spaces"
 prompt_new_tab_name = false
+pane_borders = true
+pane_gaps = true
 
 [terminal]
 shell_mode = "login"
