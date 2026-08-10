@@ -1,0 +1,148 @@
+#!/usr/bin/env python3
+# This file is managed by chezmoi. Do not edit directly. Source: {{ .chezmoi.sourceFile }}
+import argparse
+import json
+import os
+import shutil
+import subprocess
+import sys
+from collections import defaultdict
+
+BLOCKING_TYPES = {"blocks", "conditional-blocks", "waits-for"}
+
+
+def run_bd(*args):
+    env = os.environ.copy()
+    env.pop("BD_JSON_ENVELOPE", None)
+    result = subprocess.run(["bd", *args], capture_output=True, text=True, env=env)
+    if result.returncode != 0:
+        raise RuntimeError(f"bd {' '.join(args)} failed: {result.stderr or result.stdout}")
+    data = json.loads(result.stdout)
+    if isinstance(data, dict) and "data" in data:
+        return data["data"]
+    return data
+
+
+def load_beads():
+    return {b["id"]: b for b in run_bd("list", "--all", "--limit=0", "--json")}
+
+
+def build_blockers(beads):
+    blockers = defaultdict(list)
+    for bead in beads.values():
+        bead_id = bead["id"]
+        parent = bead.get("parent")
+        if parent:
+            blockers[parent].append(bead_id)
+        for dep in bead.get("dependencies") or []:
+            rel = dep.get("type") or dep.get("dependency_type")
+            if rel not in BLOCKING_TYPES:
+                continue
+            blocker = dep.get("depends_on_id") or dep.get("id")
+            if blocker and blocker != bead_id:
+                blockers[bead_id].append(blocker)
+    return blockers
+
+
+def transitive_blockers(target_id, blockers):
+    seen = set()
+    stack = [target_id]
+    while stack:
+        node = stack.pop()
+        if node in seen:
+            continue
+        seen.add(node)
+        for b in blockers.get(node, []):
+            if b not in seen:
+                stack.append(b)
+    return seen
+
+
+def close_order(target_id, blockers):
+    scope = transitive_blockers(target_id, blockers)
+    in_degree = {n: 0 for n in scope}
+    dependents = defaultdict(list)
+    for n in scope:
+        for b in blockers.get(n, []):
+            if b in scope:
+                in_degree[n] += 1
+                dependents[b].append(n)
+
+    queue = sorted(n for n in scope if in_degree[n] == 0)
+    order = []
+    while queue:
+        n = queue.pop(0)
+        order.append(n)
+        for d in dependents[n]:
+            in_degree[d] -= 1
+            if in_degree[d] == 0:
+                queue.append(d)
+                queue.sort()
+
+    remaining = [n for n in scope if in_degree[n] > 0]
+    return order, remaining
+
+
+def close_bead(bead_id, reason, force):
+    cmd = ["bd", "close", bead_id, "-r", reason]
+    if force:
+        cmd.append("--force")
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    out = (result.stdout + result.stderr).strip()
+    if result.returncode != 0:
+        print(f"error closing {bead_id}: {out}", file=sys.stderr)
+        return False
+    print(out)
+    return True
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Close a bead and its entire blocker subtree in top-down blocker order (blockers before dependents)."
+    )
+    parser.add_argument("parent", help="parent bead id")
+    parser.add_argument("--dry-run", action="store_true", help="print the close plan without closing")
+    parser.add_argument("--force", action="store_true", help="pass --force to bd close")
+    parser.add_argument("--reason", "-r", default="closed by bd-close-subtree", help="close reason")
+    args = parser.parse_args()
+
+    if not shutil.which("bd"):
+        print("bd not found in PATH", file=sys.stderr)
+        sys.exit(1)
+
+    beads = load_beads()
+    if args.parent not in beads:
+        print(f"bead {args.parent} not found", file=sys.stderr)
+        sys.exit(1)
+
+    blockers = build_blockers(beads)
+    order, remaining = close_order(args.parent, blockers)
+
+    if remaining:
+        print(f"cycle detected among {remaining}; use --force to close anyway", file=sys.stderr)
+        if not args.force:
+            sys.exit(1)
+        order = order + sorted(remaining)
+
+    if args.dry_run:
+        print("close plan (blockers before dependents):")
+        for bid in order:
+            print(f"  {bid}: {beads[bid].get('title', '')}")
+        return
+
+    failed = []
+    for bid in order:
+        if beads[bid].get("status") == "closed":
+            continue
+        if not close_bead(bid, args.reason, args.force):
+            failed.append(bid)
+            if not args.force:
+                break
+
+    if failed:
+        print(f"failed to close {failed}", file=sys.stderr)
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
