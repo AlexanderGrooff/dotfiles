@@ -53,6 +53,9 @@ rows = [
 shell_mode = "login"
 # new_cwd = "home"
 
+[keys]
+cycle_pane_next = ""
+
 [[keys.command]]
 key = "prefix+d"
 type = "plugin_action"
@@ -72,21 +75,27 @@ command = "herdr plugin pane open --plugin bead-dispatcher --entrypoint board"
 description = "open beads board"
 
 [[keys.command]]
-key = "prefix+a"
-type = "shell"
-command = "{{ .chezmoi.homeDir }}/bin/herdr-focus-attention.sh"
-description = "focus first agent requiring attention (blocked, then done)"
+key = "prefix+shift+tab"
+type = "plugin_action"
+command = "alex.mru-tabs.focus-attention"
+description = "focus first attention pane"
 
 [[keys.command]]
-key = "prefix+shift+a"
-type = "shell"
-command = "{{ .chezmoi.homeDir }}/bin/herdr-focus-attention.sh next"
-description = "cycle to next agent requiring attention"
+key = "prefix+ctrl+tab"
+type = "plugin_action"
+command = "alex.mru-tabs.cycle-attention"
+description = "cycle attention panes"
 
 [[keys.command]]
 key = "cmd+r"
 type = "plugin_action"
 command = "persiyanov.reviewr.toggle"
+
+[[keys.command]]
+key = "prefix+tab"
+type = "plugin_action"
+command = "alex.mru-tabs.cycle"
+description = "cycle tabs in most-recently-used order"
 
 [experimental]
 pane_history = true
