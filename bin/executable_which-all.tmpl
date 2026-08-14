@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+# This file is managed by chezmoi. Do not edit directly. Source: {{ .chezmoi.sourceFile }}
+
+"""List every executable on PATH for a given name, in PATH priority order."""
+
+import os
+import sys
+
+
+def find_in_path(name):
+    """Return all executable matches for *name* found on PATH."""
+    matches = []
+    seen_real = {}
+    rank = 0
+    for directory in os.environ.get("PATH", "").split(os.pathsep):
+        if not directory:
+            directory = "."
+        candidate = os.path.join(directory, name)
+        if os.path.isfile(candidate) and os.access(candidate, os.X_OK):
+            rank += 1
+            real = os.path.realpath(candidate)
+            duplicate_of = seen_real.get(real)
+            if not duplicate_of:
+                seen_real[real] = rank
+            matches.append((rank, candidate, real, duplicate_of))
+    return matches
+
+
+def main(argv=None):
+    if argv is None:
+        argv = sys.argv[1:]
+    if not argv:
+        print(
+            f"usage: {os.path.basename(sys.argv[0])} <program> [<program> ...]",
+            file=sys.stderr,
+        )
+        return 1
+
+    any_missing = False
+    for name in argv:
+        matches = find_in_path(name)
+        if not matches:
+            print(f"{name}: not found on PATH", file=sys.stderr)
+            any_missing = True
+            continue
+
+        if len(argv) > 1:
+            print(f"{name}:")
+
+        for rank, candidate, real, duplicate_of in matches:
+            line = f"  [{rank}] {candidate}"
+            if real != os.path.abspath(candidate):
+                line += f" -> {real}"
+            if duplicate_of:
+                line += f" (same real path as #{duplicate_of})"
+            print(line)
+
+    return 1 if any_missing else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
