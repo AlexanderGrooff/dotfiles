@@ -1,15 +1,34 @@
 #!/usr/bin/env python3
 # This file is managed by chezmoi. Do not edit directly. Source: {{ .chezmoi.sourceFile }}
 
-"""List every executable on PATH for a given name, in PATH priority order."""
+"""List every executable on PATH for a given name, in PATH priority order.
 
+Shell aliases are resolved so that ``which-all <alias>`` lists the
+executables the shell would actually run.
+"""
+
+import functools
 import os
+import shlex
+import shutil
+import subprocess
 import sys
 
 
 def find_in_path(name):
-    """Return all executable matches for *name* found on PATH."""
+    """Return all executable matches for *name* found on PATH.
+
+    *name* may also be an absolute or relative path.
+    """
+    name = os.path.expandvars(os.path.expanduser(name))
     matches = []
+
+    # If the caller passed a path, check it directly instead of searching PATH.
+    if os.path.isabs(name) or "/" in name or name.startswith(("./", "../")):
+        if os.path.isfile(name) and os.access(name, os.X_OK):
+            matches.append((1, name, os.path.realpath(name), None))
+        return matches
+
     seen_real = {}
     rank = 0
     for directory in os.environ.get("PATH", "").split(os.pathsep):
@@ -26,6 +45,119 @@ def find_in_path(name):
     return matches
 
 
+def _is_assignment(token):
+    """Return True if *token* is a shell variable assignment like FOO=bar."""
+    if token.startswith("="):
+        return False
+    if "=" not in token:
+        return False
+    before, _, _ = token.partition("=")
+    return before.isidentifier()
+
+
+def _tokenize_alias(expansion):
+    """Split an alias expansion into shell words, skipping leading VAR= assignments."""
+    if not expansion:
+        return []
+    try:
+        tokens = shlex.split(expansion)
+    except ValueError:
+        tokens = expansion.split()
+    while tokens and _is_assignment(tokens[0]):
+        tokens = tokens[1:]
+    return tokens
+
+
+def _find_zsh():
+    """Return the path to a usable zsh binary, or None."""
+    for candidate in (shutil.which("zsh"), "/bin/zsh", "/usr/bin/zsh", "/opt/homebrew/bin/zsh"):
+        if candidate and os.path.isfile(candidate) and os.access(candidate, os.X_OK):
+            return candidate
+    return None
+
+
+@functools.lru_cache(maxsize=None)
+def _collect_aliases():
+    """Return a dict of alias name -> expansion from the current shell config.
+
+    A lightweight zsh startup loads ~/.bash_aliases and ~/.bash.d/*.sh while
+    skipping known expensive/non-shell files, then dumps the alias table.
+    """
+    zsh = _find_zsh()
+    if zsh is None:
+        return {}
+
+    script = r'''
+source() {
+  local f="$1"
+  case "$f" in
+    */ai.sh) return 0 ;;
+    .aliases|*/.aliases) ;;
+    */.bash_aliases) ;;
+    */.zsh_keys) ;;
+    *.sh|*.zsh|*.bash) ;;
+    *) return 0 ;;
+  esac
+  builtin source "$@"
+}
+
+_chpwd_aliases() { [ -f .aliases ] && source .aliases 2>/dev/null; }
+chpwd_functions+=(_chpwd_aliases)
+
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
+cd "${PWD:-.}" 2>/dev/null || true
+source ~/.bash_aliases 2>/dev/null
+source ~/.zsh_keys 2>/dev/null
+
+for k v in ${(kv)aliases}; do
+  print -r -- "ALIAS:$k=$v"
+done
+'''
+    try:
+        result = subprocess.run(
+            [zsh, "-c", script],
+            capture_output=True,
+            text=True,
+            timeout=15,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return {}
+
+    if result.returncode != 0:
+        return {}
+
+    aliases = {}
+    for line in result.stdout.splitlines():
+        if not line.startswith("ALIAS:"):
+            continue
+        line = line[len("ALIAS:"):]
+        if "=" not in line:
+            continue
+        name, value = line.split("=", 1)
+        if name:
+            aliases[name] = value
+    return aliases
+
+
+def _resolve_alias_target(name, aliases, seen=None):
+    """Recursively resolve *name* through alias chains to the final command word."""
+    if seen is None:
+        seen = set()
+    if name in seen:
+        return name
+    expansion = aliases.get(name)
+    if expansion is None:
+        return name
+    seen = seen | {name}
+    tokens = _tokenize_alias(expansion)
+    if not tokens:
+        return name
+    return _resolve_alias_target(tokens[0], aliases, seen)
+
+
 def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
@@ -36,16 +168,29 @@ def main(argv=None):
         )
         return 1
 
+    aliases = _collect_aliases()
+
     any_missing = False
     for name in argv:
-        matches = find_in_path(name)
+        target = _resolve_alias_target(name, aliases)
+        expansion = aliases.get(name)
+        matches = find_in_path(target)
+
         if not matches:
-            print(f"{name}: not found on PATH", file=sys.stderr)
+            msg = f"{name}: not found on PATH"
+            if expansion and expansion != name:
+                msg = f"{name}: aliased to {expansion}; {target}: not found on PATH"
+            print(msg, file=sys.stderr)
             any_missing = True
             continue
 
-        if len(argv) > 1:
-            print(f"{name}:")
+        header = None
+        if expansion and expansion != name:
+            header = f"{name}: aliased to {expansion}"
+        elif len(argv) > 1:
+            header = f"{name}:"
+        if header:
+            print(header)
 
         for rank, candidate, real, duplicate_of in matches:
             line = f"  [{rank}] {candidate}"
