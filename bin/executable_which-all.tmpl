@@ -80,24 +80,29 @@ def _find_zsh():
 def _collect_aliases():
     """Return a dict of alias name -> expansion from the current shell config.
 
-    A lightweight zsh startup loads ~/.bash_aliases and ~/.bash.d/*.sh while
-    skipping known expensive/non-shell files, then dumps the alias table.
+    A lightweight zsh startup loads ~/.bash_aliases and ~/.zsh_keys, and only
+    sources ~/.bash.d shell files that declare aliases, then dumps the alias
+    table.
     """
     zsh = _find_zsh()
     if zsh is None:
         return {}
 
     script = r'''
+_contains_alias() {
+  # Heuristic: only source ~/.bash.d files that actually declare aliases,
+  # so token/env-only files are skipped without hardcoding names.
+  [[ -f "$1" ]] && grep -qE '^[[:space:]]*alias[[:space:]]+[^[:space:]=]+=' "$1" 2>/dev/null
+}
+
 source() {
   local f="$1"
+  local should_source=0
   case "$f" in
-    */ai.sh) return 0 ;;
-    .aliases|*/.aliases) ;;
-    */.bash_aliases) ;;
-    */.zsh_keys) ;;
-    *.sh|*.zsh|*.bash) ;;
-    *) return 0 ;;
+    .aliases|*/.aliases|*/.bash_aliases|*/.zsh_keys) should_source=1 ;;
+    *.sh|*.zsh|*.bash) _contains_alias "$f" && should_source=1 ;;
   esac
+  (( should_source )) || return 0
   builtin source "$@"
 }
 
