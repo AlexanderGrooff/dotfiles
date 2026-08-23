@@ -9,6 +9,11 @@ flake.lock
 home.nix
 fix_remote.sh
 
+{{- if not (stat (joinPath .chezmoi.homeDir ".bash.d" "bead-dispatcher-config.yaml")) }}
+# Generated from the optional private bash.d repository.
+.config/bead-dispatcher/config.yaml
+{{- end }}
+
 {{- if ne .chezmoi.os "linux" }}
 # Linux-only dotfiles - don't deploy on non-Linux
 .bashrc
