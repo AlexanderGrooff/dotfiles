@@ -18,7 +18,7 @@ setopt SHARE_HISTORY             # Share history between all sessions.
 setopt autocd
 
 {{- if eq .chezmoi.os "darwin" }}
-export PATH=$PATH:/usr/local/bin:/usr/local/adyen/bin:$HOME/scripts:$HOME/.local/bin:$HOME/go/bin
+export PATH=$HOME/local/bin:$PATH:/usr/local/bin:/usr/local/adyen/bin:$HOME/scripts:$HOME/.local/bin:$HOME/go/bin
 {{- else }}
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
