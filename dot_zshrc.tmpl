@@ -56,6 +56,8 @@ fi
 {{- if eq .chezmoi.os "darwin" }}
 source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 eval "$(starship init zsh)"
+# Keep git/time visible while typing, but out of copied command output.
+setopt transientrprompt
 
 # Source directory-local aliases (written by .envrc via direnv)
 # Uses chpwd so it fires when cd-ing into a dir with .aliases
