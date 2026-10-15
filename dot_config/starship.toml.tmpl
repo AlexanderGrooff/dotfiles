@@ -7,7 +7,7 @@
 command_timeout = 100
 
 format = "$username$hostname$directory$character"
-right_format = "$git_branch$git_status$time"
+right_format = "$git_branch$git_status$cmd_duration$time"
 
 [username]
 style_user = "bold blue"
@@ -30,6 +30,12 @@ disabled = false
 time_format = "%T" # hour:minute:second Format
 style = "fg:#a0a9cb"
 format = "[$time]($style)"
+
+[cmd_duration]
+min_time = 0
+show_milliseconds = true
+style = "fg:#a0a9cb"
+format = "[$duration]($style) "
 
 [git_branch]
 style = "fg:#769ff0"
