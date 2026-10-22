@@ -1,0 +1,852 @@
+apiVersion: agent-marketplace-lock/v2
+scope: user
+registries:
+  - url: git+scp://git@github.com/Adyen/agent-marketplace
+    ref: main
+    commit: sha1:5b4d0e295a2da6d123cae766bf5e0809bfc86316
+    roots:
+      - path: skills
+        source_harness: claude
+        revision_schema: v4
+        revision_digest: sha256:14c9faaee2adb4be167dc38da343c0e0e98376db657226b11113953f0408c445
+        resources:
+          - kind: skill
+            name: agent-marketplace
+            content_digest: sha256:e135ff0e7a614ab55a1e26321b707bdd467d0a18e5a3f8b268fec9a98300f240
+            archive_digest: sha256:e135ff0e7a614ab55a1e26321b707bdd467d0a18e5a3f8b268fec9a98300f240
+          - kind: skill
+            name: agent-marketplace-development
+            content_digest: sha256:6d0dcb601f76a7e5bbaa57d9b3737e1796e40de2109620081d58cc38a77ed74b
+            archive_digest: sha256:6d0dcb601f76a7e5bbaa57d9b3737e1796e40de2109620081d58cc38a77ed74b
+          - kind: skill
+            name: registry-authoring
+            content_digest: sha256:9efeccfb92765c2142931ea504b2d81f307d931cd8be3ed1baa4ec0c6a82533d
+            archive_digest: sha256:9efeccfb92765c2142931ea504b2d81f307d931cd8be3ed1baa4ec0c6a82533d
+  - url: git+scp://git@github.com/cursor/plugins
+    ref: main
+    commit: sha1:7698375f92a729f8bb89d113c633dce9ff9dc6db
+    roots:
+      - path: pstack/skills
+        source_harness: claude
+        revision_schema: v4
+        revision_digest: sha256:d0b370bf1ede5618cf04813faee8ea6753a3e3e0b03bd96c22d781acdce7387b
+        resources:
+          - kind: skill
+            name: architect
+            content_digest: sha256:31f8e97a52bfa5432edd61f68ade2a8632ef0bacbc2d2a6802d7a0e6821944ac
+            archive_digest: sha256:3ea659466239b53df6110375397a16798507072b27df5e8ee697d61c817060ae
+            support_files:
+              references/design-red-flags.md: sha256:d0e639e4cc588ec865f930d3a4111faad60987ae36925917e319d7ceca7c69ce
+              references/rationale-template.md: sha256:0cedfccdc7b47fc881febd5a8293eecbc542c20f8df825639904a8102d2eb5d3
+              references/runner-prompt.md: sha256:21dd5314aab778c5007228027a4591d97693fbec6ab86524037772b63f40948e
+          - kind: skill
+            name: arena
+            content_digest: sha256:ed72f6c132b1ce3974d949581d0adc5dade424fe20793ac3b4c4fae22ecb9354
+            archive_digest: sha256:ed72f6c132b1ce3974d949581d0adc5dade424fe20793ac3b4c4fae22ecb9354
+          - kind: skill
+            name: automate-me
+            content_digest: sha256:30b35f3628c4fd8c11af0ada06d14cdc3b28901810caca2480f627d4d21acfbe
+            archive_digest: sha256:30b35f3628c4fd8c11af0ada06d14cdc3b28901810caca2480f627d4d21acfbe
+          - kind: skill
+            name: benchmark-checklist
+            content_digest: sha256:ba109e96c8f6c1c391baccf19e5d11e14370df7b3f2605e1572cd565a6c0fca0
+            archive_digest: sha256:ba109e96c8f6c1c391baccf19e5d11e14370df7b3f2605e1572cd565a6c0fca0
+          - kind: skill
+            name: blast-radius
+            content_digest: sha256:2e10745b97f5862323dcda3b29ca60d56b5c3c98e37020085d26b48efbe0a436
+            archive_digest: sha256:2e10745b97f5862323dcda3b29ca60d56b5c3c98e37020085d26b48efbe0a436
+          - kind: skill
+            name: bro
+            content_digest: sha256:aa329d0ceeeecb6822a7174ad76bb07a7826a3c52ceb6a588dec4138815084bb
+            archive_digest: sha256:aa329d0ceeeecb6822a7174ad76bb07a7826a3c52ceb6a588dec4138815084bb
+          - kind: skill
+            name: correct
+            content_digest: sha256:e347045d00c967a0b831ef883cc6ac79d21329aa10b5968637df95de7febf0ba
+            archive_digest: sha256:e347045d00c967a0b831ef883cc6ac79d21329aa10b5968637df95de7febf0ba
+          - kind: skill
+            name: create-formal-verification-skill
+            content_digest: sha256:6c934cd15a9583533ff9b7a9cad62775d7e80402d26d3ba7f74f79ea21a1d8eb
+            archive_digest: sha256:6c934cd15a9583533ff9b7a9cad62775d7e80402d26d3ba7f74f79ea21a1d8eb
+          - kind: skill
+            name: create-verification-skill
+            content_digest: sha256:d353973547bf8ad8977eca645f4cd4feaed0d32f4b43d1448f906b0a76c4d694
+            archive_digest: sha256:33f46504d216d6c512c6bf53a66993ec811e84442bdaaf6525eb23e398ff19bc
+            support_files:
+              references/feature-map-example/README.md: sha256:cb7bd782cf89968a4ba3d58a5151db837430db92d19a6f52a906973b77b516ba
+              references/feature-map-example/create-note.md: sha256:644a44c74f35d38c2feb7cd05a0121fdebbb623e8dc376c185b565a581d1ccf7
+              references/feature-map-example/search.md: sha256:6e87b9e7f2791a7776ba1bb83f371cd285c306c67f19d245cc4dd6ca3015c823
+          - kind: skill
+            name: figure-it-out
+            content_digest: sha256:bdb23cdbd82a1e6af094b495691c832a6f7f3ab9706ba9edbeb664ef51a726e1
+            archive_digest: sha256:bdb23cdbd82a1e6af094b495691c832a6f7f3ab9706ba9edbeb664ef51a726e1
+          - kind: skill
+            name: how
+            content_digest: sha256:08a00079bb15b4258874ac3ff62d4ca7e94350ffedb521d0fd296dc9dd21904e
+            archive_digest: sha256:85715bdaa07f7297ad7d529366a2c54a21e8bb772fe6dfb86d50dfc6cdc289c6
+            support_files:
+              references/explainer-prompt.md: sha256:ddb89cebefc24e2b54517a331aedfe045b6971e101f45c71b8cef4cccff45bff
+              references/explorer-prompt.md: sha256:6300128385ee940fd42ecb84b0e623435440a2dc283eae54ee4a52ba56947ba1
+          - kind: skill
+            name: in-your-own-words
+            content_digest: sha256:fa8ba74e27d7be371dc270ec78bbf816411477d0dfab185356c861ac8dd413ad
+            archive_digest: sha256:fa8ba74e27d7be371dc270ec78bbf816411477d0dfab185356c861ac8dd413ad
+          - kind: skill
+            name: interrogate
+            content_digest: sha256:a16dfe179005abc22a4651b82f25b0c8ab953284276efe4e6dc341958fb63647
+            archive_digest: sha256:09d5d5f9ab9f6ffcc980fd4d1b3d50ba6297607082ad22ed8c109f32a23327df
+            support_files:
+              references/code-quality-review.md: sha256:79162fda183eafd40d51661fbb5e151c7ba250f89e506ba17f5bd135dcbd50a8
+              references/lead-judgment.md: sha256:355f5195a76bc75a655125292369f2a8231a2b61fabe5188d8f1386060922b87
+              references/reviewer-prompt.md: sha256:f6005cc2b535006fca97a96c5bfda49df57312eedf1ffd8d1aaaf3eb33817c25
+              references/rubric.md: sha256:0f9c6bdb0b96e26dbde5f6407f417e0c02f54080e7a1268d8994f3c3ec6c5ac0
+          - kind: skill
+            name: ketchup
+            content_digest: sha256:f2923ffd14f6fc778f75a47aaed1f317fb5fd00b5701ca769d6446c74106dead
+            archive_digest: sha256:f2923ffd14f6fc778f75a47aaed1f317fb5fd00b5701ca769d6446c74106dead
+          - kind: skill
+            name: maintain-formal-verification-skill
+            content_digest: sha256:0c96f54293542d3818b68754562b338073958781a9684454611dca37592e2d2c
+            archive_digest: sha256:0c96f54293542d3818b68754562b338073958781a9684454611dca37592e2d2c
+          - kind: skill
+            name: maintain-verification-skill
+            content_digest: sha256:515c0eaa054b3f6be1b1fb06f2c2f173c80fddb58bbcac57576f89c479bc68e8
+            archive_digest: sha256:515c0eaa054b3f6be1b1fb06f2c2f173c80fddb58bbcac57576f89c479bc68e8
+          - kind: skill
+            name: make-bot-ui
+            content_digest: sha256:ad19d0bc6764287ec08c2521701974e7dac941f72e4d0fe81a24f4614494586f
+            archive_digest: sha256:ad19d0bc6764287ec08c2521701974e7dac941f72e4d0fe81a24f4614494586f
+          - kind: skill
+            name: no-comments
+            content_digest: sha256:078ecfe224eafbb017f6476870612838bf6dbe38c0b697e12f0c887d0313f17e
+            archive_digest: sha256:078ecfe224eafbb017f6476870612838bf6dbe38c0b697e12f0c887d0313f17e
+          - kind: skill
+            name: poteto-help
+            content_digest: sha256:7022e2cd0d65d5964151444c4efa82a34792a6644210a0ba60d7d6cfa69c72b8
+            archive_digest: sha256:2840c0b0975e8d919c82ec401202d842d97a4d57a49f78e942b2cdbbaa88c394
+            support_files:
+              references/prompting.md: sha256:463f450c44a60afd001a2f69fdf8a5dea174351f339369b12ec3c41515e564d3
+              references/recipes.md: sha256:f2d573014f72f7c798b1998b45f4360a8a83e7b8026c4ed9074e56c5a9d49338
+          - kind: skill
+            name: poteto-mode
+            content_digest: sha256:2755f102e7a6d0496b429d1031a22fb353e1f3d523543367caeaae5c4ed6f544
+            archive_digest: sha256:e83d4a1e669cf7453a4c324a7abcba52ecc60fe1751057a933318d345a37b1f8
+            support_files:
+              playbooks/authoring-a-skill.md: sha256:f6a13a445c360b48d6cd72780ac01955f45b82826476efe0e67c7559329407aa
+              playbooks/autonomous-run.md: sha256:6ac974fd2b09748add56493e89f578a35a6a9289e1026515878d81ef3cf129d1
+              playbooks/autopilot-full.md: sha256:acf4f4a58c11045f9d3e8807d907a877e61ca6432b079f1087d7d30fc931566f
+              playbooks/autopilot-stack.md: sha256:c6bcb18b2ce605e77a2a2225854590a4b9a687911f79331746d91a4fe9a52e60
+              playbooks/babysit.md: sha256:e261c1ff5581e0f8fc6c686f34de4b535f87473e77beabea7dd8323021214610
+              playbooks/bug-fix.md: sha256:66e26542dad131cfd7df80ac0cdf81ed4d85e7b5e3f0eb65b933888760c4831f
+              playbooks/eval.md: sha256:a93d449a908236afa6645179651844094b1547dbab4e484cffcdda630e4b90bf
+              playbooks/feature.md: sha256:af8ce700b99953741cb547e34308fde0cf6b98ce67e1652c800d0deedf53aba1
+              playbooks/hillclimb.md: sha256:942c1565b75ad02a2cb6230dd7c1ebd87e19f59a00319ebac2b6616007bf018f
+              playbooks/investigation.md: sha256:dc66bcf6af3a074fc7f67aa5e12b93ef571a4fb4d8e17f2f1af5ae5359f42e46
+              playbooks/multi-phase-plan.md: sha256:5f239457bfdec3345c92caa06c59bf0257c662b89353f25a1c02ea942dcd00b1
+              playbooks/opening-a-pr.md: sha256:a5aef646de8b651306c2d10974623650e4a013a245aec1c00525bbe0e31bfa76
+              playbooks/orchestrate.md: sha256:08dce6c9e7be1d13bc6944ab9b51665f935c531437f5e088bc53d2a62099ef05
+              playbooks/pause-safely.md: sha256:77968cfe5f4a71a8cd33e0ae8ffcdbd88dd693a212c240457773e6c40c96c21d
+              playbooks/perf-issue.md: sha256:c12aa2f82de7651a11676a3d5fea168f539b7f0faaa3a501d279255dd2a469c8
+              playbooks/prototype.md: sha256:7aa1f52c691c3d46d5afc527b23f90977fce869ce33573c73c81a4c7f0cde962
+              playbooks/refactoring.md: sha256:0f5dd38113379ea8cf61e2182eca0a7478eea9a869eb40c2dddab3335aeca197
+              playbooks/runtime-forensics.md: sha256:3463372b578c28f27c236f2627f09b5c5b1e85e86db7399fb984f3892fb450f5
+              playbooks/session-pickup.md: sha256:d194f2a7ef392c1598ef3f0e3b561370ca25c2c7a78308007af4aa46ada8ee12
+              playbooks/shipping.md: sha256:bf56339bdf7e0223bcff5abf4e8599e3f5b547b3fcc3b4ce9475e6e7dda14a9f
+              playbooks/trace-forensics.md: sha256:ef0bbf79856a4ae1a8993d54c1a1da159cb97623941b652c0069cf75a017e0f5
+              playbooks/visual-parity.md: sha256:950ca51999a6454c98eee6bcbc3d1bbe501a4e3a5d5439b6f6ddc378991b256c
+              playbooks/worktree-cleanup.md: sha256:be04ae0afe19d4a4da5bcc4e94455f68dbebd1cda6eb0f456ca0d358ecf76c00
+              references/bugbot-triage.md: sha256:b2d146c770d8d3593e1ef3d77b668039b8e1f78093ea1a86f1d45d7f99614309
+              scripts/bootstrap.ts: sha256:ccd2ed08fd9da9d0d942e5f2491cfc74bb92d8a08fa51755e0da1ac8de287361
+              scripts/bun.lock: sha256:667d9cf7222e9aae3fa42a4be383e657784216e9df115da02227fbc5ac7bbe46
+              scripts/check-plan.mjs: sha256:e58c3d871b09d477be00628d69dd23ffa6c2e3a1728f5b867a841baa8e90278b
+              scripts/check-plan.test.ts: sha256:c80f3ea043b81f219b92c4c8a3af6bdd4f8d32ea596ec15b5b9e0252645f2ae8
+              scripts/orch/orch.test.ts: sha256:5e80b416bdcd68e4067690ce857345852fd2e0db3dcf3e25607999cd55b963d2
+              scripts/orch/orch.ts: sha256:47c92c57e8276616d8de94665a126bd832e748036afa8d0ffdbacb7946decb5c
+              scripts/orch/store.ts: sha256:558cfda533e1ebe7c8d7842604f07e0be7618759cf129b4c2397a8e29516ecea
+              scripts/package.json: sha256:fd511a0c01f522e0c781ddd8eccea0e91697a0856c6e6a3261de78a6a0287c72
+              scripts/watch-pr/cli.test.ts: sha256:a35592b4c6da96caf8d47987e9cd503fab6c7774ab87d11a43f24b4b5df2a9d1
+              scripts/watch-pr/cli.ts: sha256:89c08863089181a232be782c4b2ed90a1552f44aeecb0dcb7aac2c623620e680
+              scripts/watch-pr/fakes.test-helper.ts: sha256:cf0c5ee61b4a73444c1b775cfb6c81a40d312e055dd21a1f5eae6276e54de13f
+              scripts/watch-pr/github.test.ts: sha256:70c9f03d8738228763846f2abdd8c7de7be68dba3035041482386a69cbf5639b
+              scripts/watch-pr/github.ts: sha256:a605b8531468dbe4c07b93663c0993a9c11dc7e9179adde970f5c740396451d9
+              scripts/watch-pr/policy.test.ts: sha256:146acabcfee9b6fa3342358eb0a9504aa65fd081bbc15b10adf9c1c5485067d2
+              scripts/watch-pr/policy.ts: sha256:f2a3e31223d05edc05e5473cc3f8f3cb9bd20c202c30c6abe7f21f0f7aee8fbb
+              scripts/watch-pr/render.ts: sha256:2b709e86628d5b8fdb61f860e60ababc342b0626c67576305442cf548283a604
+              scripts/watch-pr/tsconfig.json: sha256:1ecccc72320b086c63ce3f73c959896fd747363e63553b3b1136296ea4069e45
+              scripts/watch-pr/types.compile.ts: sha256:621af4c9a664fbf699a9737efccdc248abb416df8819c9dc5f824beae2b9b1d6
+              scripts/watch-pr/types.ts: sha256:0cac435294dc85ce1ba755e8e67f6c5ab163dfa252f2722d6e3a2d68c58fec59
+              scripts/watch-pr/watch-pr: sha256:d955603be6cc0e8b8ffcec722f635192b2261410b1f2929abea94480e47eb5d4
+              scripts/worktree-audit.sh: sha256:e0a94e5e5b1ff60638916e440600e15851f7b79bc1a1d1f602fde05d465e2ec0
+          - kind: skill
+            name: principle-attack-the-premise
+            content_digest: sha256:6a932884daad4aa189e9b5d1665226bbc75621d4d2a398fd4003bebd382f4599
+            archive_digest: sha256:6a932884daad4aa189e9b5d1665226bbc75621d4d2a398fd4003bebd382f4599
+          - kind: skill
+            name: principle-boundary-discipline
+            content_digest: sha256:62ac2862c2caa22dd14531f51c9c6bb445ceb198ca98a687e25b4d47c1f10a28
+            archive_digest: sha256:62ac2862c2caa22dd14531f51c9c6bb445ceb198ca98a687e25b4d47c1f10a28
+          - kind: skill
+            name: principle-build-the-lever
+            content_digest: sha256:3434b0ad0c640c6f1d7960be7a8986c3bcdc14e26060360dec29903df60074ff
+            archive_digest: sha256:3434b0ad0c640c6f1d7960be7a8986c3bcdc14e26060360dec29903df60074ff
+          - kind: skill
+            name: principle-encode-lessons-in-structure
+            content_digest: sha256:228963799189f481827d6f28065f278bc2008ffa37030b1234cbd5814d36b9e9
+            archive_digest: sha256:228963799189f481827d6f28065f278bc2008ffa37030b1234cbd5814d36b9e9
+          - kind: skill
+            name: principle-exhaust-the-design-space
+            content_digest: sha256:2de83d99f93f60ec6313455b0bc9aa9f0bfb93dd59f414f403691322db00d4db
+            archive_digest: sha256:2de83d99f93f60ec6313455b0bc9aa9f0bfb93dd59f414f403691322db00d4db
+          - kind: skill
+            name: principle-experience-first
+            content_digest: sha256:58903529d733b1c1a7c9ccf127d45ef3c7d0d9f0b81164a4dc6b80efe6f2912b
+            archive_digest: sha256:58903529d733b1c1a7c9ccf127d45ef3c7d0d9f0b81164a4dc6b80efe6f2912b
+          - kind: skill
+            name: principle-explain-the-number
+            content_digest: sha256:cd5a25f9e7cf023627ccb470dc5faa97542f29b4319496a32b839a8e1e988047
+            archive_digest: sha256:cd5a25f9e7cf023627ccb470dc5faa97542f29b4319496a32b839a8e1e988047
+          - kind: skill
+            name: principle-fix-root-causes
+            content_digest: sha256:8df3c8c3fe57eb0055a5c8efab8ab144557fdf301da70b1cdc77a3a3ef3f3052
+            archive_digest: sha256:8df3c8c3fe57eb0055a5c8efab8ab144557fdf301da70b1cdc77a3a3ef3f3052
+          - kind: skill
+            name: principle-foundational-thinking
+            content_digest: sha256:864b827e8199d946ce58beca0f89c4ed4099ed6e426fb698a3aaa45de2a9eea2
+            archive_digest: sha256:864b827e8199d946ce58beca0f89c4ed4099ed6e426fb698a3aaa45de2a9eea2
+          - kind: skill
+            name: principle-guard-the-context-window
+            content_digest: sha256:af0b9dd70b43628ce4a59a4d332e9d9ad055084e460f430e7a757495c627e81a
+            archive_digest: sha256:af0b9dd70b43628ce4a59a4d332e9d9ad055084e460f430e7a757495c627e81a
+          - kind: skill
+            name: principle-laziness-protocol
+            content_digest: sha256:1be6e7a435f26a75a76eb848b9c3d611b9977d0f5822361753244da25ca3ca45
+            archive_digest: sha256:1be6e7a435f26a75a76eb848b9c3d611b9977d0f5822361753244da25ca3ca45
+          - kind: skill
+            name: principle-make-operations-idempotent
+            content_digest: sha256:7aa9327cf1f1aa057e95d47a0a78bd88a8f9d556b608866fee939d455a53a019
+            archive_digest: sha256:7aa9327cf1f1aa057e95d47a0a78bd88a8f9d556b608866fee939d455a53a019
+          - kind: skill
+            name: principle-migrate-callers-then-delete-legacy-apis
+            content_digest: sha256:580ad9bb1a0994ecb924321ba49efc38a2f85c64e22c76fb133f57a78272a2e6
+            archive_digest: sha256:580ad9bb1a0994ecb924321ba49efc38a2f85c64e22c76fb133f57a78272a2e6
+          - kind: skill
+            name: principle-minimize-reader-load
+            content_digest: sha256:1ea2b7fef2391cae5844c4efdbd59031f775e8a52d06b7495d707229a200dcca
+            archive_digest: sha256:1ea2b7fef2391cae5844c4efdbd59031f775e8a52d06b7495d707229a200dcca
+          - kind: skill
+            name: principle-model-the-domain
+            content_digest: sha256:52c0d85e0c3827c41c18299b642657d7b47eaf77b7b31609e42e0df42b84c75f
+            archive_digest: sha256:52c0d85e0c3827c41c18299b642657d7b47eaf77b7b31609e42e0df42b84c75f
+          - kind: skill
+            name: principle-never-block-on-the-human
+            content_digest: sha256:05030a7a083c337676f793881b4e93cd218e8f1dd676529f56e6ac1d3efb8d1f
+            archive_digest: sha256:05030a7a083c337676f793881b4e93cd218e8f1dd676529f56e6ac1d3efb8d1f
+          - kind: skill
+            name: principle-outcome-oriented-execution
+            content_digest: sha256:10eb91633aa570355ba4bb37088fcade2b22e498df7a58edc749e65bc5a78e2d
+            archive_digest: sha256:10eb91633aa570355ba4bb37088fcade2b22e498df7a58edc749e65bc5a78e2d
+          - kind: skill
+            name: principle-prove-it-works
+            content_digest: sha256:ec79a15025bac8d33d62011c54f3b612733fd2a024e623b531b3637aa75070e2
+            archive_digest: sha256:ec79a15025bac8d33d62011c54f3b612733fd2a024e623b531b3637aa75070e2
+          - kind: skill
+            name: principle-redesign-from-first-principles
+            content_digest: sha256:170e0a658783e43fee8ec5a8c2422a4abb8f69cef621dd1819a95910b8207034
+            archive_digest: sha256:170e0a658783e43fee8ec5a8c2422a4abb8f69cef621dd1819a95910b8207034
+          - kind: skill
+            name: principle-separate-before-serializing-shared-state
+            content_digest: sha256:05294b40448e927c5da1c7b6f5c6b9fed3744637e3833d2d948b9154a9dd00bb
+            archive_digest: sha256:05294b40448e927c5da1c7b6f5c6b9fed3744637e3833d2d948b9154a9dd00bb
+          - kind: skill
+            name: principle-sequence-verifiable-units
+            content_digest: sha256:2ccbbacc56ace5afdfb8670cef19d7bd009fb2a0033b9a741cbdf2b6baf72187
+            archive_digest: sha256:2ccbbacc56ace5afdfb8670cef19d7bd009fb2a0033b9a741cbdf2b6baf72187
+          - kind: skill
+            name: principle-subtract-before-you-add
+            content_digest: sha256:8c93bb9d1a7f38e2ef37655d93f0e790fa59903105af3d500cc8a663ebe45f3f
+            archive_digest: sha256:8c93bb9d1a7f38e2ef37655d93f0e790fa59903105af3d500cc8a663ebe45f3f
+          - kind: skill
+            name: principle-test-behavior-not-implementation
+            content_digest: sha256:f7223698623b6a26fea49c751e466b38e6691b1f32ce841d3983e7ffbe2b74a6
+            archive_digest: sha256:f7223698623b6a26fea49c751e466b38e6691b1f32ce841d3983e7ffbe2b74a6
+          - kind: skill
+            name: principle-type-system-discipline
+            content_digest: sha256:5cdaf79785e3c12b2592b9469ee8c272143eb86ab7a18d8382197cea5fd30106
+            archive_digest: sha256:5cdaf79785e3c12b2592b9469ee8c272143eb86ab7a18d8382197cea5fd30106
+          - kind: skill
+            name: recall
+            content_digest: sha256:b0ceb996259c3404532f61e4b010df4e3d80d7ddbed85b3c302895723eb62a89
+            archive_digest: sha256:b0ceb996259c3404532f61e4b010df4e3d80d7ddbed85b3c302895723eb62a89
+          - kind: skill
+            name: reflect
+            content_digest: sha256:1f5a8c246cdee8251f8667d85bd5d97f6c2801f505843c26ddbd6c621632519b
+            archive_digest: sha256:4afe0e656091a2c30350160ffc618f3afd852c607348eaa19bd6e1bf6a3a33a3
+            support_files:
+              references/divergent-reviewer.md: sha256:f6030d88e20e906ef5e2d9ba44cb013ce610c49c2fe2ef74c377d32e0dc9e939
+              references/judgment-reviewer.md: sha256:38f917619fbf346062d643e0ad6b12fc952d58678dfcbbf42ffcf6d8b9c08307
+              references/synthesizer.md: sha256:6af816963de74d1a1aef4070273c1ff533d2072732e488e159ddc0b299fec3cd
+              references/tooling-reviewer.md: sha256:f81b8697e7366fbbc18feba52c6e3253a101f751091364ebc4396a1d9b5753b4
+          - kind: skill
+            name: setup-pstack
+            content_digest: sha256:b45512f6ca5e96e81681984683b7472bfe892581da3a89a73cca4159438f29ed
+            archive_digest: sha256:b45512f6ca5e96e81681984683b7472bfe892581da3a89a73cca4159438f29ed
+          - kind: skill
+            name: sharpen
+            content_digest: sha256:563dfc460c605d311e650726288e2f1cbd61eab817db178d6e7e29643e07e7a2
+            archive_digest: sha256:563dfc460c605d311e650726288e2f1cbd61eab817db178d6e7e29643e07e7a2
+          - kind: skill
+            name: show-me-your-work
+            content_digest: sha256:920a8217cbb62f92a2222fb81fc9eab17ecd554a0277e444a95a927195139bd1
+            archive_digest: sha256:46cad8c3402f174c162500bb2a9a2817c1b2c9e768a4d581e2519984755d685b
+            support_files:
+              references/decision-log-template.tsv: sha256:6779378006a2f5225e8c06deb84f1d913fb532041ebbb6e50d94600bfe3f4b76
+              scripts/log.sh: sha256:a65a4bc5fb7cdeadbdb7b7ff1ca4682f4d9c42420942b2977cd17b46c4ac338e
+          - kind: skill
+            name: statechart
+            content_digest: sha256:9b2a6dccf86286646cffb3bd00f7ee060d6c26983e566c766d4be53aa56f9445
+            archive_digest: sha256:aca34cc7838c62766b9b4034ec9910a0cc39cc579f49fb80dfd8284de33805bb
+            support_files:
+              scripts/chart-to-tla.mjs: sha256:9f794e273d0729ae874d68a67bfa1df4ebddc12420b7ab5081fdf58dceb729e4
+              scripts/compare-charts.mjs: sha256:12f4dc4700093156978ef1785b92739c8cf1e8375b8d13201fcdc2006a20c43b
+              scripts/lib.mjs: sha256:3cd9cbf91f24b08ba7b754c7012a1ef3d1cdd43d0c22a667efd0e23ab3598e58
+              scripts/model/OutputFolder.cfg: sha256:8b9662ab7d51de9d54f84abab02888822da9c01ce4f1b86a6453a8a513773995
+              scripts/model/OutputFolder.map.mjs: sha256:33f2ef1c2ba397573206640843fffbc228d066e53fe5ced779d82f99600f3fd8
+              scripts/model/OutputFolder.tla: sha256:75bef6811d9a8e56bd702fd8d782e52101918c8dc05c6cc9dc43d02b9fe1b56f
+              scripts/statechart.mjs: sha256:07b3054bca8ef38449caaa7a281cb6a1ed57ab55667cdf8f6b8248efa187cf24
+              scripts/test/statechart.test.mjs: sha256:1865ace50828823ccddf1e9d6c3315b7d667a47f746c9d58b0ebbe5e9c4df4e8
+              scripts/test/sync.mmd: sha256:cb1f5387058a0f79d6187eb217690588a2e2d384637b4d53cbc4bb050c570757
+              scripts/test/upload.mmd: sha256:bbc1fa70e26cbcbcc7cde5d8fb7eda26df34b6d973053bf13c40b18527ff0e76
+              scripts/tlc-to-chart.mjs: sha256:1f465e6755c63608fa819dfbdabcf67a3b12636c2a3373a6c8ffa119f1443f91
+          - kind: skill
+            name: swarm
+            content_digest: sha256:031657cb81e490f9aed5c75d6ff2a4fda35ccafbaf72be604e59481cc4080cdc
+            archive_digest: sha256:031657cb81e490f9aed5c75d6ff2a4fda35ccafbaf72be604e59481cc4080cdc
+          - kind: skill
+            name: tdd
+            content_digest: sha256:eeb868e2dfebee528d730a67d7b17498fac4bb85dec2e38bc5c5176aca4d5d2f
+            archive_digest: sha256:eeb868e2dfebee528d730a67d7b17498fac4bb85dec2e38bc5c5176aca4d5d2f
+          - kind: skill
+            name: teach
+            content_digest: sha256:bd286e5a6290673be2cd28aef7af2ec7f1fb138e6bce156ea657368c7e7fc8a4
+            archive_digest: sha256:bd286e5a6290673be2cd28aef7af2ec7f1fb138e6bce156ea657368c7e7fc8a4
+          - kind: skill
+            name: technical-writing
+            content_digest: sha256:61fe9c424a798ebf36ad94941f87be049cb8827bdf86d21474a0dde37b513c43
+            archive_digest: sha256:61fe9c424a798ebf36ad94941f87be049cb8827bdf86d21474a0dde37b513c43
+          - kind: skill
+            name: typescript-best-practices
+            content_digest: sha256:ec1dac086d3708e5940d45d250c30a37dd953b4e3cb2ca0692f5851d7a039e27
+            archive_digest: sha256:0c5d8b81bf9a5f79b11bfffc4be6fdf89c2acab29713203be3ceda8ed02b7f59
+            support_files:
+              references/patterns.md: sha256:12e70c9419a8b3f5d6a1ab80e272c1f00a43ac0b3bbf72d68199033570e5de77
+          - kind: skill
+            name: unslop
+            content_digest: sha256:ccab208e315ce05e2fab8eeee2f7879f1289b5c6844840b2d307adf31c79144f
+            archive_digest: sha256:ccab208e315ce05e2fab8eeee2f7879f1289b5c6844840b2d307adf31c79144f
+          - kind: skill
+            name: why
+            content_digest: sha256:144d42e7712723d763e607bc0a969e5f1cdf83ec7228519d87677cc534571bed
+            archive_digest: sha256:033b7362a43de169c6bc622c0efc58cdbd9f365850e1074c84cb1f0a175e4aaa
+            support_files:
+              references/epistemics.md: sha256:d54a2361b2d5973bc3fe2edf62f446d87935974d4b40d47f23b9529f956ca758
+              references/investigator-prompt.md: sha256:c44afba186f899094f3694e6c9d6de5d14ff7c4ce28b787a9f50fc789c9a7fc3
+              references/source-playbook.md: sha256:9ae9dcb9d09111c9facc68510331c5aba4aed9b1b057314ff1fc0e166ad3993a
+              references/sources/code-archaeology.md: sha256:a4a3970e9db448054aed676f3f7feeee667b4b69f0bd57c8fd72b751be687cc7
+              references/sources/databricks.md: sha256:236ede7aab6454662a992db088a5393537a5233a4c26719c93188f9e174488f6
+              references/sources/datadog.md: sha256:b139faac5dc11b8f26c8255dce6033c1a6ac143b038d3dd103f2034c5dbec9cd
+              references/sources/incident-postmortem.md: sha256:bf2661f1a81c37700884a45b77d6289be0c802b065febced31990e6564510839
+              references/sources/linear.md: sha256:01304e7f1badfcfb78babbb0edcadeb3cc8dd3f713793420cdff24ba190f907c
+              references/sources/notion.md: sha256:3bcfa695c49dfad4ac036d5d7181c12585f55ac04f1936198d16ab75a2788997
+              references/sources/sentry.md: sha256:2d4f83048eac1df530b399e2aed75dd7c9c18577b7665420aaeb96d0ceb0b702
+              references/sources/slack.md: sha256:3bc6309f5c7b26ace3b919dbd7f7b048861dd2020f910fe24f656cc74b3b661c
+              references/synthesizer-prompt.md: sha256:11c62671aa7b7a6e3d36929ffe2b59bf95e6ca664eee4d93e6ee527dd3390ddb
+  - url: git+scp://git@github.com/mattpocock/skills
+    ref: main
+    commit: sha1:5beb35b040e3de97e54fa9e386d7e42d15c295c2
+    roots:
+      - path: skills
+        source_harness: auto
+        revision_schema: v4
+        revision_digest: sha256:757b300e33f13f5ade54eb3fd0450b52714611fde96d7128f7909b0fcf6367d0
+        resources:
+          - kind: skill
+            name: ask-matt
+            content_digest: sha256:1371f5ce005de0992a44b137748bfb960a56948aa9871b405fe9d90b24332e3c
+            archive_digest: sha256:c8651eb7aa948ce1c7ed5abf0f760b497b01daf28818c4f76087f242a8bc6c29
+            support_files:
+              PHASE-BOUNDARIES.md: sha256:a8aa20158609ef39e2b308b6ba0660c91066838d07a867202e63a7744a88a3ed
+              agents/openai.yaml: sha256:bdffbc5a0a99ed1b6ef3253d251d755fd18162b9845972e380007f844b09b05c
+          - kind: skill
+            name: chief-of-staff
+            content_digest: sha256:a187d9e36e65373d2d1f469790858dd57d6eb72b6ea16932df9c40616ac9f720
+            archive_digest: sha256:ad9e7c59a10c79aca2e2e1027c761b9ccb9acfeff1afd14c63a451e9aaeb9ec4
+            support_files:
+              agents/openai.yaml: sha256:c0f68ed9da6977adc97a791be3bb0830d301b2d27f9c635d92d6f325bffefb83
+          - kind: skill
+            name: claude-handoff
+            content_digest: sha256:79357a18425d66d4c24048bedf83dceb79d3bba356f38014950f764a7fab4026
+            archive_digest: sha256:8c0ac2ec1efc7b8366669d8131c1f9a596a92d078ba23236b8aaf97bf22faf33
+            support_files:
+              agents/openai.yaml: sha256:2308a672978864633286fb9f0792b08657e501426b3f7883fc418d5d2eac5eb0
+          - kind: skill
+            name: code-review
+            content_digest: sha256:09eb147f793e4647949edd32dbad278f0554dfb56e0d46b699cd4c2c55bf0357
+            archive_digest: sha256:2c2b087b56b97762a9971bd3e5fcd574c503b487d8382094e6ab0368b098ed06
+            support_files:
+              agents/openai.yaml: sha256:8229ca854e11dc8e6aef2131ee03f31fb1561cf905fab9ccc325180cf3331352
+          - kind: skill
+            name: codebase-design
+            content_digest: sha256:2c20617f87ec8af6a434859f381b2f061a69b530444e74eb39e78bb016a6d1e2
+            archive_digest: sha256:0253bae64356b73e065b0a4d9d579d814ca229fb36395c345ff880e2dba0cb96
+            support_files:
+              DEEPENING.md: sha256:f3dd099ce99289bd213914d8ee3e2429b78309c3957ca4583f7659551b1d53c1
+              DESIGN-IT-TWICE.md: sha256:52b52e75655a27aea59c6966b410bac82448968ad46ef1ebb9f07c274e3ae010
+              agents/openai.yaml: sha256:edebc9e4fcfe102114012575eaa9600b9b5fd08c311664f389c36e7bc717740f
+          - kind: skill
+            name: diagnosing-bugs
+            content_digest: sha256:849198df88cdb65fd0d97236604c1fca7ff2f22d2f705f9724a800d0266b118d
+            archive_digest: sha256:eb38c79d88433f215c9c21f83310c13c2f948438f52fa6962d680fd24daecef8
+            support_files:
+              agents/openai.yaml: sha256:3e430dbe4334a87597488c060cb3dc3786bb00c9182877d6f5ec41f62490e90b
+              scripts/hitl-loop.template.sh: sha256:35103539fc36873eea36074769ad454f9379d6fc8b2dc0e26ce987fd3bfe5503
+          - kind: skill
+            name: domain-modeling
+            content_digest: sha256:7b925d7b1e341a2eeae33ad68a8a8c0ab889a38ddd22a7598e4c240e5a7556a3
+            archive_digest: sha256:cdcccd39afac20a29fc359db57700ab32b1185c75d60db873ae34a3e7823f8cb
+            support_files:
+              ADR-FORMAT.md: sha256:944c92aa790e8fbdc9199640b170979abb8a34ba8d0fe18c2a01a63bce140ca0
+              GLOSSARY-FORMAT.md: sha256:21dcc40cdec8e151a829b98ab1517c1867bc444e3665134a98c6983411996801
+              agents/openai.yaml: sha256:f6bf2aa996c6e6f53fdd0708e18a0d16a56aed8322cca59fedbe3c0d2c75f06b
+          - kind: skill
+            name: git-guardrails-claude-code
+            content_digest: sha256:69b291d655626a01602b998a1836fcb93c058ede68dfafddfd71e87f17074764
+            archive_digest: sha256:c21975b89ebc356865ace057878f20ed0db29d359ea930cac71ef4907dc2dc52
+            support_files:
+              agents/openai.yaml: sha256:d53cd783fc0ac208dec9a4c267989284384785aab6422dccdaed42f9e40243ec
+              scripts/block-dangerous-git.sh: sha256:234922b83c0a1737ee7300806c21ac0f389b07aaeb65c2d71ccedafbc5e1ea4b
+          - kind: skill
+            name: grill-me
+            content_digest: sha256:caaf8b8de1684f96e26b28f3c29189db5c89cce4b73e1c93d86164f66ef88637
+            archive_digest: sha256:1a57b7fb5aa70b601818ea2787b38c0b43def6fedab38c19b10da2e50c78e579
+            support_files:
+              agents/openai.yaml: sha256:c061e39c3e0f9d865fb1b97556d485704af2a8a58f4b8221a8917a5c2074a32b
+          - kind: skill
+            name: grill-with-docs
+            content_digest: sha256:7de372c13488f1ee96cc11cd8907b56b6809cc93eef776eeddd37de6b6cbe3fe
+            archive_digest: sha256:150b267932c12b609f90d39105f320d6ae225920b9c0741cc2ec3a2b50331c91
+            support_files:
+              agents/openai.yaml: sha256:94cd0ab161fb468a836349f5ed482ba58ce8e709a05c57ce533d739dbd35cca9
+          - kind: skill
+            name: grilling
+            content_digest: sha256:befdff1e27a1dfe2a294d5871169ac1afe16d983911daa4f32627514a48c1e15
+            archive_digest: sha256:9f19fd2d32dd250f7f14d5b3e2a460a4b32ff50433ab380b66946ef4d5527c7d
+            support_files:
+              agents/openai.yaml: sha256:1411d7df7d99b7e621a1ff8283c8133cc2464be63d064e52d8ce169c6800ee9b
+          - kind: skill
+            name: handoff
+            content_digest: sha256:4cbb043950dad2ffd3662ff1a5a0b51ae676004b5cae10e3787e8ee7a4ee69d3
+            archive_digest: sha256:7211402cd74e886f3daf8593252a34915ce046cffdaaaddb53a9e954840d6e30
+            support_files:
+              agents/openai.yaml: sha256:5c479fd562c691851690e8b18c8501045bef0943c10743d636b2fae26add1d28
+          - kind: skill
+            name: implement
+            content_digest: sha256:483bdc4ccf4ac31d86ac7beeaa0d0db80313e71e120bb8c59b3196ae5decd53d
+            archive_digest: sha256:cc1a19b288b45820fedc2d071aab5c9ec11332468adf608159b74f155ca97378
+            support_files:
+              agents/openai.yaml: sha256:8970a8596ade0c28ab427f41a4ea242d6bdf6186c59ebf55e1238dbecaab79dc
+          - kind: skill
+            name: implement-spec
+            content_digest: sha256:7a22dd2e60b8fcece478ced9d2533582adf3520d695acd3ab715341535c9e56d
+            archive_digest: sha256:d492f6451e7cc55268226c38f0efa3090f2dc5aa3f79acd0012e8371973ae910
+            support_files:
+              agents/openai.yaml: sha256:fd41efb42c60c96320d6531be7e4bf15cbf5518cd652d57dff27ccffa46988e9
+          - kind: skill
+            name: improve-codebase-architecture
+            content_digest: sha256:552240a5ab5cec6b67c15dd1ad6e9f6962b1bca6ce870059a8c2713760c20392
+            archive_digest: sha256:eb66515a89121975218d7e00855816bf7dc37a4569d87024e7b0e215cc7eab6a
+            support_files:
+              HTML-REPORT.md: sha256:581e8bb5a521e46bbda8ca7e19b15948bed882187108092ebb90c62513b77528
+              agents/openai.yaml: sha256:c8cb20f68ebf0edb4e497bc11ae5fcaa196004e661cd189015b04f4109ced7f1
+          - kind: skill
+            name: loop-me
+            content_digest: sha256:e44d1cc3e760fb86ac42964c2a5f1fcac511715db50fb375f3f7be814de1eaa7
+            archive_digest: sha256:84a380ecad3a3d3959a3e4fb296ea7770d462ff5cf38481d13e597f5a6b74249
+            support_files:
+              agents/openai.yaml: sha256:b66fa10079957051be6a812f45e55b67ac394b71d5ba88349962b4c9205802c3
+          - kind: skill
+            name: migrate-to-shoehorn
+            content_digest: sha256:de4da4c11d924fac79c924b2ee3d2db4a5cb98386eb490a599119463d036ae72
+            archive_digest: sha256:bab9cd4b7accd26bb41b0511abd6bc60aa2e569bd454223cfd54977975214c9e
+            support_files:
+              agents/openai.yaml: sha256:395c2db852e66a199f1cd07f7ed92d66cb6f0787460c5475926f1a5e778b699d
+          - kind: skill
+            name: pr
+            content_digest: sha256:ab63f1cf78647389edcd386c9427c5dfca27ed2836930c24773ffee834c19bcd
+            archive_digest: sha256:d6c8857a890e1cd55db39b90baa2b6d1e2e34a90585f13dd9e761d4a6f0db01e
+            support_files:
+              CREDITS.md: sha256:a7a087127665d7298a72280ef6e19c41ad8404523712a788c8dc3ab414bc2497
+              agents/openai.yaml: sha256:2295b586624db4ef546f3fd4695492f039d941a46d8a1593a702ce3ca511b8ad
+          - kind: skill
+            name: prototype
+            content_digest: sha256:714de632d116bb73f65cdb5a882db15b9369a6713b9a47c0fad827848f0bfbe3
+            archive_digest: sha256:9273ff4385529531afdbe35c7c3d84b659f0f551914e07a586e5bf811943e3f9
+            support_files:
+              LOGIC.md: sha256:f61c7d249e786a79ef289018901c348271e1798dd0b0bc5607b5c6f4d4a01ab9
+              UI.md: sha256:723211e878acbc7b6ff09755263f3295cde724ba902ff0064da41eed51d45ad3
+              agents/openai.yaml: sha256:5af65e43ab41a350436697b81e27b7f848d36782043b73c322bb2c9fa9cc55dc
+          - kind: skill
+            name: research
+            content_digest: sha256:985569f15739c713d6784887c3d186d4ef9ac85bec5ad9c068d25bf0739928e4
+            archive_digest: sha256:eb3a2cff36d871a3008c259fd6fb08c6ae1aafaaa878021002465b802a61bf19
+            support_files:
+              agents/openai.yaml: sha256:9b4c470d63221c1f68f22df70b83e2f12401b317babe0d1b7b5f24a974474d0d
+          - kind: skill
+            name: retro
+            content_digest: sha256:33fbc28568e3146f20fd908b12998bc0ab30aa4f4c87288199a40793efa94696
+            archive_digest: sha256:c08377e37c8bab2a68b2d5325969580582f3857860b7dd0ac972bf7a6f4ce82e
+            support_files:
+              agents/openai.yaml: sha256:cb6fb9d7e6b4be5975f41f6def1dd00a1255bad5d9b02696b124c924a8b8745c
+          - kind: skill
+            name: scaffold-exercises
+            content_digest: sha256:75f5c9d771606fb9762f16522efc954df11c324f87148d8ff069bce166257de9
+            archive_digest: sha256:19d490d6c174563526d00b206f21fbf1165174c2ebcfc54d47796a8902d7f050
+            support_files:
+              agents/openai.yaml: sha256:525b33913340bea7947ad2de17f2a7c5fb94be543345fe80ae753b9a44ba601d
+          - kind: skill
+            name: setup-matt-pocock-skills
+            content_digest: sha256:f148858ffb7f63c03c06fca06e6fdb1d91a35c6b293244b8fdfacd5f4cc028c4
+            archive_digest: sha256:d561fe031e8b03cfadf06e918d44e324d8d2b69d3ae26ec1607ff722e53755f1
+            support_files:
+              agents/openai.yaml: sha256:9527de0110541c45712319025155aeab8dc7d77c6ed6e5e83271bab1851ab939
+              domain.md: sha256:593a7042218689f1d24df89df14eaf0a20e19e0d0a7d479a01947ac78f0784b9
+              issue-tracker-github.md: sha256:f0653fe106dd8ee7b33be27bd7fe3104b40555896cb45f61997aed20467020c3
+              issue-tracker-gitlab.md: sha256:591a9e7057382aaccdfbed3f7ea3f2ad07e0cd29f012d18b82ee4e485fd81e24
+              issue-tracker-local.md: sha256:7dcda20a2eb4bdc89b95d1143423c0691309921cadae3132e6424f371030506e
+              triage-labels.md: sha256:ae512af838c78b8750471c42cd2b20fa32319553e61d84c9a23d171b40ce14aa
+          - kind: skill
+            name: setup-pre-commit
+            content_digest: sha256:c9819d7f1e3b198064edc1faa3154224ed67395e9f07f5d3cea4b67cf0a11a98
+            archive_digest: sha256:38a4faa71b6e10060293d783a3c61381894c02f78d0335af18dfbc3ab2439b81
+            support_files:
+              agents/openai.yaml: sha256:acf41db398c5c43afe504008bb7d615a97b6498b0f1f6c5b2395254c0bfb57d1
+          - kind: skill
+            name: setup-ts-deep-modules
+            content_digest: sha256:29acca66ac99d4532e2a6f0370d8125d7cba1e87c9ac66573203c75189d3e6c7
+            archive_digest: sha256:a6c2d204a2970b2f504654aeecd257c6fa603c23d4ae155d471fbadc8d4c2363
+            support_files:
+              agents/openai.yaml: sha256:159f680217d50747702620c05fd65734a152185b3219a8ca5ee4630878a354fa
+              dependency-cruiser.config.cjs: sha256:3c4973bec69f73b2117654abf9e666a7c28665b213be20e6d39869e29842428e
+          - kind: skill
+            name: tdd
+            content_digest: sha256:5505d25bbaa8fc14a79e4d20163936958992a2995b7f1dd1d6197edc9ed722e0
+            archive_digest: sha256:394c6fb6a2c85dad98502da42bc7309de985c1eff97b30f57e385b71f71c1c62
+            support_files:
+              agents/openai.yaml: sha256:ea6f01cf1b8c06a4b0f5b649d74b1b8ce8685e72af1b38d70d877693e092af0b
+              mocking.md: sha256:3ceb807fdf4a47d6a93d4d9a891e5ba6d362a6247bd08adc451feebfc17361ef
+              tests.md: sha256:859f9e592c188fda4fc7277dd180e4ce9c7a2e13f6efe1f6f29eccc9d28c106a
+          - kind: skill
+            name: teach
+            content_digest: sha256:550482c2d674b085c9043b87bfdc14a8f2ec453c736119e7fcbb1e9332bffeba
+            archive_digest: sha256:6dc7c34a3e042ff8cbd48fc1222ebb6ac29b16a827d04978d8c6e5da8c40f082
+            support_files:
+              GLOSSARY-FORMAT.md: sha256:9b99859ec28437668130d8f2ce5a342938970f8a1ed4fd38c3eab4f4b5fff210
+              LEARNING-RECORD-FORMAT.md: sha256:701fa34b6748aa89e6c960ffb815257f481a7d77fb2900f9028f7edf3fdd6052
+              MISSION-FORMAT.md: sha256:8cacbb3c0644d3ae0ea4965564797099401a6930a23f7cf462918576587f2418
+              RESOURCES-FORMAT.md: sha256:e9cacf34026e11a8d1c8f9de88abe5bcbf654f4ebdb25cae8c0de0d5f48f44ec
+              agents/openai.yaml: sha256:5856f3ae8aec742f1499c640aecdd5f1d6af5fa210a7c6ec794de8263a6f733f
+          - kind: skill
+            name: to-questionnaire
+            content_digest: sha256:b5eb929842ee0e93d867c5e906d183d350f2f2d149eaeaa86967d94d8eda1d3b
+            archive_digest: sha256:f1a525c82009a0369ee8117127b918ed8c85ce337e8d1cd92354668b80460053
+            support_files:
+              agents/openai.yaml: sha256:9e8a06c38c8842eea8d4922cb9d1ead8e3ace647bab259b943c994a1b4742bc2
+          - kind: skill
+            name: to-spec
+            content_digest: sha256:43ad9cf318e5e7d3d1fa360253a37021796dc87a0c2e595ad262661a10f85088
+            archive_digest: sha256:3f600a656fcc12ce8c83dc8a314de4d5e8015294cdc943071e086d693f47e87a
+            support_files:
+              agents/openai.yaml: sha256:1c5b4d1e3d8e52287ef19cc2742fdbbfae1914ac75d33af3e4c8174f08cc55bb
+          - kind: skill
+            name: to-tickets
+            content_digest: sha256:56ec23c5b2782785d4e65bff9e315b6d3aeb4ef977c174a219e99489fada1995
+            archive_digest: sha256:a3346445684e200d2777d27e1f6ef182420d4e188771b38da906f6e28100c962
+            support_files:
+              agents/openai.yaml: sha256:21bc6215fffcd7614e9f772bb1760e87cc5fc7dcc707e7d282bc9414267a6090
+          - kind: skill
+            name: triage
+            content_digest: sha256:917b0baf74be583e74f110857ed45df2766617f75c00baf61fd136d7af515edf
+            archive_digest: sha256:37b02338e3a3f1060626040c30ca5097d91726b999b4872b5d3b593f768b81c6
+            support_files:
+              AGENT-BRIEF.md: sha256:7f5f87fed3033df1b06e083c480f3e847b1fbb0647746b8a4c6a50f9f26ef44f
+              OUT-OF-SCOPE.md: sha256:1fbf9b432130c6380aa65813b55553cfda150309b27c595e183f8e335b8a190d
+              agents/openai.yaml: sha256:2e683717720cf456d165d0bb1a68bb600d0b6a8ccb61841c172e50d26f95351c
+          - kind: skill
+            name: wait-what
+            content_digest: sha256:d961bb37defd975c539427edb8f450cdbccdcdd552e213c1ece46676a7970905
+            archive_digest: sha256:ae27896790153d8ebc540903c60b6ed7d8a72c151db39cf983e2509787dfbfd5
+            support_files:
+              agents/openai.yaml: sha256:b41faadf741d51e4ea184148b2d1854d93f947aaf754c7844f70a00f04194999
+          - kind: skill
+            name: wayfinder
+            content_digest: sha256:9be7b478c389605a24517d27752f278933588da97a1b5921b165f455edf4c5b7
+            archive_digest: sha256:e2f957cf683d5cd41b9051b24f3b1a0204643438ce82b36194cfd8b3512d7323
+            support_files:
+              agents/openai.yaml: sha256:88bc81a11a6d52ac67aeaa76b8b619e387020d47c5133a4dd4927fd15c4ad073
+          - kind: skill
+            name: wizard
+            content_digest: sha256:bdf31d48211ea559878f95a4f344aeabf8d85897488ba564382bab0b000daac1
+            archive_digest: sha256:9def3c99decf6b3dfeb622d9007b0a1a06d0531b155062ee58af175040c40bce
+            support_files:
+              agents/openai.yaml: sha256:98f44d682d58e262f160dc59a8befc365e0aa65820dd0261864af26aa8e59d83
+              template.sh: sha256:6566f147299bc6f1d941e64591ed04385416d543e11f96f564c7228f5018d0ed
+          - kind: skill
+            name: writing-beats
+            content_digest: sha256:a96abafa2372eede8267d770138b322d6125da8adaa7ccf0a5e08e4ee13ee71e
+            archive_digest: sha256:6e5704f53ee43c798d38e2c06e67396ef967c8d5e122dba774d7b4fb33642286
+            support_files:
+              agents/openai.yaml: sha256:ddaef01da61d8e3c5f482c4403033c20cf5823f08a1dbf1d4c871670831d01e2
+          - kind: skill
+            name: writing-for-agents
+            content_digest: sha256:551adca942227b44192edba88acd4e8db911f0121ce58ad16944ccf6a896a74a
+            archive_digest: sha256:df88fbe62adc47c348e86b100a73df187cb8769f6508f65854ecd7ce77db6e00
+            support_files:
+              SKILL-MECHANICS.md: sha256:c768e6307c7c10728c401c213f2c4ba71c542127eeb7ad2956aabd15a0fa0059
+              agents/openai.yaml: sha256:eacb24b2a618cfb81dacb0416f4fdd75ddf3a8060f8ddb99aae1b1e301907e4b
+          - kind: skill
+            name: writing-fragments
+            content_digest: sha256:298b0edd23df229183630de592ed8aa4289233560f2040691f6eb77caeaad4ea
+            archive_digest: sha256:ea7c2f80a090646d8e6b9be105325f92cbe7c0d9ea6490debfc21e5613e7eb69
+            support_files:
+              agents/openai.yaml: sha256:81167f25ee8ea1bb4b4958f12b6702ea972ad31b05e03ec91e39fa4bae0c2641
+          - kind: skill
+            name: writing-shape
+            content_digest: sha256:f5e6c57bdd85178ace4a260c92f46da6b64ddee18215b461d875739c68976f72
+            archive_digest: sha256:433a47c9a6c62124b098fbd488a1335c92dc7909b90e5670d9e1bc8d6ca97ae1
+            support_files:
+              agents/openai.yaml: sha256:56de45430e23104ff178415f5ecf7821d51a9cfabd8814b1607ebf39da2ef5cd
+      - path: skills/engineering
+        source_harness: claude
+        revision_schema: v4
+        revision_digest: sha256:2f91fd97f5a71704210feb028e0d8874a3aa7b9600574f369917af8b5391c08e
+        resources:
+          - kind: skill
+            name: ask-matt
+            content_digest: sha256:1371f5ce005de0992a44b137748bfb960a56948aa9871b405fe9d90b24332e3c
+            archive_digest: sha256:c8651eb7aa948ce1c7ed5abf0f760b497b01daf28818c4f76087f242a8bc6c29
+            support_files:
+              PHASE-BOUNDARIES.md: sha256:a8aa20158609ef39e2b308b6ba0660c91066838d07a867202e63a7744a88a3ed
+              agents/openai.yaml: sha256:bdffbc5a0a99ed1b6ef3253d251d755fd18162b9845972e380007f844b09b05c
+          - kind: skill
+            name: code-review
+            content_digest: sha256:09eb147f793e4647949edd32dbad278f0554dfb56e0d46b699cd4c2c55bf0357
+            archive_digest: sha256:2c2b087b56b97762a9971bd3e5fcd574c503b487d8382094e6ab0368b098ed06
+            support_files:
+              agents/openai.yaml: sha256:8229ca854e11dc8e6aef2131ee03f31fb1561cf905fab9ccc325180cf3331352
+          - kind: skill
+            name: codebase-design
+            content_digest: sha256:2c20617f87ec8af6a434859f381b2f061a69b530444e74eb39e78bb016a6d1e2
+            archive_digest: sha256:0253bae64356b73e065b0a4d9d579d814ca229fb36395c345ff880e2dba0cb96
+            support_files:
+              DEEPENING.md: sha256:f3dd099ce99289bd213914d8ee3e2429b78309c3957ca4583f7659551b1d53c1
+              DESIGN-IT-TWICE.md: sha256:52b52e75655a27aea59c6966b410bac82448968ad46ef1ebb9f07c274e3ae010
+              agents/openai.yaml: sha256:edebc9e4fcfe102114012575eaa9600b9b5fd08c311664f389c36e7bc717740f
+          - kind: skill
+            name: diagnosing-bugs
+            content_digest: sha256:849198df88cdb65fd0d97236604c1fca7ff2f22d2f705f9724a800d0266b118d
+            archive_digest: sha256:eb38c79d88433f215c9c21f83310c13c2f948438f52fa6962d680fd24daecef8
+            support_files:
+              agents/openai.yaml: sha256:3e430dbe4334a87597488c060cb3dc3786bb00c9182877d6f5ec41f62490e90b
+              scripts/hitl-loop.template.sh: sha256:35103539fc36873eea36074769ad454f9379d6fc8b2dc0e26ce987fd3bfe5503
+          - kind: skill
+            name: domain-modeling
+            content_digest: sha256:7b925d7b1e341a2eeae33ad68a8a8c0ab889a38ddd22a7598e4c240e5a7556a3
+            archive_digest: sha256:cdcccd39afac20a29fc359db57700ab32b1185c75d60db873ae34a3e7823f8cb
+            support_files:
+              ADR-FORMAT.md: sha256:944c92aa790e8fbdc9199640b170979abb8a34ba8d0fe18c2a01a63bce140ca0
+              GLOSSARY-FORMAT.md: sha256:21dcc40cdec8e151a829b98ab1517c1867bc444e3665134a98c6983411996801
+              agents/openai.yaml: sha256:f6bf2aa996c6e6f53fdd0708e18a0d16a56aed8322cca59fedbe3c0d2c75f06b
+          - kind: skill
+            name: grill-with-docs
+            content_digest: sha256:7de372c13488f1ee96cc11cd8907b56b6809cc93eef776eeddd37de6b6cbe3fe
+            archive_digest: sha256:150b267932c12b609f90d39105f320d6ae225920b9c0741cc2ec3a2b50331c91
+            support_files:
+              agents/openai.yaml: sha256:94cd0ab161fb468a836349f5ed482ba58ce8e709a05c57ce533d739dbd35cca9
+          - kind: skill
+            name: implement
+            content_digest: sha256:483bdc4ccf4ac31d86ac7beeaa0d0db80313e71e120bb8c59b3196ae5decd53d
+            archive_digest: sha256:cc1a19b288b45820fedc2d071aab5c9ec11332468adf608159b74f155ca97378
+            support_files:
+              agents/openai.yaml: sha256:8970a8596ade0c28ab427f41a4ea242d6bdf6186c59ebf55e1238dbecaab79dc
+          - kind: skill
+            name: implement-spec
+            content_digest: sha256:7a22dd2e60b8fcece478ced9d2533582adf3520d695acd3ab715341535c9e56d
+            archive_digest: sha256:d492f6451e7cc55268226c38f0efa3090f2dc5aa3f79acd0012e8371973ae910
+            support_files:
+              agents/openai.yaml: sha256:fd41efb42c60c96320d6531be7e4bf15cbf5518cd652d57dff27ccffa46988e9
+          - kind: skill
+            name: improve-codebase-architecture
+            content_digest: sha256:552240a5ab5cec6b67c15dd1ad6e9f6962b1bca6ce870059a8c2713760c20392
+            archive_digest: sha256:eb66515a89121975218d7e00855816bf7dc37a4569d87024e7b0e215cc7eab6a
+            support_files:
+              HTML-REPORT.md: sha256:581e8bb5a521e46bbda8ca7e19b15948bed882187108092ebb90c62513b77528
+              agents/openai.yaml: sha256:c8cb20f68ebf0edb4e497bc11ae5fcaa196004e661cd189015b04f4109ced7f1
+          - kind: skill
+            name: pr
+            content_digest: sha256:ab63f1cf78647389edcd386c9427c5dfca27ed2836930c24773ffee834c19bcd
+            archive_digest: sha256:d6c8857a890e1cd55db39b90baa2b6d1e2e34a90585f13dd9e761d4a6f0db01e
+            support_files:
+              CREDITS.md: sha256:a7a087127665d7298a72280ef6e19c41ad8404523712a788c8dc3ab414bc2497
+              agents/openai.yaml: sha256:2295b586624db4ef546f3fd4695492f039d941a46d8a1593a702ce3ca511b8ad
+          - kind: skill
+            name: prototype
+            content_digest: sha256:714de632d116bb73f65cdb5a882db15b9369a6713b9a47c0fad827848f0bfbe3
+            archive_digest: sha256:9273ff4385529531afdbe35c7c3d84b659f0f551914e07a586e5bf811943e3f9
+            support_files:
+              LOGIC.md: sha256:f61c7d249e786a79ef289018901c348271e1798dd0b0bc5607b5c6f4d4a01ab9
+              UI.md: sha256:723211e878acbc7b6ff09755263f3295cde724ba902ff0064da41eed51d45ad3
+              agents/openai.yaml: sha256:5af65e43ab41a350436697b81e27b7f848d36782043b73c322bb2c9fa9cc55dc
+          - kind: skill
+            name: research
+            content_digest: sha256:985569f15739c713d6784887c3d186d4ef9ac85bec5ad9c068d25bf0739928e4
+            archive_digest: sha256:eb3a2cff36d871a3008c259fd6fb08c6ae1aafaaa878021002465b802a61bf19
+            support_files:
+              agents/openai.yaml: sha256:9b4c470d63221c1f68f22df70b83e2f12401b317babe0d1b7b5f24a974474d0d
+          - kind: skill
+            name: retro
+            content_digest: sha256:33fbc28568e3146f20fd908b12998bc0ab30aa4f4c87288199a40793efa94696
+            archive_digest: sha256:c08377e37c8bab2a68b2d5325969580582f3857860b7dd0ac972bf7a6f4ce82e
+            support_files:
+              agents/openai.yaml: sha256:cb6fb9d7e6b4be5975f41f6def1dd00a1255bad5d9b02696b124c924a8b8745c
+          - kind: skill
+            name: setup-matt-pocock-skills
+            content_digest: sha256:f148858ffb7f63c03c06fca06e6fdb1d91a35c6b293244b8fdfacd5f4cc028c4
+            archive_digest: sha256:d561fe031e8b03cfadf06e918d44e324d8d2b69d3ae26ec1607ff722e53755f1
+            support_files:
+              agents/openai.yaml: sha256:9527de0110541c45712319025155aeab8dc7d77c6ed6e5e83271bab1851ab939
+              domain.md: sha256:593a7042218689f1d24df89df14eaf0a20e19e0d0a7d479a01947ac78f0784b9
+              issue-tracker-github.md: sha256:f0653fe106dd8ee7b33be27bd7fe3104b40555896cb45f61997aed20467020c3
+              issue-tracker-gitlab.md: sha256:591a9e7057382aaccdfbed3f7ea3f2ad07e0cd29f012d18b82ee4e485fd81e24
+              issue-tracker-local.md: sha256:7dcda20a2eb4bdc89b95d1143423c0691309921cadae3132e6424f371030506e
+              triage-labels.md: sha256:ae512af838c78b8750471c42cd2b20fa32319553e61d84c9a23d171b40ce14aa
+          - kind: skill
+            name: tdd
+            content_digest: sha256:5505d25bbaa8fc14a79e4d20163936958992a2995b7f1dd1d6197edc9ed722e0
+            archive_digest: sha256:394c6fb6a2c85dad98502da42bc7309de985c1eff97b30f57e385b71f71c1c62
+            support_files:
+              agents/openai.yaml: sha256:ea6f01cf1b8c06a4b0f5b649d74b1b8ce8685e72af1b38d70d877693e092af0b
+              mocking.md: sha256:3ceb807fdf4a47d6a93d4d9a891e5ba6d362a6247bd08adc451feebfc17361ef
+              tests.md: sha256:859f9e592c188fda4fc7277dd180e4ce9c7a2e13f6efe1f6f29eccc9d28c106a
+          - kind: skill
+            name: to-spec
+            content_digest: sha256:43ad9cf318e5e7d3d1fa360253a37021796dc87a0c2e595ad262661a10f85088
+            archive_digest: sha256:3f600a656fcc12ce8c83dc8a314de4d5e8015294cdc943071e086d693f47e87a
+            support_files:
+              agents/openai.yaml: sha256:1c5b4d1e3d8e52287ef19cc2742fdbbfae1914ac75d33af3e4c8174f08cc55bb
+          - kind: skill
+            name: to-tickets
+            content_digest: sha256:56ec23c5b2782785d4e65bff9e315b6d3aeb4ef977c174a219e99489fada1995
+            archive_digest: sha256:a3346445684e200d2777d27e1f6ef182420d4e188771b38da906f6e28100c962
+            support_files:
+              agents/openai.yaml: sha256:21bc6215fffcd7614e9f772bb1760e87cc5fc7dcc707e7d282bc9414267a6090
+          - kind: skill
+            name: triage
+            content_digest: sha256:917b0baf74be583e74f110857ed45df2766617f75c00baf61fd136d7af515edf
+            archive_digest: sha256:37b02338e3a3f1060626040c30ca5097d91726b999b4872b5d3b593f768b81c6
+            support_files:
+              AGENT-BRIEF.md: sha256:7f5f87fed3033df1b06e083c480f3e847b1fbb0647746b8a4c6a50f9f26ef44f
+              OUT-OF-SCOPE.md: sha256:1fbf9b432130c6380aa65813b55553cfda150309b27c595e183f8e335b8a190d
+              agents/openai.yaml: sha256:2e683717720cf456d165d0bb1a68bb600d0b6a8ccb61841c172e50d26f95351c
+          - kind: skill
+            name: wayfinder
+            content_digest: sha256:9be7b478c389605a24517d27752f278933588da97a1b5921b165f455edf4c5b7
+            archive_digest: sha256:e2f957cf683d5cd41b9051b24f3b1a0204643438ce82b36194cfd8b3512d7323
+            support_files:
+              agents/openai.yaml: sha256:88bc81a11a6d52ac67aeaa76b8b619e387020d47c5133a4dd4927fd15c4ad073
+          - kind: skill
+            name: wizard
+            content_digest: sha256:bdf31d48211ea559878f95a4f344aeabf8d85897488ba564382bab0b000daac1
+            archive_digest: sha256:9def3c99decf6b3dfeb622d9007b0a1a06d0531b155062ee58af175040c40bce
+            support_files:
+              agents/openai.yaml: sha256:98f44d682d58e262f160dc59a8befc365e0aa65820dd0261864af26aa8e59d83
+              template.sh: sha256:6566f147299bc6f1d941e64591ed04385416d543e11f96f564c7228f5018d0ed
+      - path: skills/misc
+        source_harness: claude
+        revision_schema: v4
+        revision_digest: sha256:b1bb995b0f06912e6ffb4ea87afd8d8cf88dda3b8dee1488f7efe695df17e8bd
+        resources:
+          - kind: skill
+            name: git-guardrails-claude-code
+            content_digest: sha256:69b291d655626a01602b998a1836fcb93c058ede68dfafddfd71e87f17074764
+            archive_digest: sha256:c21975b89ebc356865ace057878f20ed0db29d359ea930cac71ef4907dc2dc52
+            support_files:
+              agents/openai.yaml: sha256:d53cd783fc0ac208dec9a4c267989284384785aab6422dccdaed42f9e40243ec
+              scripts/block-dangerous-git.sh: sha256:234922b83c0a1737ee7300806c21ac0f389b07aaeb65c2d71ccedafbc5e1ea4b
+          - kind: skill
+            name: migrate-to-shoehorn
+            content_digest: sha256:de4da4c11d924fac79c924b2ee3d2db4a5cb98386eb490a599119463d036ae72
+            archive_digest: sha256:bab9cd4b7accd26bb41b0511abd6bc60aa2e569bd454223cfd54977975214c9e
+            support_files:
+              agents/openai.yaml: sha256:395c2db852e66a199f1cd07f7ed92d66cb6f0787460c5475926f1a5e778b699d
+          - kind: skill
+            name: scaffold-exercises
+            content_digest: sha256:75f5c9d771606fb9762f16522efc954df11c324f87148d8ff069bce166257de9
+            archive_digest: sha256:19d490d6c174563526d00b206f21fbf1165174c2ebcfc54d47796a8902d7f050
+            support_files:
+              agents/openai.yaml: sha256:525b33913340bea7947ad2de17f2a7c5fb94be543345fe80ae753b9a44ba601d
+          - kind: skill
+            name: setup-pre-commit
+            content_digest: sha256:c9819d7f1e3b198064edc1faa3154224ed67395e9f07f5d3cea4b67cf0a11a98
+            archive_digest: sha256:38a4faa71b6e10060293d783a3c61381894c02f78d0335af18dfbc3ab2439b81
+            support_files:
+              agents/openai.yaml: sha256:acf41db398c5c43afe504008bb7d615a97b6498b0f1f6c5b2395254c0bfb57d1
+      - path: skills/productivity
+        source_harness: claude
+        revision_schema: v4
+        revision_digest: sha256:8c338f6c403a78518d1ab1beb008aff827de0331eb5ae46ddaab9e60cd6705b6
+        resources:
+          - kind: skill
+            name: grill-me
+            content_digest: sha256:caaf8b8de1684f96e26b28f3c29189db5c89cce4b73e1c93d86164f66ef88637
+            archive_digest: sha256:1a57b7fb5aa70b601818ea2787b38c0b43def6fedab38c19b10da2e50c78e579
+            support_files:
+              agents/openai.yaml: sha256:c061e39c3e0f9d865fb1b97556d485704af2a8a58f4b8221a8917a5c2074a32b
+          - kind: skill
+            name: grilling
+            content_digest: sha256:befdff1e27a1dfe2a294d5871169ac1afe16d983911daa4f32627514a48c1e15
+            archive_digest: sha256:9f19fd2d32dd250f7f14d5b3e2a460a4b32ff50433ab380b66946ef4d5527c7d
+            support_files:
+              agents/openai.yaml: sha256:1411d7df7d99b7e621a1ff8283c8133cc2464be63d064e52d8ce169c6800ee9b
+          - kind: skill
+            name: handoff
+            content_digest: sha256:4cbb043950dad2ffd3662ff1a5a0b51ae676004b5cae10e3787e8ee7a4ee69d3
+            archive_digest: sha256:7211402cd74e886f3daf8593252a34915ce046cffdaaaddb53a9e954840d6e30
+            support_files:
+              agents/openai.yaml: sha256:5c479fd562c691851690e8b18c8501045bef0943c10743d636b2fae26add1d28
+          - kind: skill
+            name: teach
+            content_digest: sha256:550482c2d674b085c9043b87bfdc14a8f2ec453c736119e7fcbb1e9332bffeba
+            archive_digest: sha256:6dc7c34a3e042ff8cbd48fc1222ebb6ac29b16a827d04978d8c6e5da8c40f082
+            support_files:
+              GLOSSARY-FORMAT.md: sha256:9b99859ec28437668130d8f2ce5a342938970f8a1ed4fd38c3eab4f4b5fff210
+              LEARNING-RECORD-FORMAT.md: sha256:701fa34b6748aa89e6c960ffb815257f481a7d77fb2900f9028f7edf3fdd6052
+              MISSION-FORMAT.md: sha256:8cacbb3c0644d3ae0ea4965564797099401a6930a23f7cf462918576587f2418
+              RESOURCES-FORMAT.md: sha256:e9cacf34026e11a8d1c8f9de88abe5bcbf654f4ebdb25cae8c0de0d5f48f44ec
+              agents/openai.yaml: sha256:5856f3ae8aec742f1499c640aecdd5f1d6af5fa210a7c6ec794de8263a6f733f
+          - kind: skill
+            name: to-questionnaire
+            content_digest: sha256:b5eb929842ee0e93d867c5e906d183d350f2f2d149eaeaa86967d94d8eda1d3b
+            archive_digest: sha256:f1a525c82009a0369ee8117127b918ed8c85ce337e8d1cd92354668b80460053
+            support_files:
+              agents/openai.yaml: sha256:9e8a06c38c8842eea8d4922cb9d1ead8e3ace647bab259b943c994a1b4742bc2
+          - kind: skill
+            name: wait-what
+            content_digest: sha256:d961bb37defd975c539427edb8f450cdbccdcdd552e213c1ece46676a7970905
+            archive_digest: sha256:ae27896790153d8ebc540903c60b6ed7d8a72c151db39cf983e2509787dfbfd5
+            support_files:
+              agents/openai.yaml: sha256:b41faadf741d51e4ea184148b2d1854d93f947aaf754c7844f70a00f04194999
+          - kind: skill
+            name: writing-for-agents
+            content_digest: sha256:551adca942227b44192edba88acd4e8db911f0121ce58ad16944ccf6a896a74a
+            archive_digest: sha256:df88fbe62adc47c348e86b100a73df187cb8769f6508f65854ecd7ce77db6e00
+            support_files:
+              SKILL-MECHANICS.md: sha256:c768e6307c7c10728c401c213f2c4ba71c542127eeb7ad2956aabd15a0fa0059
+              agents/openai.yaml: sha256:eacb24b2a618cfb81dacb0416f4fdd75ddf3a8060f8ddb99aae1b1e301907e4b

@@ -1,0 +1,55 @@
+apiVersion: agent-marketplace/v4
+harnesses:
+  - cursor
+  - codex
+sources:
+  agent-marketplace:
+    git: git@github.com:Adyen/agent-marketplace
+    ref: main
+    path: skills
+  pstack:
+    git: git@github.com:cursor/plugins
+    ref: main
+    path: pstack/skills
+  mattpocock:
+    git: git@github.com:mattpocock/skills
+    ref: main
+    path: skills
+  skills:
+    git: git@github.com:mattpocock/skills
+    ref: main
+    path: skills/productivity
+    source_harness: claude
+  skills-2:
+    git: git@github.com:mattpocock/skills
+    ref: main
+    path: skills/engineering
+    source_harness: claude
+  skills-3:
+    git: git@github.com:mattpocock/skills
+    ref: main
+    path: skills/misc
+    source_harness: claude
+resources:
+  agent-marketplace:
+    include:
+      - skill/agent-marketplace
+  pstack:
+    include: [skill/unslop]
+  mattpocock:
+    include: []
+  skills:
+    include:
+      - skill/grill-me
+      - skill/grilling
+      - skill/writing-for-agents
+  skills-2:
+    include:
+      - skill/grill-with-docs
+      - skill/improve-codebase-architecture
+      - skill/code-review
+      - skill/to-spec
+      - skill/to-tickets
+  skills-3:
+    include:
+      - skill/setup-pre-commit
