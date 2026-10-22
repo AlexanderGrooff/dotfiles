@@ -14,6 +14,11 @@ fix_remote.sh
 .config/bead-dispatcher/config.yaml
 {{- end }}
 
+{{- if stat (joinPath .chezmoi.homeDir ".agents" "config.private.yaml") }}
+# The lock records the private fragment's sources too, so it stays machine-local.
+.agents/lock.yaml
+{{- end }}
+
 {{- if ne .chezmoi.os "linux" }}
 # Linux-only dotfiles - don't deploy on non-Linux
 .bashrc

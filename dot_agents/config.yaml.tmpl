@@ -1,7 +1,14 @@
+{{- /* ~/.agents/config.private.yaml is an untracked, machine-local fragment (work laptop). */ -}}
+{{- $private := stat (joinPath .chezmoi.homeDir ".agents" "config.private.yaml") -}}
 apiVersion: agent-marketplace/v4
+{{- if $private }}
+# The private fragment sets harnesses; a value here would override it.
+include: config.private.yaml
+{{- else }}
 harnesses:
   - cursor
   - codex
+{{- end }}
 sources:
   agent-marketplace:
     git: git@github.com:Adyen/agent-marketplace
